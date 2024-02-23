@@ -1,0 +1,98 @@
+/* .booked-appointments {
+  margin: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+
+.booked-appointments h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.booked-appointments table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.booked-appointments th,
+.booked-appointments td {
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+.booked-appointments th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+  text-align: left;
+}
+
+.booked-appointments tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+@media (max-width: 768px) {
+  .booked-appointments th,
+  .booked-appointments td {
+    padding: 8px;
+  }
+}
+
+@media (max-width: 576px) {
+  .booked-appointments h2 {
+    font-size: 20px;
+  }
+
+  .booked-appointments th,
+  .booked-appointments td {
+    font-size: 14px;
+    padding: 6px;
+  }
+} */
+/* Add custom CSS styles */
+.booked-appointments {
+  margin-top: 20px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.table th,
+.table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.table thead {
+  background-color: #343a40;
+  color: white;
+}
+
+.table tbody tr:nth-of-type(even) {
+  background-color: #f8f9fa;
+}
+
+.table tbody tr:hover {
+  background-color: #e2e6ea;
+}
+
+/* Make the table responsive */
+@media screen and (max-width: 600px) {
+  .table {
+    overflow-x: auto;
+  }
+}
+
+.booked-appointmentsheader {
+  font-family: "Times New Roman", Times, serif;
+  font-weight: 500;
+  font-size: x-large;
+  color: Green;
+}
