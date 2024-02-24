@@ -5,7 +5,9 @@ import Admin from "./components/Admin";
 import LoginForm from "./components/LoginForm";
 import ProtectedRoute from "./components/ProtectedRoute";
 import NotFound from "./components/NotFound";
-import SignupForm from "./components/SignupForm";
+import RegistrationForm from "./components/SignupForm";
+import Barbars from "./components/Barbars";
+import { ToastContainer } from "react-toastify";
 import "./App.css";
 
 const App = () => (
@@ -13,9 +15,10 @@ const App = () => (
     <div className="App">
       <Switch>
         <Route exact path="/login" component={LoginForm} />
-        <Route exact path="/signup" component={SignupForm} />
+        <Route exact path="/registartion" component={RegistrationForm} />
         <ProtectedRoute exact path="/" component={Home} />
         <ProtectedRoute exact path="/admin" component={Admin} />
+        <ProtectedRoute exact path="/barbars" component={Barbars} />
         <Route component={NotFound} />
       </Switch>
     </div>

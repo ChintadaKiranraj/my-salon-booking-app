@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { Redirect, Link } from "react-router-dom";
 import Cookies from "js-cookie";
-
+import { toast } from "react-toastify"; // Importing toast function
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 import "./index.css";
 
 class LoginForm extends Component {
@@ -48,6 +50,7 @@ class LoginForm extends Component {
 
     if (response.ok === true) {
       this.onSubmitSuccess(data.jwt_token);
+      toast.success("Login was successfully done!");
     } else {
       this.onSubmitFailure("invalid username or password");
     }
@@ -112,17 +115,18 @@ class LoginForm extends Component {
     return (
       <div className="login-form-container">
         <form className="form-container" onSubmit={this.submitForm}>
-          <p>Salon</p>
+          <p className="login-style">Salon</p>
           <div className="input-container">{this.renderUsernameField()}</div>
           <div className="input-container">{this.renderPasswordField()}</div>
           <button type="submit" className="login-button">
             Login
           </button>
+          <ToastContainer />
           {showSubmitError && <p className="error-message">*{errorMsg}</p>}
           <p>
             New user?
             <Link
-              to="/signup"
+              to="/registartion"
               className="signup-link"
               onClick={this.handleSignupClick}
             >

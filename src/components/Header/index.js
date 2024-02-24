@@ -49,7 +49,13 @@ const Header = (props) => {
 
             <li className="nav-menu-item">
               <Link to="/admin" className="nav-link">
-                Admin Dashboard
+                Admin
+              </Link>
+            </li>
+
+            <li className="nav-menu-item">
+              <Link to="/barbars" className="nav-link">
+                Barbars
               </Link>
             </li>
           </ul>
@@ -77,7 +83,7 @@ const Header = (props) => {
           <li className="nav-menu-item-mobile">
             <Link to="/admin" className="nav-link">
               <img
-                src="admin Dashb oard"
+                src="admin Dashboard"
                 alt="admin Dash board"
                 className="nav-bar-img"
               />
