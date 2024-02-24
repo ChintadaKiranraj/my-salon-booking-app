@@ -79,9 +79,9 @@
   background-color: #f8f9fa;
 }
 
-.table tbody tr:hover {
+/* .table tbody tr:hover {
   background-color: #e2e6ea;
-}
+} */
 
 /* Make the table responsive */
 @media screen and (max-width: 600px) {
@@ -94,5 +94,12 @@
   font-family: "Times New Roman", Times, serif;
   font-weight: 500;
   font-size: x-large;
-  color: Green;
+  color: yellow;
+}
+
+.actionbtn {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 43%;
 }

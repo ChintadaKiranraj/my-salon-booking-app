@@ -2,7 +2,8 @@
   display: flex;
   justify-content: center;
   border-bottom: 1px solid rgb(243, 243, 243);
-  background-color: rgb(213, 230, 232);
+  background-color: rgb(9, 203, 225);
+  margin-bottom: 25px;
 }
 
 @media screen and (max-width: 767px) {
@@ -18,9 +19,9 @@
   align-items: center;
   justify-content: space-between;
   width: 90%;
-  max-width: 1110px;
-  padding-top: 25px;
-  padding-bottom: 25px;
+  min-width: 50%;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 @media screen and (max-width: 767px) {
   .nav-content {
@@ -55,7 +56,7 @@
 }
 
 .website-logo {
-  width: 110px;
+  width: 90px;
 }
 
 @media screen and (min-width: 768px) {

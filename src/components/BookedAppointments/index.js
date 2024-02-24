@@ -1,122 +1,75 @@
-// // BookedAppointments.js
-// import React from "react";
-// import "./index.css";
-
-// function BookedAppointments({ appointments }) {
-//   return (
-//     <div className="booked-appointments">
-//       <h2>Booked Appointments</h2>
-//       <table>
-//         <thead>
-//           <tr>
-//             <th>Name</th>
-//             <th>Date</th>
-//             <th>Time</th>
-//             <th>Status</th>
-//           </tr>
-//         </thead>
-//         <tbody>
-//           {appointments.map((appointment) => (
-//             <tr key={appointment.id}>
-//               <td>{appointment.name}</td>
-//               <td>{appointment.date}</td>
-//               <td>{appointment.time}</td>
-//               <td>{appointment.status}</td>
-//             </tr>
-//           ))}
-//         </tbody>
-//       </table>
-//     </div>
-//   );
-// }
-
-// export default BookedAppointments;
-// BookedAppointments.js
-
-// import React from "react";
-// import "bootstrap/dist/css/bootstrap.min.css"; // Import Bootstrap CSS
-
-// const BookedAppointments = (props) => {
-//   const { appointments } = props;
-//   const storedAppointMents = () => (
-//     <div className="booked-appointments">
-//       <h2>Booked Appointments</h2>
-//       <table className="table">
-//         <thead className="thead-dark">
-//           <tr>
-//             <th>Name</th>
-//             <th>Date</th>
-//             <th>Time</th>
-//             <th>Status</th>
-//           </tr>
-//         </thead>
-//         <tbody>
-//           {appointments.map((appointment) => (
-//             <tr key={appointment.id}>
-//               <td>{appointment.name}</td>
-//               <td>{appointment.date}</td>
-//               <td>{appointment.time}</td>
-//               <td>{appointment.status}</td>
-//             </tr>
-//           ))}
-//         </tbody>
-//       </table>
-//     </div>
-//   );
-
-//   return (
-//     <>
-//       {appointments.length > 0 ? (
-//         storedAppointMents()
-//       ) : (
-//         <p>No booked appointment yet.</p>
-//       )}
-//     </>
-//   );
-// };
-
-// export default BookedAppointments;
 import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css"; // Import Bootstrap CSS
-import "./index.css"; // Import custom CSS styles
+import "bootstrap/dist/css/bootstrap.min.css";
+
+import "./index.css";
+
+import { RiAccountCircleLine } from "react-icons/ri";
+
+import { RiDeleteBin6Fill } from "react-icons/ri";
+
+import { VscPassFilled } from "react-icons/vsc";
 
 const BookedAppointments = (props) => {
-  const { appointments } = props;
-  const storedAppointments = () => (
-    <div className="booked-appointments">
-      <h2 className="booked-appointmentsheader">Booked Appointments</h2>
-      <table className="table">
-        <thead className="thead-dark">
-          <tr>
-            <th>Name</th>
-            <th>Date</th>
-            <th>Time</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          {appointments.map((appointment) => (
-            <tr key={appointment.id}>
-              <td>{appointment.name}</td>
-              <td>{appointment.date}</td>
-              <td>{appointment.time}</td>
-              <td>{appointment.status}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
+  const {
+    appointment,
+    deleteUserVar,
+    approveUserVar,
+    rejectUserVar,
+    modifications,
+  } = props;
+  const { id } = appointment;
 
-  return (
-    <>
-      {appointments.length > 0 ? (
-        storedAppointments()
-      ) : (
-        <p>No booked appointment yet.</p>
-      )}
-    </>
-  );
+  const handleDeleteClick = () => {
+    console.log("delete user clicked" + id);
+    deleteUserVar(id);
+  };
+  const handleApproveClick = () => {
+    console.log("approved user clicked");
+    approveUserVar(id);
+  };
+
+  const hadleRejectUser = () => {
+    console.log("reject user clicked");
+    rejectUserVar(id);
+  };
+
+  const storedAppointments = () => {
+    let color = "yellow";
+    if (appointment.status === "Pending") {
+      color = "yellow";
+    } else if (appointment.status === "Approved") {
+      color = "green";
+    } else if (appointment.status === "Rejected") {
+      color = "Red";
+    }
+
+    return (
+      <tr>
+        <td>{appointment.name}</td>
+        <td>{appointment.time}</td>
+        <td>
+          {appointment.status}
+
+          {<VscPassFilled color={`${color}`} />}
+        </td>
+
+        {modifications > 0 ? (
+          <td className="actionbtn">
+            <RiDeleteBin6Fill
+              color={`"red" ${color}`}
+              onClick={handleDeleteClick}
+            />
+            <RiAccountCircleLine color="green" onClick={handleApproveClick} />
+            <RiAccountCircleLine color="red" onClick={hadleRejectUser} />
+          </td>
+        ) : (
+          ""
+        )}
+      </tr>
+    );
+  };
+
+  return <>{storedAppointments()}</>;
 };
 
 export default BookedAppointments;

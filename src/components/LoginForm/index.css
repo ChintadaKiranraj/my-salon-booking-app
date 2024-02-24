@@ -134,4 +134,9 @@
   line-height: 16px;
   color: #ff0b37;
 }
-/* Styles for the Saloon logo */
+.login-style {
+  background: linear-gradient(60deg, red, green, blue);
+  color: rgba(0, 0, 0, 0.1);
+  background-clip: text;
+  font-size: 30px;
+}
