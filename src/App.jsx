@@ -7,7 +7,6 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import NotFound from "./components/NotFound";
 import RegistrationForm from "./components/SignupForm";
 import Barbars from "./components/Barbars";
-import { ToastContainer } from "react-toastify";
 import "./App.css";
 
 const App = () => (

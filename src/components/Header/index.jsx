@@ -1,15 +1,22 @@
 import { Link, withRouter } from "react-router-dom";
 
 import Cookies from "js-cookie";
+import { FcVoicePresentation } from "react-icons/fc";
+import { RxHome } from "react-icons/rx";
+import { LuLogOut } from "react-icons/lu";
 
 import "./index.css";
 
 const Header = (props) => {
+  const LoginUserLogo = () => {
+    return <p className="super-logo">{Cookies.get("logidin_user_logo")}</p>;
+  };
   const onClickLogout = () => {
     const { history } = props;
 
     Cookies.remove("jwt_token");
     Cookies.remove("access_level");
+    Cookies.remove("logidin_user_logo");
     history.replace("/login");
   };
 
@@ -18,29 +25,20 @@ const Header = (props) => {
       <div className="nav-content">
         <div className="nav-bar-mobile-logo-container">
           {/* web site logo */}
-          <img
-            className="website-logo"
-            src="https://as1.ftcdn.net/v2/jpg/02/89/96/84/1000_F_289968481_3fO0IEzzgxImqz2wc24Jql67pPpp6BS0.jpg"
-            alt="website logo"
-          />
+          {LoginUserLogo()}
 
           <button
             type="button"
             className="nav-mobile-btn"
             onClick={onClickLogout}
           >
-            {/* it should present */}
-            <img
-              src="https://assets.ccbp.in/frontend/react-js/nxt-trendz-log-out-img.png"
-              alt="nav logout"
-              className="nav-bar-img"
-            />
+            <LuLogOut />
           </button>
         </div>
 
         <div className="nav-bar-large-container">
           {/* <img className="website-logo" src="" alt="website logo desk" /> */}
-          <h1 className="websiteLogo">Logo</h1>
+          <h1 className="websiteLogo">{LoginUserLogo()}</h1>
           <ul className="nav-menu">
             <li className="nav-menu-item">
               <Link to="/" className="nav-link">
@@ -73,21 +71,18 @@ const Header = (props) => {
         <ul className="nav-menu-list-mobile">
           <li className="nav-menu-item-mobile">
             <Link to="/" className="nav-link">
-              <img
-                src="https://assets.ccbp.in/frontend/react-js/nxt-trendz-home-icon.png1"
-                alt="nav home"
-                className="nav-bar-img"
-              />
+              <RxHome />
             </Link>
           </li>
 
           <li className="nav-menu-item-mobile">
             <Link to="/admin" className="nav-link">
-              <img
-                src="admin Dashboard"
-                alt="admin Dash board"
-                className="nav-bar-img"
-              />
+              <FcVoicePresentation />
+            </Link>
+          </li>
+          <li className="nav-menu-item">
+            <Link to="/barbars" className="nav-link">
+              Barbars
             </Link>
           </li>
         </ul>

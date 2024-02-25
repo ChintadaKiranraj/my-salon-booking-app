@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { Redirect, Link } from "react-router-dom";
+// import Cookies from "js-cookie";
 import Cookies from "js-cookie";
-import { toast } from "react-toastify"; // Importing toast function
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import "./index.css";
 import log from "loglevel";
-log.setLevel("info"); // Set log level (e.g., 'trace', 'debug', 'info', 'warn', 'error')
 
 class LoginForm extends Component {
   state = {
@@ -26,7 +26,15 @@ class LoginForm extends Component {
   };
 
   onSubmitSuccess = (jsonData) => {
+    //  const decodedString = atob(data);
+    //  setAppointments(JSON.parse(decodedString));
     const { history } = this.props;
+    const decodedString = atob(jsonData.data);
+    const jsonString = JSON.parse(decodedString);
+    const userObject = jsonString[0];
+    const fullName =
+      userObject.first_name[0].toUpperCase() +
+      userObject.last_name[0].toUpperCase();
 
     Cookies.set("jwt_token", jsonData.data, {
       expires: 30,
@@ -34,6 +42,10 @@ class LoginForm extends Component {
     Cookies.set("access_level", jsonData.accessLevel, {
       expires: 30,
     });
+    Cookies.set("logidin_user_logo", fullName, {
+      expires: 30,
+    });
+
     history.replace("/");
   };
 

@@ -1,0 +1,9 @@
+.barbars-component {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  margin-right: 0px;
+  height: 80vh;
+}
