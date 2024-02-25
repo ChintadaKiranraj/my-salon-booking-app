@@ -5,6 +5,8 @@ import { toast } from "react-toastify"; // Importing toast function
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import "./index.css";
+import log from "loglevel";
+log.setLevel("info"); // Set log level (e.g., 'trace', 'debug', 'info', 'warn', 'error')
 
 class LoginForm extends Component {
   state = {
@@ -23,10 +25,13 @@ class LoginForm extends Component {
     this.setState({ password: event.target.value });
   };
 
-  onSubmitSuccess = (jwtToken) => {
+  onSubmitSuccess = (jsonData) => {
     const { history } = this.props;
 
-    Cookies.set("jwt_token", jwtToken, {
+    Cookies.set("jwt_token", jsonData.data, {
+      expires: 30,
+    });
+    Cookies.set("access_level", jsonData.accessLevel, {
       expires: 30,
     });
     history.replace("/");
@@ -39,23 +44,27 @@ class LoginForm extends Component {
   submitForm = async (event) => {
     event.preventDefault();
     const { username, password } = this.state;
+    console.log(username + ", " + password);
     const userDetails = { emailId: username, password };
-    debugger;
-    console.log(userDetails + " <-------------");
-    console.log(userDetails + " <-------------");
-    // const url = "https://apis.ccbp.in/login";
+    log.info(
+      "emailId: " + userDetails.emailId + "Password: " + userDetails.password
+    );
+
     const url = "http://localhost:4001/validate-resgistratation-login-user";
     const options = {
       method: "POST",
-      body: JSON.stringify(userDetails),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ emailId: username, password }),
     };
     const response = await fetch(url, options);
-    const data = await response.json();
-    debugger;
+    const jsonData = await response.json();
+
     if (response.ok === true) {
-      console.log(response);
-      // this.onSubmitSuccess(data.jwt_token);
-      this.onSubmitSuccess(data.data);
+      log.info("response ---> " + response);
+
+      this.onSubmitSuccess(jsonData);
       toast.success("Login was successfully done!");
       alert("Login as successfully done!!");
     } else {

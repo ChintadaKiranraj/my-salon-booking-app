@@ -1,6 +1,4 @@
-import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-
 import "./index.css";
 
 import { RiAccountCircleLine } from "react-icons/ri";
@@ -15,7 +13,7 @@ const BookedAppointments = (props) => {
     deleteUserVar,
     approveUserVar,
     rejectUserVar,
-    modifications,
+    accessLevele,
   } = props;
   const { id } = appointment;
 
@@ -52,7 +50,7 @@ const BookedAppointments = (props) => {
 
           {<VscPassFilled color={`${color}`} />}
         </td>
-        {modifications > 0 ? (
+        {accessLevele > 0 ? (
           <td className="actionbtn">
             <RiDeleteBin6Fill
               color={`"red" ${color}`}

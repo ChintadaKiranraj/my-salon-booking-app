@@ -24,11 +24,10 @@ const BookingForm = ({ onBooking }) => {
       time,
       status: PENDING,
     };
-    // console.log("newAppointment--> " + newAppointment.time);
 
     let databaseDate = convertDateFormate(newAppointment.time);
     let newModifieedAppointment = { ...newAppointment, time: databaseDate };
-    // console.log("databaseDate --->" + databaseDate);
+
     onBooking(newModifieedAppointment);
 
     setName("");
