@@ -52,7 +52,6 @@ const BookedAppointments = (props) => {
 
           {<VscPassFilled color={`${color}`} />}
         </td>
-
         {modifications > 0 ? (
           <td className="actionbtn">
             <RiDeleteBin6Fill

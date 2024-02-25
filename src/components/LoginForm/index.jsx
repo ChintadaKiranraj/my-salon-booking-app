@@ -39,18 +39,25 @@ class LoginForm extends Component {
   submitForm = async (event) => {
     event.preventDefault();
     const { username, password } = this.state;
-    const userDetails = { username, password };
-    const url = "https://apis.ccbp.in/login";
+    const userDetails = { emailId: username, password };
+    debugger;
+    console.log(userDetails + " <-------------");
+    console.log(userDetails + " <-------------");
+    // const url = "https://apis.ccbp.in/login";
+    const url = "http://localhost:4001/validate-resgistratation-login-user";
     const options = {
       method: "POST",
       body: JSON.stringify(userDetails),
     };
     const response = await fetch(url, options);
     const data = await response.json();
-
+    debugger;
     if (response.ok === true) {
-      this.onSubmitSuccess(data.jwt_token);
+      console.log(response);
+      // this.onSubmitSuccess(data.jwt_token);
+      this.onSubmitSuccess(data.data);
       toast.success("Login was successfully done!");
+      alert("Login as successfully done!!");
     } else {
       this.onSubmitFailure("invalid username or password");
     }
@@ -86,7 +93,7 @@ class LoginForm extends Component {
     return (
       <>
         <label className="input-label" htmlFor="username">
-          USERNAME
+          EMAIL_ID
         </label>
         <input
           type="text"

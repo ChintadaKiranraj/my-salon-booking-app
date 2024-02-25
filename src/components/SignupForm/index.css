@@ -135,3 +135,34 @@
     /* background-color: aqua; */
   }
 }
+
+.checkbox-labels {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-self: start;
+  align-items: flex-start;
+  /* background-color: red; */
+}
+
+.checkbox-label {
+  font-family: "Roboto";
+  font-size: 16px;
+  font-weight: 400;
+  width: 100%;
+  margin: 0px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 20px;
+  border-radius: 5px;
+  /* background-color: red; */
+}
+.checkbox-input {
+  width: 20px;
+  height: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-right: 2px;
+  margin-left: 10px;
+}
