@@ -9,6 +9,7 @@ const Header = (props) => {
     const { history } = props;
 
     Cookies.remove("jwt_token");
+    Cookies.remove("access_level");
     history.replace("/login");
   };
 

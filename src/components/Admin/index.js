@@ -1,35 +1,35 @@
 import React, { useState, useEffect } from "react";
 import BookedAppointments from "../BookedAppointments";
 import Header from "../Header";
+import Cookie from "js-cookie";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Hourglass } from "react-loader-spinner";
 import "./index.css";
 const Admin = () => {
   const [appointments, setAppointments] = useState([]);
   const [fetchedStatus, setFetchedStatus] = useState(false);
-  const [modifications, setModifications] = useState(1);
+  const [accessLevele, setAccessLevel] = useState(0);
   const fetchAppointments = async () => {
-    // console.log("fetchAppointments called");
     try {
       const response = await fetch(
         "http://localhost:4001/fetch-booking-details"
       );
       const data = await response.text();
-
-      // console.log("fetchAppointments--->" + data);
       const decodedString = atob(data);
-
       setAppointments(JSON.parse(decodedString));
       setFetchedStatus(true);
     } catch (error) {
       console.error("Error:", error);
     }
   };
-
-  // Fetch appointments from local storage when component mounts
+  const getAccesLevel = () => {
+    const accessLevel = Cookie.get("access_level");
+    setAccessLevel(accessLevel);
+  };
   useEffect(() => {
+    getAccesLevel();
     fetchAppointments();
-  }, []); // Empty dependency array ensures this effect runs only once on component mount
+  }, []);
 
   const deleteUser = (userId) => {
     const deleteAppointMent = async () => {
@@ -95,7 +95,7 @@ const Admin = () => {
             <th>Name</th>
             <th>Time</th>
             <th>Status</th>
-            <th>{modifications > 0 ? "Actions" : ""}</th>
+            <th>{accessLevele > 0 ? "Actions" : ""}</th>
           </tr>
         </thead>
         <tbody>
@@ -106,7 +106,7 @@ const Admin = () => {
               deleteUserVar={deleteUser}
               approveUserVar={approveUser}
               rejectUserVar={rejectUser}
-              modifications={modifications}
+              accessLevele={accessLevele}
             />
           ))}
         </tbody>
