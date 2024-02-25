@@ -7,7 +7,7 @@ import "./index.css";
 const Admin = () => {
   const [appointments, setAppointments] = useState([]);
   const [fetchedStatus, setFetchedStatus] = useState(false);
-  const [modifications, setModifications] = useState(0);
+  const [modifications, setModifications] = useState(1);
   const fetchAppointments = async () => {
     // console.log("fetchAppointments called");
     try {
@@ -16,7 +16,7 @@ const Admin = () => {
       );
       const data = await response.text();
 
-      console.log("fetchAppointments--->" + data);
+      // console.log("fetchAppointments--->" + data);
       const decodedString = atob(data);
 
       setAppointments(JSON.parse(decodedString));
@@ -88,7 +88,7 @@ const Admin = () => {
   };
   const renderBoockedAppointments = () => (
     <div className="booked-appointments">
-      <h2 className="booked-appointmentsheader">Booked Appointments</h2>
+      <h2 className="booked-appointments-title">Booked Appointments</h2>
       <table className="table">
         <thead className="thead-dark">
           <tr>

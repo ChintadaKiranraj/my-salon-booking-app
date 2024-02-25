@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import BookingForm from "../BookingForm";
-import BookedAppointments from "../BookedAppointments";
+import { toast } from "react-toastify";
+// import BookedAppointments from "../BookedAppointments";
 import Header from "../Header";
 import "./index.css";
 const Home = () => {
@@ -18,10 +19,15 @@ const Home = () => {
           body: JSON.stringify(newAppointment),
         }
       );
-      console.log("response--->" + response.json());
+      // console.log("response--->" + response.json());
 
-      if (!response.ok) {
+      if (!response.json().status === true) {
         throw new Error("Failed to save booking details");
+      } else {
+        toast.success("Your slot was successfully boocked in side Home!", {
+          autoClose: 3000,
+          closeOnClick: true,
+        });
       }
       // If successful, fetch all data from the table
       const allDataResponse = await fetch(
@@ -41,14 +47,13 @@ const Home = () => {
     saveBookingDetails(newAppointment);
   };
 
-  // Effect to retrieve appointments from local storage on component mount
+  //calls on component mount
   useEffect(() => {
     const storedAppointments = JSON.parse(localStorage.getItem("appointments"));
     if (storedAppointments) {
       setAppointments(storedAppointments);
     }
   }, []);
-  // Empty dependency array ensures this effect runs only once on component mount
 
   return (
     <div className="home">

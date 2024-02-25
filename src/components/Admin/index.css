@@ -8,3 +8,10 @@
   height: 60vh;
   /* background-color: red; */
 }
+
+.booked-appointments-title {
+  color: blue;
+  font-family: "Times New Roman", Times, serif;
+  text-align: center;
+  font-weight: 500;
+}

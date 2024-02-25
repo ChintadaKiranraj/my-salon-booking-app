@@ -16,11 +16,67 @@ class RegistrationForm extends Component {
     redirectToLogin: false,
     errors: {},
     isLoading: true,
+    isregisteredUser: false,
+
+    isRequestedForAdminAccess: 0,
   };
 
   handleChange = (event) => {
-    this.setState({ [event.target.name]: event.target.value });
+    if (event.target.type === "checkbox") {
+      console.log(event.target.checked);
+      this.setState({
+        isRequestedForAdminAccess: event.target.checked ? 1 : 0,
+      });
+    } else {
+      this.setState({ [event.target.name]: event.target.value });
+    }
   };
+
+  registerNewuser = async () => {
+    const {
+      firstName,
+      lastName,
+      email,
+      phoneNumber,
+      password,
+      confirmPassword,
+
+      isRequestedForAdminAccess,
+    } = this.state;
+    console.log(
+      "registerNewuser is alled at RegistrationForm --->" +
+        isRequestedForAdminAccess
+    );
+    const response = await fetch("http://localhost:4001/save-registration", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        firstName,
+        lastName,
+        emailId: email,
+        phoneNumber,
+        password,
+        confirmPassword,
+        accessLevel: isRequestedForAdminAccess,
+      }),
+    });
+    const data = await response.json();
+    console.log("data -->" + data.status);
+    if (data.status === true) {
+      // this.setState({ isregisteredUser: false });
+      this.setState({ redirectToLogin: true });
+      alert("registration was successfully done!");
+    } else if (data.status === false) {
+      if (data.message.includes("duplicate key value violates unique")) {
+        alert("User already exists try with different use!!");
+      } else {
+        alert("Failed to create new user!!");
+      }
+    }
+  };
+
   renderRegistrationForm = () => {
     const {
       firstName,
@@ -30,7 +86,9 @@ class RegistrationForm extends Component {
       password,
       confirmPassword,
       redirectToLogin,
+      isRequestedForAdminAccess,
       errors,
+      // isregisteredUser,
     } = this.state;
 
     if (redirectToLogin) {
@@ -153,13 +211,46 @@ class RegistrationForm extends Component {
             </div>
           </div>
 
+          {/* <div className="checkbox-labels">
+            <label
+              htmlFor="isRequestedForAdminAcc"
+              className="isRequestedForAdminAcc-label"
+            >
+              Need Admin Access
+            </label>
+            <input
+              type="checkbox"
+              id="isRequestedForAdminAcc"
+              className="checkboxsty"
+            />
+          </div> */}
+          <div className="checkbox-labels">
+            <input
+              type="checkbox"
+              id="isRequestedForAdminAcc"
+              className="checkbox-input"
+              onClick={this.handleChange}
+              value={isRequestedForAdminAccess}
+            />
+            <label htmlFor="isRequestedForAdminAcc" className="checkbox-label ">
+              Need Admin Access
+            </label>
+          </div>
+
           <button type="submit" className="signup-btn btn btn-primary">
             Sign Up
           </button>
+
+          {/* {isregisteredUser && (
+            <p className="error-message">
+              You are already registered try with different user
+            </p>
+          )} */}
         </form>
       </div>
     );
   };
+
   handleSubmit = (event) => {
     event.preventDefault();
     const {
@@ -198,9 +289,10 @@ class RegistrationForm extends Component {
     }
 
     if (Object.keys(errors).length === 0) {
-      // After successful submission, redirect to login page
+      //call registration API
 
-      this.setState({ redirectToLogin: true });
+      // After successful submission, redirect to login page
+      this.registerNewuser();
     } else {
       // Update state with errors
       this.setState({ errors });
