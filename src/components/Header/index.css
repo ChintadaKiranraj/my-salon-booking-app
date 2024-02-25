@@ -166,3 +166,21 @@
   text-decoration: underline;
   color: brown;
 }
+
+.super-logo {
+  width: 50px; /* Adjust size of the logo */
+  height: 50px; /* Adjust size of the logo */
+  border-radius: 50%; /* Make it circular */
+  background-color: #007bff; /* Adjust background color */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px; /* Adjust font size of the text */
+  font-weight: bold;
+  color: white; /* Adjust text color */
+  margin-bottom: 0px;
+}
+
+.logo-text {
+  text-align: center;
+}

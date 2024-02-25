@@ -8,12 +8,10 @@ const BookingForm = ({ onBooking }) => {
   const PENDING = "Pending";
 
   const [name, setName] = useState("");
-  // const [date, setDate] = useState("");
+
   const [time, setTime] = useState("");
   const convertDateFormate = (dateFromUI) => {
     const modifiedDateFormate = dateFromUI.replace("T", "T") + ":00";
-
-    // console.log("modifiedDateFormate  --->" + modifiedDateFormate);
 
     return modifiedDateFormate;
   };

@@ -1,11 +1,12 @@
 import React from "react";
-import Header from "../Barbars";
+import Header from "../Header";
+import "./index.css";
 const Barber = () => {
   return (
-    <frameElement>
+    <>
       <Header />
-      <div>BarbarsList</div>
-    </frameElement>
+      <div className="barbars-component">No list yet to display......!!!</div>
+    </>
   );
 };
 

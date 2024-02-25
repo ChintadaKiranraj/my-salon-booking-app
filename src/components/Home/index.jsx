@@ -19,7 +19,6 @@ const Home = () => {
           body: JSON.stringify(newAppointment),
         }
       );
-      // console.log("response--->" + response.json());
 
       if (!response.json().status === true) {
         throw new Error("Failed to save booking details");
