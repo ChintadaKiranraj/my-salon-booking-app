@@ -6,80 +6,115 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 const BookingForm = ({ onBooking }) => {
   const PENDING = "Pending";
+  const [appointMentData, setAppointMentData] = useState({
+    name: "",
+    dateAndtime: "",
+    status: PENDING,
+  });
 
-  const [name, setName] = useState("");
+  const [errors, setErrors] = useState({
+    name: "",
+    dateAndtime: "",
+  });
 
-  const [time, setTime] = useState("");
   const convertDateFormate = (dateFromUI) => {
     const modifiedDateFormate = dateFromUI.replace("T", "T") + ":00";
-
     return modifiedDateFormate;
   };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const newAppointment = {
-      name,
-      time,
-      status: PENDING,
-    };
 
-    let databaseDate = convertDateFormate(newAppointment.time);
-    let newModifieedAppointment = { ...newAppointment, time: databaseDate };
-
-    onBooking(newModifieedAppointment);
-
-    setName("");
-    setTime("");
-    toast.success("Your slot was successfully boocked!", {
-      autoClose: 3000,
-      closeOnClick: true,
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setAppointMentData({
+      ...appointMentData,
+      [name]: value,
     });
+
+    setErrors({
+      ...errors,
+      [name]: value.trim() === "" ? `*${name} is required` : "",
+    });
+    if (e.target.type === "datetime-local") {
+      const currentDate = new Date().toISOString().split("T")[0];
+      if (value < currentDate) {
+        setErrors((prevError) => ({
+          ...prevError,
+          dateAndtime: "Please select a present or future date and time",
+        }));
+      } else {
+      }
+    }
   };
 
-  // Function to handle date change
-  const handleDateChange = (e) => {
-    const selectedDate = e.target.value;
-    const currentDate = new Date().toISOString().split("T")[0];
+  const onBookAppointment = (event) => {
+    event.preventDefault();
 
-    // Check if selected date is not a previous date
-    if (selectedDate >= currentDate) {
-      setTime(selectedDate);
-    } else {
-      alert("Please select present or future date.");
-      return;
+    let formIsValid = true;
+    const newErrors = { ...errors };
+    Object.keys(appointMentData).forEach((fieldName) => {
+      if (appointMentData[fieldName].trim() === "") {
+        newErrors[fieldName] = `*${fieldName} is required`;
+        formIsValid = false;
+      } else {
+        newErrors[fieldName] = "";
+      }
+    });
+
+    setErrors(newErrors);
+
+    if (formIsValid) {
+      // If validation passes, submit the form or dispatch an action
+      let databaseDate = convertDateFormate(appointMentData.dateAndtime);
+      debugger;
+      console.log(databaseDate);
+      let newModifieedAppointment = {
+        ...appointMentData,
+        dateAndtime: databaseDate,
+      };
+      debugger;
+      onBooking(newModifieedAppointment);
+      // setAppointMentData({
+      //   name: "",
+      //   dateAndtime: "",
+      // });
     }
   };
 
   return (
     <div className="booking-form-container">
       <h2 className="form-title">Book Appointment</h2>
-      <form onSubmit={handleSubmit} className="form">
+      <form onSubmit={onBookAppointment} className="form">
         <div className="form-group">
           <label htmlFor="name">Name:</label>
           <input
             type="text"
             id="name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
+            name="name"
+            value={appointMentData.name}
+            onChange={handleChange}
           />
+          <span style={{ color: "red" }}>{errors.name}</span>
         </div>
         <div className="form-group">
           <label htmlFor="datetime-local">Date&Time:</label>
           <input
             type="datetime-local"
             id="datetime-local"
-            value={time}
-            onChange={handleDateChange}
-            required
+            name="dateAndtime"
+            value={appointMentData.dateAndtime}
+            onChange={handleChange}
           />
+          <span style={{ color: "red" }}>{errors.dateAndtime}</span>
         </div>
 
-        <button type="submit" className="submit-btn">
+        <button
+          type="submit"
+          className="submit-btn"
+          disabled={Object.values(errors).some((error) => error !== "")}
+        >
           Book
         </button>
-        <ToastContainer />
       </form>
+      <ToastContainer />
     </div>
   );
 };

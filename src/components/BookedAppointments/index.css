@@ -1,65 +1,15 @@
-/* .booked-appointments {
-  margin: 20px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 20px;
-  background-color: #f9f9f9;
-}
-
-.booked-appointments h2 {
-  font-size: 24px;
-  margin-bottom: 20px;
-}
-
-.booked-appointments table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.booked-appointments th,
-.booked-appointments td {
-  padding: 10px;
-  border: 1px solid #ddd;
-}
-
-.booked-appointments th {
-  background-color: #f2f2f2;
-  font-weight: bold;
-  text-align: left;
-}
-
-.booked-appointments tbody tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
-
-@media (max-width: 768px) {
-  .booked-appointments th,
-  .booked-appointments td {
-    padding: 8px;
-  }
-}
-
-@media (max-width: 576px) {
-  .booked-appointments h2 {
-    font-size: 20px;
-  }
-
-  .booked-appointments th,
-  .booked-appointments td {
-    font-size: 14px;
-    padding: 6px;
-  }
-} */
 /* Add custom CSS styles */
-.booked-appointments {
+
+/* .booked-appointments {
   margin-top: 20px;
-}
+  max-height: 500px; 
+} */
 
 .table {
   width: 100%;
   border-collapse: collapse;
   border-radius: 8px;
-  overflow: hidden;
+  /* overflow-y: scroll; */
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
@@ -71,7 +21,7 @@
 }
 
 .table thead {
-  background-color: #343a40;
+  background-color: #338ce4;
   color: white;
 }
 
@@ -79,9 +29,12 @@
   background-color: #f8f9fa;
 }
 
-/* .table tbody tr:hover {
-  background-color: #e2e6ea;
-} */
+table thead {
+  position: sticky;
+  top: 30px;
+  background-color: #f0f0f0; /* Optional: Change background color */
+  z-index: 1; /* Ensure header appears above table body */
+}
 
 /* Make the table responsive */
 @media screen and (max-width: 600px) {
@@ -100,6 +53,15 @@
 .actionbtn {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  width: 43%;
+  gap: 5px; /* Add a gap of 2px between flex items */
+}
+
+.icon {
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.table-container {
+  max-height: 300px; /* Set maximum height for the container */
+  overflow-y: auto; /* Add vertical scroll bar */
 }

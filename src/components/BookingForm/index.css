@@ -56,3 +56,9 @@ input {
     width: 90%;
   }
 }
+
+.submit-btn:disabled {
+  background-color: gray;
+  color: white;
+  cursor: not-allowed;
+}
