@@ -5,23 +5,35 @@ import Cookie from "js-cookie";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Hourglass } from "react-loader-spinner";
 import "./index.css";
+import { ToastContainer, toast } from "react-toastify";
+// import { toast } from "react-toastify";
 const Admin = () => {
   const [appointments, setAppointments] = useState([]);
   const [fetchedStatus, setFetchedStatus] = useState(false);
   const [accessLevele, setAccessLevel] = useState(0);
+  const APPROVED = "Approved";
+  const REJECTED = "Rejected";
   const fetchAppointments = async () => {
     try {
       const response = await fetch(
         "http://localhost:4001/fetch-booking-details"
       );
-      const data = await response.text();
-      const decodedString = atob(data);
+      const jsonData = await response.json();
+      console.log("Data  --> " + jsonData);
+      const decodedString = atob(jsonData.data);
       setAppointments(JSON.parse(decodedString));
       setFetchedStatus(true);
     } catch (error) {
       console.error("Error:", error);
     }
   };
+
+  // const fetchAppointments2 = () => {
+  //   axiso.get("http://localhost:4001/fetch-booking-details").then((res) => {
+  //     console.log(res.data);
+  //   });
+  // };
+
   const getAccesLevel = () => {
     const accessLevel = Cookie.get("access_level");
     setAccessLevel(accessLevel);
@@ -46,9 +58,11 @@ const Admin = () => {
       console.log(result);
       if (result.status === true) {
         setFetchedStatus(true);
-        alert("User appointment deleted successfully!");
+        // toast.success("Successfully saved your appointment!");
+
+        toast.success("User appointment deleted successfully!");
       } else {
-        alert("Failed to delete user appoint ment!");
+        toast.error("Failed to delete user appoint ment!");
       }
     };
 
@@ -70,47 +84,49 @@ const Admin = () => {
 
     if (result.status === true) {
       setFetchedStatus(true);
-      alert("User appointment updated successfully!");
+      toast.success("User appointment updated successfully!");
       window.location.reload();
     } else {
-      alert("Failed to update status User appointment!");
+      toast.error("Failed to update status User appointment!");
       window.location.reload();
     }
   };
 
   const approveUser = (userId) => {
-    updateStatusRejectApprove(userId, "Approved");
+    updateStatusRejectApprove(userId, APPROVED);
     fetchAppointments();
   };
   const rejectUser = (userId) => {
-    updateStatusRejectApprove(userId, "Rejected");
+    updateStatusRejectApprove(userId, REJECTED);
     fetchAppointments();
   };
   const renderBoockedAppointments = () => (
     <div className="booked-appointments">
       <h2 className="booked-appointments-title">Booked Appointments</h2>
-      <table className="table">
-        <thead className="thead-dark">
-          <tr>
-            <th>Name</th>
-            <th>Time</th>
-            <th>Status</th>
-            <th>{accessLevele > 0 ? "Actions" : ""}</th>
-          </tr>
-        </thead>
-        <tbody>
-          {appointments.map((appointment) => (
-            <BookedAppointments
-              appointment={appointment}
-              key={appointment.id}
-              deleteUserVar={deleteUser}
-              approveUserVar={approveUser}
-              rejectUserVar={rejectUser}
-              accessLevele={accessLevele}
-            />
-          ))}
-        </tbody>
-      </table>
+      <div className="table-container">
+        <table className="table">
+          <thead className="thead-dark">
+            <tr>
+              <th>Name</th>
+              <th>Time</th>
+              <th>Status</th>
+              <th>{accessLevele > 0 ? "Actions" : ""}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {appointments.map((appointment) => (
+              <BookedAppointments
+                appointment={appointment}
+                key={appointment.id}
+                deleteUserVar={deleteUser}
+                approveUserVar={approveUser}
+                rejectUserVar={rejectUser}
+                accessLevele={accessLevele}
+              />
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 
@@ -128,11 +144,12 @@ const Admin = () => {
             wrapperClass=""
             colors={["#306cce", "#72a1ed"]}
           />
-          <h3>Loading...</h3>
+          <p>Loading...</p>
         </div>
       ) : (
         renderBoockedAppointments()
       )}
+      <ToastContainer />
     </div>
   );
 };

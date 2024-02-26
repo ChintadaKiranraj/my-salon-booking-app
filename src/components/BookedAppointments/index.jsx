@@ -55,9 +55,18 @@ const BookedAppointments = (props) => {
             <RiDeleteBin6Fill
               color={`"red" ${color}`}
               onClick={handleDeleteClick}
+              className="icon"
             />
-            <RiAccountCircleLine color="green" onClick={handleApproveClick} />
-            <RiAccountCircleLine color="red" onClick={hadleRejectUser} />
+            <RiAccountCircleLine
+              color="green"
+              onClick={handleApproveClick}
+              className="icon"
+            />
+            <RiAccountCircleLine
+              color="red"
+              onClick={hadleRejectUser}
+              className="icon"
+            />
           </td>
         ) : (
           ""

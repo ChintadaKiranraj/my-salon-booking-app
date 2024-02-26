@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
+// import React, { useState, useEffect } from "react";
 import BookingForm from "../BookingForm";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 // import BookedAppointments from "../BookedAppointments";
 import Header from "../Header";
 import "./index.css";
 const Home = () => {
-  const [appointments, setAppointments] = useState([]);
-
-  const saveBookingDetails = async (newAppointment) => {
+  const handleBooking = async (newAppointment) => {
     try {
       const response = await fetch(
         "http://localhost:4001/save-booking-details",
@@ -16,48 +16,34 @@ const Home = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(newAppointment),
+          body: JSON.stringify({
+            ...newAppointment,
+            time: newAppointment.dateAndtime,
+            date: "2024-02-22",
+          }),
         }
       );
 
-      if (!response.json().status === true) {
-        throw new Error("Failed to save booking details");
+      if (response.ok) {
+        const jsonString = await response.json();
+        if (jsonString.status) {
+          toast.success("Successfully saved your appointment!");
+        }
       } else {
-        toast.success("Your slot was successfully boocked in side Home!", {
-          autoClose: 3000,
-          closeOnClick: true,
-        });
+        toast.error(
+          "Unable to store appointment details......! Try again later"
+        );
       }
-      // If successful, fetch all data from the table
-      const allDataResponse = await fetch(
-        "http://localhost:4001/fetch-booking-details"
-      );
-      if (!allDataResponse.ok) {
-        throw new Error("Failed to fetch all booking details");
-      }
-      const allData = await allDataResponse.json();
-      setAppointments(allData);
     } catch (error) {
-      console.error(error);
+      toast.error("An error occurred while saving booking details");
     }
   };
-  // Function to handle booking and save appointments to local storage
-  const handleBooking = (newAppointment) => {
-    saveBookingDetails(newAppointment);
-  };
-
-  //calls on component mount
-  useEffect(() => {
-    const storedAppointments = JSON.parse(localStorage.getItem("appointments"));
-    if (storedAppointments) {
-      setAppointments(storedAppointments);
-    }
-  }, []);
 
   return (
     <div className="home">
       <Header />
       <BookingForm onBooking={handleBooking} />
+      <ToastContainer />
       {/* <BookedAppointments appointments={appointments} /> */}
     </div>
   );
