@@ -106,7 +106,7 @@ class SignupForm extends Component {
             <MdOutlineBackspace />
           </Link>
 
-          <p className="signup-title">Create new account</p>
+          <p className="signup-title">Registration</p>
 
           <div className="form-input-controls formstyle">
             <div className="input-label-field-container">

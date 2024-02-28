@@ -4,12 +4,26 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  width: 90%;
-  max-width: 1110px;
   margin: auto;
-  /* background-image: url(""); */
 }
-
+.login-form-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: url("https://images.pexels.com/photos/114979/pexels-photo-114979.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500");
+  background-size: cover;
+  background-position: center;
+  background-color: rgba(
+    117,
+    94,
+    113,
+    0.7
+  ); /* Adjust the last value (0.7) for transparency */
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
 @media screen and (min-width: 992px) {
   .login-form-container {
     flex-direction: row;
@@ -29,10 +43,6 @@
   }
 }
 
-.login-img {
-  width: 278px;
-}
-
 @media screen and (min-width: 992px) {
   .login-img {
     width: 60%;
@@ -40,10 +50,6 @@
     flex-shrink: 1;
     margin-right: 20px;
   }
-}
-
-.login-website-logo-desktop-img {
-  width: 185px;
 }
 
 @media screen and (max-width: 991px) {
@@ -60,6 +66,10 @@
   border-radius: 8px;
   width: 100%;
   max-width: 350px;
+  background-color: #ffffff;
+  opacity: 0.9;
+  transform: translate(0, 0);
+  transition: all 0.3s;
 }
 
 @media screen and (min-width: 992px) {
@@ -140,4 +150,7 @@
   color: rgba(0, 0, 0, 0.1);
   background-clip: text;
   font-size: 30px;
+}
+.input-label {
+  color: rgb(95, 155, 156); /* Example color */
 }
