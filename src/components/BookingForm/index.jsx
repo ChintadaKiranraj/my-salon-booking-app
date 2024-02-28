@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./index.css";
 
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 const BookingForm = ({ onBooking }) => {
@@ -24,6 +24,7 @@ const BookingForm = ({ onBooking }) => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    console.log(value);
     setAppointMentData({
       ...appointMentData,
       [name]: value,
@@ -64,23 +65,23 @@ const BookingForm = ({ onBooking }) => {
     if (formIsValid) {
       // If validation passes, submit the form or dispatch an action
       let databaseDate = convertDateFormate(appointMentData.dateAndtime);
-      debugger;
+
       console.log(databaseDate);
       let newModifieedAppointment = {
         ...appointMentData,
         dateAndtime: databaseDate,
       };
-      debugger;
+
       onBooking(newModifieedAppointment);
-      // setAppointMentData({
-      //   name: "",
-      //   dateAndtime: "",
-      // });
+      setAppointMentData({
+        name: "",
+        dateAndtime: "",
+      });
     }
   };
 
   return (
-    <div className="booking-form-container">
+    <div className="book-an-appointment">
       <h2 className="form-title">Book Appointment</h2>
       <form onSubmit={onBookAppointment} className="form">
         <div className="form-group">

@@ -45,7 +45,7 @@ class LoginForm extends Component {
     Cookies.set("logidin_user_logo", fullName, {
       expires: 30,
     });
-
+    toast.success("Login successful. Welcome back!");
     history.replace("/");
   };
 
@@ -71,14 +71,13 @@ class LoginForm extends Component {
       body: JSON.stringify({ emailId: username, password }),
     };
     const response = await fetch(url, options);
+
     const jsonData = await response.json();
 
     if (response.ok === true) {
       log.info("response ---> " + response);
 
       this.onSubmitSuccess(jsonData);
-      toast.success("Login was successfully done!");
-      alert("Login as successfully done!!");
     } else {
       this.onSubmitFailure("invalid username or password");
     }
@@ -149,7 +148,7 @@ class LoginForm extends Component {
           <button type="submit" className="login-button">
             Login
           </button>
-          <ToastContainer />
+
           {showSubmitError && <p className="error-message">*{errorMsg}</p>}
           <p>
             New user?
@@ -161,6 +160,7 @@ class LoginForm extends Component {
               Sign Up
             </Link>
           </p>
+          <ToastContainer />
         </form>
       </div>
     );

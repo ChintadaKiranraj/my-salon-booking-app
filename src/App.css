@@ -11,3 +11,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-family: "Times New Roman", Times, serif;
 }
+
+.App {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-content: center;
+  height: 100vh;
+}
