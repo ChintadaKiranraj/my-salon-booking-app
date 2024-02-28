@@ -5,5 +5,32 @@
   align-items: center;
   align-self: center;
   margin-right: 0px;
-  height: 80vh;
+  max-height: 79vh;
+}
+
+.barbars-component-ul {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.fixed-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.scrollable-container {
+  margin-top: 60px;
+  height: calc(100vh - 60px);
+  overflow: auto;
+}
+
+.barbars-component-ul {
+  list-style: none;
+  padding: 0;
 }

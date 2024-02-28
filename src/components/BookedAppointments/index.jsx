@@ -8,6 +8,12 @@ import { RiDeleteBin6Fill } from "react-icons/ri";
 import { VscPassFilled } from "react-icons/vsc";
 
 const BookedAppointments = (props) => {
+  const status = {
+    PENDING: "Pending",
+    REJECTED: "Rejected",
+    APPROVED: "Approved",
+  };
+
   const {
     appointment,
     deleteUserVar,
@@ -18,33 +24,44 @@ const BookedAppointments = (props) => {
   const { id } = appointment;
 
   const handleDeleteClick = () => {
-    console.log("delete user clicked" + id);
     deleteUserVar(id);
   };
   const handleApproveClick = () => {
-    console.log("approved user clicked");
     approveUserVar(id);
   };
 
   const hadleRejectUser = () => {
-    console.log("reject user clicked");
     rejectUserVar(id);
   };
 
   const storedAppointments = () => {
     let color = "yellow";
-    if (appointment.status === "Pending") {
+    if (appointment.status === status.PENDING) {
       color = "yellow";
-    } else if (appointment.status === "Approved") {
+    } else if (appointment.status === status.APPROVED) {
       color = "green";
-    } else if (appointment.status === "Rejected") {
+    } else if (appointment.status === status.REJECTED) {
       color = "Red";
     }
+
+    const convertDate = (dateString) => {
+      var date = new Date(dateString);
+      const options = {
+        month: "long",
+        day: "numeric",
+        year: "numeric",
+        hour: "numeric",
+        minute: "numeric",
+        hour12: true,
+      };
+      const formattedDate = date.toLocaleString("en-US", options);
+      return formattedDate;
+    };
 
     return (
       <tr>
         <td>{appointment.name}</td>
-        <td>{appointment.time}</td>
+        <td>{convertDate(appointment.time)}</td>
         <td>
           {appointment.status}
 

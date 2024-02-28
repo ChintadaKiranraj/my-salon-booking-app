@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { ThreeCircles } from "react-loader-spinner";
-
+import { FcUndo } from "react-icons/fc";
+import { MdOutlineBackspace } from "react-icons/md";
 import "./index.css";
 
-class RegistrationForm extends Component {
+class SignupForm extends Component {
   state = {
     firstName: "",
     lastName: "",
@@ -17,6 +18,7 @@ class RegistrationForm extends Component {
     errors: {},
     isLoading: true,
     isregisteredUser: false,
+    openSinUp: false,
 
     isRequestedForAdminAccess: 0,
   };
@@ -94,11 +96,17 @@ class RegistrationForm extends Component {
     if (redirectToLogin) {
       return <Redirect to="/login" />;
     }
-
+    const navigateToSigin = () => {
+      this.setState({ redirectToLogin: true });
+    };
     return (
       <div className="signup-form-container">
         <form onSubmit={this.handleSubmit} className="registration-form">
-          <p className="signup-title">Registration</p>
+          <Link to="/login" className="loginPage" onClick={navigateToSigin}>
+            <MdOutlineBackspace />
+          </Link>
+
+          <p className="signup-title">Create new account</p>
 
           <div className="form-input-controls formstyle">
             <div className="input-label-field-container">
@@ -211,19 +219,6 @@ class RegistrationForm extends Component {
             </div>
           </div>
 
-          {/* <div className="checkbox-labels">
-            <label
-              htmlFor="isRequestedForAdminAcc"
-              className="isRequestedForAdminAcc-label"
-            >
-              Need Admin Access
-            </label>
-            <input
-              type="checkbox"
-              id="isRequestedForAdminAcc"
-              className="checkboxsty"
-            />
-          </div> */}
           <div className="checkbox-labels">
             <input
               type="checkbox"
@@ -233,7 +228,7 @@ class RegistrationForm extends Component {
               value={isRequestedForAdminAccess}
             />
             <label htmlFor="isRequestedForAdminAcc" className="checkbox-label ">
-              Need Admin Access
+              Need Admin Access ?
             </label>
           </div>
 
@@ -322,4 +317,4 @@ class RegistrationForm extends Component {
   }
 }
 
-export default RegistrationForm;
+export default SignupForm;

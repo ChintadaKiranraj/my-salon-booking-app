@@ -1,0 +1,30 @@
+.image {
+  border-radius: 100%;
+  max-width: 40px;
+  max-height: 40px;
+  object-fit: cover;
+  background-color: aqua;
+}
+
+.barbar-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 10px;
+  /* border: 1px solid blue; */
+  width: 250px;
+  height: 100px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+
+  /* Other styles for the card */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.name-email-contact {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 10px;
+  margin-top: 10px;
+  margin-left: 10px;
+}

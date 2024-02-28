@@ -18,6 +18,8 @@ const Header = (props) => {
     Cookies.remove("access_level");
     Cookies.remove("logidin_user_logo");
     history.replace("/login");
+
+    const tabStyle = "yellow";
   };
 
   return (
@@ -39,6 +41,7 @@ const Header = (props) => {
         <div className="nav-bar-large-container">
           {/* <img className="website-logo" src="" alt="website logo desk" /> */}
           <h1 className="websiteLogo">{LoginUserLogo()}</h1>
+
           <ul className="nav-menu">
             <li className="nav-menu-item">
               <Link to="/" className="nav-link">
@@ -60,7 +63,7 @@ const Header = (props) => {
           </ul>
           <button
             type="button"
-            className="logout-desktop-btn"
+            className="logout-desktop-btn btn btn-warning"
             onClick={onClickLogout}
           >
             Logout

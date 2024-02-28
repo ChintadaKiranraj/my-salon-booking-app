@@ -4,9 +4,16 @@ import BookingForm from "../BookingForm";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 // import BookedAppointments from "../BookedAppointments";
+import ViewOnly from "../Viewonly";
 import Header from "../Header";
 import "./index.css";
+import { useEffect, useState } from "react";
 const Home = () => {
+  const [addedNewData, setNewDataStatus] = useState(true);
+  useEffect(() => {
+    console.log("re render");
+  }, [addedNewData]);
+
   const handleBooking = async (newAppointment) => {
     try {
       const response = await fetch(
@@ -27,7 +34,9 @@ const Home = () => {
       if (response.ok) {
         const jsonString = await response.json();
         if (jsonString.status) {
+          setNewDataStatus(!addedNewData);
           toast.success("Successfully saved your appointment!");
+          window.location.reload();
         }
       } else {
         toast.error(
@@ -40,12 +49,16 @@ const Home = () => {
   };
 
   return (
-    <div className="home">
+    <>
       <Header />
-      <BookingForm onBooking={handleBooking} />
-      <ToastContainer />
-      {/* <BookedAppointments appointments={appointments} /> */}
-    </div>
+
+      <div className="home-page">
+        <BookingForm onBooking={handleBooking} />
+        <ViewOnly />
+        <ToastContainer />
+        {/* <BookedAppointments appointments={appointments} /> */}
+      </div>
+    </>
   );
 };
 
