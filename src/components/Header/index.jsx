@@ -9,7 +9,7 @@ import "./index.css";
 
 const Header = (props) => {
   const LoginUserLogo = () => {
-    return <p className="super-logo">{Cookies.get("logidin_user_logo")}</p>;
+    return <p className="user-logo">{Cookies.get("logidin_user_logo")}</p>;
   };
   const onClickLogout = () => {
     const { history } = props;
@@ -26,9 +26,7 @@ const Header = (props) => {
     <nav className="nav-header">
       <div className="nav-content">
         <div className="nav-bar-mobile-logo-container">
-          {/* web site logo */}
           {LoginUserLogo()}
-
           <button
             type="button"
             className="nav-mobile-btn"
@@ -39,9 +37,7 @@ const Header = (props) => {
         </div>
 
         <div className="nav-bar-large-container">
-          {/* <img className="website-logo" src="" alt="website logo desk" /> */}
-          <h1 className="websiteLogo">{LoginUserLogo()}</h1>
-
+          <div className="user-logo-container">{LoginUserLogo()}</div>
           <ul className="nav-menu">
             <li className="nav-menu-item">
               <Link to="/" className="nav-link">

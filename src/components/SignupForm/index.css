@@ -1,4 +1,4 @@
-.signup-form-container {
+/* .signup-form-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -12,6 +12,18 @@
     rgba(34, 193, 195, 1) 0%,
     rgba(253, 187, 45, 1) 100%
   );
+} */
+
+.signup-form-container {
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  position: relative;
+  background: url("https://images.pexels.com/photos/114979/pexels-photo-114979.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500");
+  background-size: cover;
+  background-position: center;
 }
 
 .signup-title {
@@ -38,19 +50,13 @@
   justify-content: space-between;
   /* align-items: spa; */
   width: 80%;
-  background-color: rgb(216, 226, 229);
+  opacity: 100;
   padding: 10px;
   border-radius: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  background-color: rgba(
-    255,
-    255,
-    255,
-    0.8
-  ); /* White background color with 80% opacity */
   backdrop-filter: blur(5px);
-  /* background-color: red; */
+  background-color: white;
 }
 
 @media screen and (min-width: 567px) {
@@ -79,6 +85,21 @@
 .signup-btn {
   align-self: center;
 }
+
+.signup-btn {
+  width: 100%;
+  height: 50px;
+  padding: 10px;
+  border: none;
+  background-color: rebeccapurple;
+  color: white;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 18px;
+  cursor: pointer;
+  margin-top: 15px;
+  margin-bottom: 30px;
+}
 .error-message {
   color: red;
   font-family: "Times New Roman", Times, serif;
@@ -95,11 +116,12 @@
 }
 
 .signup-title {
-  background: linear-gradient(60deg, red, green, blue);
-  color: rgba(0, 0, 0, 0.1);
+  color: rebeccapurple;
   background-clip: text;
   font-size: 20px;
   text-align: center;
+  font-family: "roboto";
+  font-weight: 700;
 }
 @media screen and (min-width: 767px) {
   .signup-title {

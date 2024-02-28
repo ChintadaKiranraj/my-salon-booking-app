@@ -14,12 +14,12 @@ const App = () => (
   <Router>
     <div className="App">
       <Switch>
-        <Route exact path="/user" component={ViewOnly} />
+        <ProtectedRoute exact path="/" component={Home} />
         <Route exact path="/login" component={LoginForm} />
         <Route exact path="/registartion" component={SignupForm} />
-        <ProtectedRoute exact path="/" component={Home} />
         <ProtectedRoute exact path="/admin" component={Admin} />
         <ProtectedRoute exact path="/barbars" component={Barbars} />
+        <ProtectedRoute exact path="/user" component={ViewOnly} />
         <Route component={NotFound} />
       </Switch>
     </div>

@@ -51,12 +51,10 @@ const Home = () => {
   return (
     <>
       <Header />
-
-      <div className="home-page">
+      <div className="container-home">
         <BookingForm onBooking={handleBooking} />
         <ViewOnly />
         <ToastContainer />
-        {/* <BookedAppointments appointments={appointments} /> */}
       </div>
     </>
   );

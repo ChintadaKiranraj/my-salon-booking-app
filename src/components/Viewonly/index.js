@@ -2,15 +2,52 @@
 import React, { useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
 import "./index.css";
+
 const ViewOnly = () => {
+  const [records, setRecords] = useState([]);
+  const [filterRecords, setFilteredRecords] = useState([]);
   const columns = [
     { name: "ID", selector: (row) => row.id, sortable: true },
     { name: "Name", selector: (row) => row.name, sortable: true },
     { name: "Date&Time", selector: (row) => row.time, sortable: true },
-    { name: "Statue", selector: (row) => row.status, sortable: true },
+    {
+      name: "Status",
+      selector: (row) => row.status,
+      sortable: true,
+      conditionalCellStyles: [
+        {
+          when: (row) => row.status === "Pending",
+          style: {
+            color: "blue",
+            fontWeight: "1000",
+            "&:hover": {
+              cursor: "pointer",
+            },
+          },
+        },
+        {
+          when: (row) => row.status === "Rejected",
+          style: {
+            color: "red",
+            fontWeight: "1000",
+            "&:hover": {
+              cursor: "pointer",
+            },
+          },
+        },
+        {
+          when: (row) => row.status === "Approved",
+          style: {
+            color: "green",
+            fontWeight: "1000",
+            "&:hover": {
+              cursor: "not-allowed",
+            },
+          },
+        },
+      ],
+    },
   ];
-  const [records, setRecords] = useState([]);
-  const [filterRecords, setFilteredRecords] = useState([]);
 
   useEffect(() => {
     const fetchAppointments = async () => {
@@ -49,22 +86,22 @@ const ViewOnly = () => {
       },
     },
   };
+
   return (
-    <div className="dataTable">
+    <div className="dataTables">
       <input
         type="search"
         onChange={handleFilter}
-        className="form-controls w-25"
+        className="form-controls w-25 search pl-5"
         placeholder="Search by Status"
       />
       <DataTable
-        className="custom-data-table"
-        title="Bookings Details"
+        paginationPerPage={5}
         columns={columns}
         data={records}
         pagination
         selectableRows
-        fixedHeader
+        responsive={true}
         selectableRowsHighlight
         highlightOnHover
         customStyles={tableHeaderstyle}

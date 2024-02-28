@@ -4,7 +4,6 @@
   border-bottom: 1px solid rgb(243, 243, 243);
   background-color: rgb(9, 203, 225);
   background-color: #2874a6;
-  margin-bottom: 15px;
   color: white;
 }
 
@@ -161,39 +160,22 @@
 .nav-bar-img {
   width: 24px;
 }
-.websiteLogo {
-  font-family: "Times New Roman", Times, serif;
-  font-weight: 1000;
-  font-style: normal;
-  text-decoration: underline;
-  color: brown;
-}
-
-.super-logo {
+.user-logo-container {
   width: 50px;
   height: 50px;
-  border-radius: 50%;
   background-color: #007bff;
+  font-size: 20px;
+  font-weight: bold;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-size: 24px;
-  font-weight: bold;
-  color: white;
-  margin-bottom: 0px;
+  padding-top: 13px;
+  border-radius: 60%;
+  /* border-color: black; */
 }
 
-.logo-text {
-  text-align: center;
-}
 .tab {
   padding: 10px 20px;
   cursor: pointer;
-}
-
-.selected-tab {
-  padding: 10px 20px;
-  cursor: pointer;
-  background-color: #007bff;
-  color: white;
 }
