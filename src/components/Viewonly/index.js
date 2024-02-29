@@ -7,7 +7,7 @@ const ViewOnly = () => {
   const [records, setRecords] = useState([]);
   const [filterRecords, setFilteredRecords] = useState([]);
   const columns = [
-    { name: "ID", selector: (row) => row.id, sortable: true },
+  
     { name: "Name", selector: (row) => row.name, sortable: true },
     { name: "Date&Time", selector: (row) => row.time, sortable: true },
     {
@@ -105,7 +105,7 @@ const ViewOnly = () => {
         selectableRowsHighlight
         highlightOnHover
         customStyles={tableHeaderstyle}
-        initialSortBy={{ prop: "ID", order: "descending" }}
+    
       ></DataTable>
       ;
     </div>

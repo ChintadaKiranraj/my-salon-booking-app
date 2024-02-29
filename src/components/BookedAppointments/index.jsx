@@ -1,12 +1,15 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
-
+import { ToastContainer, toast } from "react-toastify";
 import { RiAccountCircleLine } from "react-icons/ri";
-
+import 'reactjs-popup/dist/index.css';
 import { RiDeleteBin6Fill } from "react-icons/ri";
 
+import React from 'react';
+import Popup from 'reactjs-popup';
 import { VscPassFilled } from "react-icons/vsc";
 
+import 'reactjs-popup/dist/index.css';
 const BookedAppointments = (props) => {
   const status = {
     PENDING: "Pending",
@@ -23,15 +26,25 @@ const BookedAppointments = (props) => {
   } = props;
   const { id } = appointment;
 
+
+const PopupExample = () => (
+  <Popup trigger={<button> Trigger</button>} position="right center">
+    <div>Popup content here !!</div>
+  </Popup>
+);
   const handleDeleteClick = () => {
-    deleteUserVar(id);
+    // deleteUserVar(id);
   };
+
+ 
   const handleApproveClick = () => {
-    approveUserVar(id);
+
+    // toast.info("are you sure to approve this appointment?");
+    // approveUserVar(id);
   };
 
   const hadleRejectUser = () => {
-    rejectUserVar(id);
+    // rejectUserVar(id);
   };
 
   const storedAppointments = () => {
@@ -59,6 +72,8 @@ const BookedAppointments = (props) => {
     };
 
     return (
+      <>
+   
       <tr>
         <td>{appointment.name}</td>
         <td>{convertDate(appointment.time)}</td>
@@ -89,6 +104,9 @@ const BookedAppointments = (props) => {
           ""
         )}
       </tr>
+      <ToastContainer/>
+      </>
+     
     );
   };
 
@@ -96,3 +114,4 @@ const BookedAppointments = (props) => {
 };
 
 export default BookedAppointments;
+ 

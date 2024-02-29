@@ -6,7 +6,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Hourglass } from "react-loader-spinner";
 import "./index.css";
 import { ToastContainer, toast } from "react-toastify";
-// import { toast } from "react-toastify";
 const Admin = () => {
   const [appointments, setAppointments] = useState([]);
   const [fetchedStatus, setFetchedStatus] = useState(false);
