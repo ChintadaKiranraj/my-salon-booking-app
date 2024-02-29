@@ -8,6 +8,7 @@ import NotFound from "./components/NotFound";
 import SignupForm from "./components/SignupForm";
 import Barbars from "./components/Barbars";
 import ViewOnly from "./components/Viewonly";
+import PopupExample from "./components/ReactPopUps"
 import "./App.css";
 
 const App = () => (
@@ -20,6 +21,8 @@ const App = () => (
         <ProtectedRoute exact path="/admin" component={Admin} />
         <ProtectedRoute exact path="/barbars" component={Barbars} />
         <ProtectedRoute exact path="/user" component={ViewOnly} />
+       
+        <Route path="/11" component={PopupExample} />
         <Route component={NotFound} />
       </Switch>
     </div>
