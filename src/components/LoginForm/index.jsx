@@ -26,8 +26,7 @@ class LoginForm extends Component {
   };
 
   onSubmitSuccess = (jsonData) => {
-    //  const decodedString = atob(data);
-    //  setAppointments(JSON.parse(decodedString));
+  
     const { history } = this.props;
     const decodedString = atob(jsonData.data);
     const jsonString = JSON.parse(decodedString);

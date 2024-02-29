@@ -1,18 +1,18 @@
 .dataTables {
   flex-grow: 2;
   border-radius: 10px;
-  padding-left: 10px;
-  margin-left: 20px;
   overflow-y: auto;
   align-self: center;
   align-items: center;
-  padding-top: 100px;
   margin-top: 0px;
   display: flex;
   flex-direction: column;
   overflow: auto;
   margin-top: 0px;
-  overflow: auto;
+  align-self: stretch;
+ 
+ 
+
 }
 
 .viewonlys {

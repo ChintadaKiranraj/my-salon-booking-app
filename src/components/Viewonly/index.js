@@ -92,7 +92,7 @@ const ViewOnly = () => {
       <input
         type="search"
         onChange={handleFilter}
-        className="form-controls w-25 search pl-5"
+        className="form-control w-25 search pl-5 p-20"
         placeholder="Search by Status"
       />
       <DataTable

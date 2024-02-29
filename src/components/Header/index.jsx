@@ -25,26 +25,18 @@ const Header = (props) => {
   return (
     <nav className="nav-header">
       <div className="nav-content">
-        <div className="nav-bar-mobile-logo-container">
-          {LoginUserLogo()}
-          <button
-            type="button"
-            className="nav-mobile-btn"
-            onClick={onClickLogout}
-          >
-            <LuLogOut />
-          </button>
-        </div>
-
         <div className="nav-bar-large-container">
-          <div className="user-logo-container">{LoginUserLogo()}</div>
           <ul className="nav-menu">
+          <li className="nav-menu-item">
+          <li className="user-logo-container">{LoginUserLogo()}</li>
+            </li>
+
+            <div className="nav-tabs">
             <li className="nav-menu-item">
               <Link to="/" className="nav-link">
                 Home
               </Link>
             </li>
-
             <li className="nav-menu-item">
               <Link to="/admin" className="nav-link">
                 Admin
@@ -56,18 +48,27 @@ const Header = (props) => {
                 Barbars
               </Link>
             </li>
-          </ul>
-          <button
+            </div>
+           
+            <li className="nav-menu-item">
+            <button
             type="button"
-            className="logout-desktop-btn btn btn-warning"
+            className="btn btn-warning"
             onClick={onClickLogout}
           >
             Logout
           </button>
+            </li>
+          
+          </ul>
+          
         </div>
       </div>
-      <div className="nav-menu-mobile">
+      {/* <div className="nav-menu-mobile">
         <ul className="nav-menu-list-mobile">
+        <li className="user-logo-container">
+        <div>{LoginUserLogo()}</div> 
+          </li>
           <li className="nav-menu-item-mobile">
             <Link to="/" className="nav-link">
               <RxHome />
@@ -84,8 +85,17 @@ const Header = (props) => {
               Barbars
             </Link>
           </li>
+          <li className="nav-menu-item">
+          <button
+            type="button"
+            className="nav-mobile-btn"
+            onClick={onClickLogout}
+          >
+            <LuLogOut />
+          </button>
+          </li>
         </ul>
-      </div>
+      </div> */}
     </nav>
   );
 };

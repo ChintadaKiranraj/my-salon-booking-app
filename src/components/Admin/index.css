@@ -1,7 +1,7 @@
 .actionbtn {
   display: flex;
   flex-direction: row;
-  gap: 5px; /* Add a gap of 2px between flex items */
+  gap: 5px; 
 }
 
 .icon {
@@ -9,12 +9,9 @@
   cursor: pointer;
 }
 .table tbody td {
-  background-color: #ffff; /* Light blue background color */
+  background-color: #ffff; 
 }
 
-/* Change the background color of the specific cell when hovered over */
-
-/* Change the background color of table cells when hovered over */
 
 .table thead th {
   background-color: #070706;
@@ -26,24 +23,23 @@
   border-collapse: collapse;
 }
 
-/* Target the scrollbar */
+
 .table-container::-webkit-scrollbar {
   width: 5px;
 }
 
-/* Handle of the scrollbar */
+
 .table-container::-webkit-scrollbar-thumb {
-  background-color: #5e3dab; /* Set the color of the scrollbar handle */
-  border-radius: 10px; /* Set the border radius of the scrollbar handle */
+  background-color: #5e3dab; 
+  border-radius: 10px; 
 }
 
-/* Track of the scrollbar */
 .table-container::-webkit-scrollbar-track {
   background-color: rgb(
     138,
     230,
     172
-  ); /* Set the color of the scrollbar track */
+  ); 
 }
 
 .boocked-table-content {
@@ -69,9 +65,9 @@
 }
 
 .table-container {
-  max-height: 500px; /* Set maximum height for the container */
-  overflow-y: auto; /* Enable vertical scrolling */
-  position: relative; /* Set position relative for absolute positioning */
+  max-height: 500px; 
+  overflow-y: auto; 
+  position: relative;
 }
 
 .table {
@@ -79,9 +75,10 @@
   border-collapse: collapse;
 }
 
-/* Fix table header */
+
 .table thead {
   position: sticky;
   top: 0;
-  z-index: 1; /* Ensure header appears above table body */
+  z-index: 1; 
+ 
 }

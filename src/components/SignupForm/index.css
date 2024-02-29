@@ -1,18 +1,4 @@
-/* .signup-form-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  width: 100vw;
-  border-radius: 5px;
-  background: rgb(34, 193, 195);
-  background: linear-gradient(
-    0deg,
-    rgba(34, 193, 195, 1) 0%,
-    rgba(253, 187, 45, 1) 100%
-  );
-} */
+
 
 .signup-form-container {
   width: 100vw;
@@ -26,14 +12,7 @@
   background-position: center;
 }
 
-.signup-title {
-}
-/* .form-input-controls {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  width: 150%;
-} */
+
 .formstyle {
   padding: 10px;
   display: flex;
@@ -48,7 +27,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  /* align-items: spa; */
+
   width: 80%;
   opacity: 100;
   padding: 10px;
@@ -61,14 +40,13 @@
 
 @media screen and (min-width: 567px) {
   .registration-form {
-    /* background-color: blue; */
     justify-content: space-between;
     width: 50%;
   }
 }
 @media screen and (min-width: 768px) {
   .registration-form {
-    /* background-color: green; */
+  
     justify-content: space-between;
     width: 45%;
   }
@@ -76,7 +54,6 @@
 
 @media screen and (min-width: 992px) {
   .registration-form {
-    /* background-color: rgb(236, 0, 208); */
     justify-content: space-between;
     width: 33%;
   }
@@ -111,7 +88,6 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  /* background-color: yellow; */
   height: 100vh;
 }
 
@@ -160,7 +136,7 @@
 @media screen and (min-width: 768px) {
   .form-control {
     font-size: 15px;
-    /* background-color: aqua; */
+   
   }
 }
 
@@ -170,7 +146,7 @@
   justify-content: flex-start;
   align-self: start;
   align-items: flex-start;
-  /* background-color: red; */
+ 
 }
 
 .checkbox-label {
@@ -184,7 +160,7 @@
   padding-left: 10px;
   padding-right: 20px;
   border-radius: 5px;
-  /* background-color: red; */
+ 
 }
 .checkbox-input {
   width: 20px;
