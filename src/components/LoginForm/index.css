@@ -19,7 +19,7 @@
     94,
     113,
     0.7
-  ); /* Adjust the last value (0.7) for transparency */
+  ); 
   border-radius: 10px;
   padding: 20px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -152,5 +152,5 @@
   font-size: 30px;
 }
 .input-label {
-  color: rgb(95, 155, 156); /* Example color */
+  color: rgb(95, 155, 156); 
 }
