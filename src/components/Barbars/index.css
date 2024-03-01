@@ -1,11 +1,10 @@
-.barbars-component {
+.barbars-elements-container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   align-self: center;
-  margin-right: 0px;
-  max-height: 79vh;
+  overflow-y: auto;
 }
 
 .barbars-component-ul {
@@ -15,22 +14,28 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-around;
-}
-.fixed-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000;
+  overflow-y: auto;
 }
 
 .scrollable-container {
-  margin-top: 60px;
-  height: calc(100vh - 60px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: start;
   overflow: auto;
 }
 
 .barbars-component-ul {
   list-style: none;
   padding: 0;
+}
+
+.page-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.content {
+  flex-grow: 1;
+  overflow-y: auto;
 }

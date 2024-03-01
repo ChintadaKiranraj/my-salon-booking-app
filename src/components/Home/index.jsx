@@ -49,14 +49,14 @@ const Home = () => {
   };
 
   return (
-    <>
+    <div className="conpage-containertainer">
       <Header />
       <div className="container-home">
         <BookingForm onBooking={handleBooking} />
         <ViewOnly />
         <ToastContainer />
       </div>
-    </>
+    </div>
   );
 };
 
