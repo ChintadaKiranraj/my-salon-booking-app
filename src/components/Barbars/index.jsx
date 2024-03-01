@@ -24,10 +24,9 @@ const Barber = () => {
   };
 
   return (
-    <>
-      <Header className="fixed-header" />
-
-      <div className="scrollable-container">
+    <div className="page-container">
+      <Header />
+      <div className="content">
         {loading ? (
           <div className="loading-spinner">
             <Hourglass
@@ -46,7 +45,6 @@ const Barber = () => {
             No data yet to display......!!!
           </div>
         ) : (
-          // Render your data here
           <ul className="barbars-component-ul">
             {data.map((barber) => (
               <BarberItem key={barber.id} barber={barber} />
@@ -54,7 +52,7 @@ const Barber = () => {
           </ul>
         )}
       </div>
-    </>
+    </div>
   );
 };
 
