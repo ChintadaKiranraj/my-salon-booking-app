@@ -15,33 +15,37 @@ class LoginForm extends Component {
     showSubmitError: false,
     errorMsg: "",
     redirectToSignup: false,
+    isLoading: true,
   };
 
   onChangeUsername = (event) => {
     this.setState({ username: event.target.value });
+    this.setState({ showSubmitError: true, errorMsg: "" });
   };
 
   onChangePassword = (event) => {
     this.setState({ password: event.target.value });
+    this.setState({ showSubmitError: true, errorMsg: "" });
   };
 
   onSubmitSuccess = (jsonData) => {
-  
     const { history } = this.props;
-    const decodedString = atob(jsonData.data);
-    const jsonString = JSON.parse(decodedString);
-    const userObject = jsonString[0];
-    const fullName =
-      userObject.first_name[0].toUpperCase() +
-      userObject.last_name[0].toUpperCase();
 
-    Cookies.set("jwt_token", jsonData.data, {
+    const { data, token } = jsonData;
+
+    const fullName =
+      data.firstName[0].toUpperCase() + data.lastName[0].toUpperCase();
+
+    Cookies.set("jwt_token", token, {
       expires: 30,
     });
-    Cookies.set("access_level", jsonData.accessLevel, {
+    Cookies.set("access_level", data.accessLevel, {
       expires: 30,
     });
     Cookies.set("logidin_user_logo", fullName, {
+      expires: 30,
+    });
+    Cookies.set("email_id", data.emailId, {
       expires: 30,
     });
     toast.success("Login successful. Welcome back!");
@@ -51,33 +55,35 @@ class LoginForm extends Component {
   onSubmitFailure = (errorMsg) => {
     this.setState({ showSubmitError: true, errorMsg });
   };
+  encodePassword = (password) => {
+    const encodedPassword = btoa(password);
 
+    return encodedPassword;
+  };
   submitForm = async (event) => {
     event.preventDefault();
     const { username, password } = this.state;
-    console.log(username + ", " + password);
-    const userDetails = { emailId: username, password };
-    log.info(
-      "emailId: " + userDetails.emailId + "Password: " + userDetails.password
-    );
+    try {
+      const url = "http://localhost:4001/validation";
+      const options = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          emailId: username,
+          password: this.encodePassword(password),
+        }),
+      };
+      const response = await fetch(url, options);
 
-    const url = "http://localhost:4001/validate-resgistratation-login-user";
-    const options = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ emailId: username, password }),
-    };
-    const response = await fetch(url, options);
-
-    const jsonData = await response.json();
-
-    if (response.ok === true) {
-      log.info("response ---> " + response);
-
-      this.onSubmitSuccess(jsonData);
-    } else {
+      const jsonData = await response.json();
+      console.log(jsonData);
+      if (response.ok === true) {
+        this.onSubmitSuccess(jsonData);
+        this.setState({ isLoading: false });
+      }
+    } catch (error) {
       this.onSubmitFailure("invalid username or password");
     }
   };
@@ -147,8 +153,7 @@ class LoginForm extends Component {
           <button type="submit" className="login-button">
             Login
           </button>
-
-          {showSubmitError && <p className="error-message">*{errorMsg}</p>}
+          {showSubmitError && <p className="error-message">{errorMsg}</p>}
           <p>
             New user?
             <Link
@@ -159,7 +164,6 @@ class LoginForm extends Component {
               Sign Up
             </Link>
           </p>
-          <ToastContainer />
         </form>
       </div>
     );

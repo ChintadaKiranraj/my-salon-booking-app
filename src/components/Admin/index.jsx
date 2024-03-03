@@ -5,23 +5,39 @@ import Cookie from "js-cookie";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Hourglass } from "react-loader-spinner";
 import "./index.css";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const Admin = () => {
+  const token = Cookie.get("jwt_token");
+  const accessLevel = parseInt(Cookie.get("access_level"));
+  const loginUser = Cookie.get("email_id");
   const [appointments, setAppointments] = useState([]);
   const [fetchedStatus, setFetchedStatus] = useState(false);
   const [accessLevele, setAccessLevel] = useState(0);
   const APPROVED = "Approved";
   const REJECTED = "Rejected";
+
   const fetchAppointments = async () => {
+    let URL = "http://localhost:4001/fetch-booking-details";
     try {
-      const response = await fetch(
-        "http://localhost:4001/fetch-booking-details"
-      );
+      const response = await fetch(URL, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       const jsonData = await response.json();
-      console.log("Data  --> " + jsonData);
-      const decodedString = atob(jsonData.data);
-      console.log(decodedString);
-      setAppointments(JSON.parse(decodedString));
+      let filteredData = [];
+      if (accessLevel === 0 || accessLevel === 1 || accessLevel === 2) {
+        filteredData = jsonData.data.filter((item) => {
+          return item.regEmialId === loginUser;
+        });
+      }
+      if (accessLevel === 3) {
+        filteredData = jsonData.data;
+      }
+
+      setAppointments(filteredData);
       setFetchedStatus(true);
     } catch (error) {
       console.error("Error:", error);
@@ -37,53 +53,72 @@ const Admin = () => {
     fetchAppointments();
   }, []);
 
-  const deleteUser = async (userId) => {
-    const URL = "http://localhost:4001/detele-booking-users";
-    const response = await fetch(URL, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ id: userId }),
-    });
+  const onDelete = async (userId) => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this item?"
+    );
 
-    let result = await response.json();
-    console.log(result);
-    if (result.status === true) {
-      setFetchedStatus(true);
-      toast.success("User appointment deleted successfully!");
-      fetchAppointments();
-    } else {
-      toast.error("Failed to delete user appoint ment!");
+    if (confirmDelete) {
+      const URL = "http://localhost:4001/remove-booking-details";
+      const response = await fetch(URL, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ id: userId }),
+      });
+      if (response.ok === true) {
+        let result = await response.json();
+        if (result.status === true) {
+          setFetchedStatus(true);
+          fetchAppointments();
+          // return toast.success("User appointment deleted successfully!");
+          alert("User appointment deleted successfully!");
+        }
+      } else {
+        // toast.error("Failed to delete user appoint ment!");
+        alert("Failed to delete user appoint ment!");
+      }
     }
   };
-  const updateStatusRejectApprove = async (userId, status) => {
-    const url = "http://localhost:4001/update-booking-details";
+  const updateStatusRejectApprove = async (appointment, status) => {
+    console.log("Approval  reject" + appointment);
+    const updateStatus = window.confirm(
+      "Are you sure you want to update the status?"
+    );
 
-    const response = await fetch(url, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ id: userId, status }),
-    });
+    if (updateStatus) {
+      const url = "http://localhost:4001/update-booking-details-byid";
 
-    let result = await response.json();
-
-    if (result.status === true) {
-      setFetchedStatus(true);
-      toast.success("User appointment " + status + " successfully!");
-      fetchAppointments();
-    } else {
-      toast.error("Failed to update status User appointment!");
+      const response = await fetch(url, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ ...appointment, status }),
+      });
+      if (response.ok === true) {
+        let result = await response.json();
+        if (result.status === true) {
+          setFetchedStatus(true);
+          fetchAppointments();
+          // return toast.success("User appointment " + status + " successfully!");
+          alert("User appointment " + status + " successfully!");
+        }
+      } else {
+        // return toast.error("Failed to update status User appointment!");
+        alert("Failed to update status User appointment!");
+      }
     }
   };
 
-  const approveUser = (userId) => {
-    updateStatusRejectApprove(userId, APPROVED);
+  const onApprove = (appointment) => {
+    updateStatusRejectApprove(appointment, APPROVED);
   };
-  const rejectUser = (userId) => {
-    updateStatusRejectApprove(userId, REJECTED);
+  const onReject = (appointment) => {
+    updateStatusRejectApprove(appointment, REJECTED);
   };
   const renderBoockedAppointments = () => (
     <>
@@ -95,7 +130,7 @@ const Admin = () => {
               <th>Name</th>
               <th>Time</th>
               <th>Status</th>
-              {accessLevele > 0 && <th>{accessLevele > 0 ? "Actions" : ""}</th>}
+              {accessLevele > 1 && <th>{accessLevele > 1 ? "Actions" : ""}</th>}
             </tr>
           </thead>
           <tbody>
@@ -103,9 +138,9 @@ const Admin = () => {
               <BookedAppointments
                 appointment={appointment}
                 key={appointment.id}
-                deleteUserVar={deleteUser}
-                approveUserVar={approveUser}
-                rejectUserVar={rejectUser}
+                deleteUser={onDelete}
+                approveUser={onApprove}
+                rejectUser={onReject}
                 accessLevele={accessLevele}
               />
             ))}
@@ -133,10 +168,12 @@ const Admin = () => {
             <p>Loading...</p>
           </div>
         ) : (
-          renderBoockedAppointments()
+          <>
+            {renderBoockedAppointments()}
+            <ToastContainer />
+          </>
         )}
       </div>
-      <ToastContainer />
     </>
   );
 };

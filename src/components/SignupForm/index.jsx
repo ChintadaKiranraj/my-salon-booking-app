@@ -34,6 +34,18 @@ class SignupForm extends Component {
     }
   };
 
+  encodePassword = (password) => {
+    const encodedPassword = btoa(password);
+
+    return encodedPassword;
+  };
+
+  decodePassword = (encodedPassword) => {
+    const decodedPassword = atob(encodedPassword);
+
+    return decodedPassword;
+  };
+
   registerNewuser = async () => {
     const {
       firstName,
@@ -42,13 +54,8 @@ class SignupForm extends Component {
       phoneNumber,
       password,
       confirmPassword,
-
       isRequestedForAdminAccess,
     } = this.state;
-    console.log(
-      "registerNewuser is alled at RegistrationForm --->" +
-        isRequestedForAdminAccess
-    );
     const response = await fetch("http://localhost:4001/save-registration", {
       method: "POST",
       headers: {
@@ -59,19 +66,20 @@ class SignupForm extends Component {
         lastName,
         emailId: email,
         phoneNumber,
-        password,
-        confirmPassword,
+        password: this.encodePassword(confirmPassword),
+        confirmPassword: this.encodePassword(confirmPassword),
         accessLevel: isRequestedForAdminAccess,
       }),
     });
     const data = await response.json();
     console.log("data -->" + data.status);
     if (data.status === true) {
-      // this.setState({ isregisteredUser: false });
+      this.setState({ isregisteredUser: false });
       this.setState({ redirectToLogin: true });
+      this.setState({ errors: {} });
       alert("registration was successfully done!");
     } else if (data.status === false) {
-      if (data.message.includes("duplicate key value violates unique")) {
+      if (data.message.includes('Key ("emailId")')) {
         alert("User already exists try with different use!!");
       } else {
         alert("Failed to create new user!!");
@@ -236,11 +244,11 @@ class SignupForm extends Component {
             Sign Up
           </button>
 
-          {/* {isregisteredUser && (
+          {/* { {isregisteredUser && (
             <p className="error-message">
               You are already registered try with different user
             </p>
-          )} */}
+          )}} */}
         </form>
       </div>
     );
@@ -258,9 +266,7 @@ class SignupForm extends Component {
     } = this.state;
     const errors = {};
 
-    // Basic validation for required fields
     if (!firstName) {
-      // errors.firstName = "First name is required";
       errors.firstName = "First name is required";
     }
     if (!lastName) {
@@ -284,12 +290,8 @@ class SignupForm extends Component {
     }
 
     if (Object.keys(errors).length === 0) {
-      //call registration API
-
-      // After successful submission, redirect to login page
       this.registerNewuser();
     } else {
-      // Update state with errors
       this.setState({ errors });
     }
   };
@@ -306,8 +308,6 @@ class SignupForm extends Component {
             width="100"
             color="#4fa94d"
             ariaLabel="three-circles-loading"
-            wrapperStyle={{}}
-            wrapperClass=""
           />
         ) : (
           this.renderRegistrationForm()

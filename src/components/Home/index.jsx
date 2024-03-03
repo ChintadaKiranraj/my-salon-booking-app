@@ -8,6 +8,8 @@ import ViewOnly from "../Viewonly";
 import Header from "../Header";
 import "./index.css";
 import { useEffect, useState } from "react";
+import Cookie from "js-cookie";
+
 const Home = () => {
   const [addedNewData, setNewDataStatus] = useState(true);
   useEffect(() => {
@@ -22,15 +24,16 @@ const Home = () => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${Cookie.get("jwt_token")}`,
           },
           body: JSON.stringify({
             ...newAppointment,
             time: newAppointment.dateAndtime,
-            date: "2024-02-22",
+            regEmialId: Cookie.get("email_id"),
           }),
         }
       );
-
+      debugger;
       if (response.ok) {
         const jsonString = await response.json();
         if (jsonString.status) {
@@ -49,12 +52,14 @@ const Home = () => {
   };
 
   return (
-    <div className="conpage-containertainer">
+    <div className="page-container">
       <Header />
-      <div className="container-home">
+      <div className="booking-detaisls-viwonly-form-table">
         <BookingForm onBooking={handleBooking} />
-        <ViewOnly />
-        <ToastContainer />
+        <div className="content">
+          <ViewOnly />
+          <ToastContainer />
+        </div>
       </div>
     </div>
   );

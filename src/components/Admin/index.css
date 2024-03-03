@@ -1,17 +1,12 @@
 .actionbtn {
   display: flex;
   flex-direction: row;
-  gap: 5px; 
+  gap: 5px;
 }
 
-.icon {
-  font-size: 24px;
-  cursor: pointer;
-}
 .table tbody td {
-  background-color: #ffff; 
+  background-color: #ffff;
 }
-
 
 .table thead th {
   background-color: #070706;
@@ -23,23 +18,17 @@
   border-collapse: collapse;
 }
 
-
 .table-container::-webkit-scrollbar {
   width: 5px;
 }
 
-
 .table-container::-webkit-scrollbar-thumb {
-  background-color: #5e3dab; 
-  border-radius: 10px; 
+  background-color: #5e3dab;
+  border-radius: 10px;
 }
 
 .table-container::-webkit-scrollbar-track {
-  background-color: rgb(
-    138,
-    230,
-    172
-  ); 
+  background-color: rgb(138, 230, 172);
 }
 
 .boocked-table-content {
@@ -65,8 +54,8 @@
 }
 
 .table-container {
-  max-height: 500px; 
-  overflow-y: auto; 
+  max-height: 500px;
+  overflow-y: auto;
   position: relative;
 }
 
@@ -75,10 +64,8 @@
   border-collapse: collapse;
 }
 
-
 .table thead {
   position: sticky;
   top: 0;
-  z-index: 1; 
- 
+  z-index: 1;
 }

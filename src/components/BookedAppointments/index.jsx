@@ -17,36 +17,34 @@ const BookedAppointments = (props) => {
     APPROVED: "Approved",
   };
 
-  const {
-    appointment,
-    deleteUserVar,
-    approveUserVar,
-    rejectUserVar,
-    accessLevele,
-  } = props;
+  const { appointment, deleteUser, approveUser, rejectUser, accessLevele } =
+    props;
   const { id } = appointment;
 
-  const handleDeleteClick = () => {
-    deleteUserVar(id);
+  const approvedBtnBg = appointment.status === status.APPROVED ? true : false;
+  const rejectBtnBg = appointment.status === status.REJECTED ? true : false;
+
+  const handleDelete = () => {
+    deleteUser(id);
   };
 
-  const handleApproveClick = () => {
-    toast.info("are you sure to approve this appointment?");
-    approveUserVar(id);
+  const handleApprove = () => {
+    // toast.info("are you sure to approve this appointment?");
+    approveUser(appointment);
   };
 
-  const hadleRejectUser = () => {
-    rejectUserVar(id);
+  const hadleReject = () => {
+    rejectUser(appointment);
   };
 
   const storedAppointments = () => {
-    let color = "yellow";
+    let color = "#ffcf40";
     if (appointment.status === status.PENDING) {
-      color = "yellow";
+      color = "#ffcf40";
     } else if (appointment.status === status.APPROVED) {
-      color = "green";
+      color = "#169873";
     } else if (appointment.status === status.REJECTED) {
-      color = "Red";
+      color = "#ff6060";
     }
 
     const convertDate = (dateString) => {
@@ -75,21 +73,22 @@ const BookedAppointments = (props) => {
           </td>
           {accessLevele > 0 ? (
             <td className="actionbtn">
-              <RiDeleteBin6Fill
-                color={`"red" ${color}`}
-                onClick={handleDeleteClick}
-                className="icon"
-              />
-              <RiAccountCircleLine
-                color="green"
-                onClick={handleApproveClick}
-                className="icon"
-              />
-              <RiAccountCircleLine
-                color="red"
-                onClick={hadleRejectUser}
-                className="icon"
-              />
+              <button className="deleteIconBtn">
+                <RiDeleteBin6Fill onClick={handleDelete} className="icon" />
+              </button>
+
+              <button
+                disabled={approvedBtnBg}
+                className={approvedBtnBg ? "disabled-button" : "approveBtn"}
+              >
+                <RiAccountCircleLine onClick={handleApprove} className="icon" />
+              </button>
+              <button
+                disabled={rejectBtnBg}
+                className={rejectBtnBg ? "disabled-button" : "rejectedBtn"}
+              >
+                <RiAccountCircleLine onClick={hadleReject} className="icon" />
+              </button>
             </td>
           ) : (
             <ToastContainer />

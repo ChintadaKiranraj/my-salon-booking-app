@@ -1,4 +1,3 @@
-
 .form-title {
   margin-bottom: 20px;
   text-align: center;
@@ -11,19 +10,18 @@
   flex-direction: column;
 }
 .book-an-appointment {
-
   display: flex;
   flex-direction: column;
-  align-items: center;
   border-radius: 8px;
-  height: 60%;
-  padding:20px;
-  margin: 35px;
-  background-color:floralwhite;
+  padding: 20px;
+  background-color: floralwhite;
   transform: translate(2, 0);
   transition: all 0.3s;
   align-self: stretch;
-  flex-grow: 1;
+  flex-shrink: 0;
+  width: 400px;
+  margin: 20px;
+  align-self: center;
 }
 
 .form-group {
@@ -56,7 +54,6 @@ input {
 .submit-btn:hover {
   background-color: #0056b3;
 }
-
 
 @media (max-width: 480px) {
   .booking-form-container {
