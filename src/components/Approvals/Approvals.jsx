@@ -2,15 +2,14 @@ import React, { useEffect, useState } from "react";
 import Header from "../Header";
 import Cookie from "js-cookie";
 import { Snackbar, SnackbarContent, Button } from "@material-ui/core";
-
+import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
+import ClearRoundedIcon from "@mui/icons-material/ClearRounded";
 const Approvals = () => {
   const [approvalData, setApprovalData] = useState([]);
   const [error, setError] = useState(null);
-  // const [nodata, setNodata] = useState(true);
-
+  /*fetch the admin access requested users*/
   const getApprovalsData = async () => {
     const token = Cookie.get("jwt_token");
-    // const emailId = Cookie.get("email_id");
     const URL = "http://localhost:4001/fetch-registaction-details";
     try {
       const response = await fetch(URL, {
@@ -25,7 +24,6 @@ const Approvals = () => {
       }
 
       setApprovalData(jsonData.data.length === 0 ? [] : jsonData.data);
-      // setNodata(jsonData.data.length === 0);
     } catch (error) {
       setError("Failed to fetch approval data. Please try again.");
     }
@@ -35,7 +33,10 @@ const Approvals = () => {
     getApprovalsData();
   }, []);
 
+  /*gratn admin access to the requested user by  super admin*/
   const updateUserRequest = async (emailId) => {
+    debugger;
+
     const token = Cookie.get("jwt_token");
 
     let URL = "http://localhost:4001/approved-admin-access";
@@ -43,6 +44,7 @@ const Approvals = () => {
       const response = await fetch(URL, {
         method: "POST",
         headers: {
+          "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
@@ -50,14 +52,22 @@ const Approvals = () => {
           accessLevel: 2,
         }),
       });
+      if (!response.ok) {
+        throw new Error("Failed to update user request.");
+      }
+
       const jsonData = await response.json();
       console.log("Dataat viw only in table  --> " + jsonData.data);
-      if (response.ok === true) {
-        alert("Access granted successfully!");
-        window.location.reload();
+      if ((response.ok === true) & (jsonData.status !== false)) {
+        // alert("Access granted successfully!");
+        // window.location.reload();
+      } else {
+        alert("Failed to grant access. Please try again.");
       }
     } catch (error) {
       console.error("Error:", error);
+      console.error("Error:", error);
+      alert("Failed to grant access. Please try again.");
     }
   };
 
@@ -86,12 +96,15 @@ const Approvals = () => {
                 <td>{item.phoneNumber}</td>
                 <td>{item.emailId}</td>
                 <td>
-                  <button
-                    className="btn btn-primary"
+                  <CheckRoundedIcon
+                    className={`${
+                      item.accessLevel >= 2 ? "disabled" : ""
+                    } action-icon`}
                     onClick={() => updateUserRequest(item.emailId)}
-                  >
-                    Approve
-                  </button>
+                  />
+                  <ClearRoundedIcon
+                    onClick={() => updateUserRequest(item.emailId)}
+                  />
                 </td>
               </tr>
             ))}

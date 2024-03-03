@@ -4,6 +4,9 @@ import { ToastContainer, toast } from "react-toastify";
 import { RiAccountCircleLine } from "react-icons/ri";
 import "reactjs-popup/dist/index.css";
 import { RiDeleteBin6Fill } from "react-icons/ri";
+import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
+import ClearRoundedIcon from "@mui/icons-material/ClearRounded";
+import DeleteSharpIcon from "@mui/icons-material/DeleteSharp";
 
 import React from "react";
 
@@ -38,13 +41,14 @@ const BookedAppointments = (props) => {
   };
 
   const storedAppointments = () => {
-    let color = "#ffcf40";
-    if (appointment.status === status.PENDING) {
-      color = "#ffcf40";
-    } else if (appointment.status === status.APPROVED) {
-      color = "#169873";
+    let color = "#ffd700";
+    // if (appointment.status === status.PENDING) {
+    //   color = "#009eff";
+    // } else
+    if (appointment.status === status.APPROVED) {
+      color = "#0a642c";
     } else if (appointment.status === status.REJECTED) {
-      color = "#ff6060";
+      color = "red";
     }
 
     const convertDate = (dateString) => {
@@ -74,20 +78,20 @@ const BookedAppointments = (props) => {
           {accessLevele > 0 ? (
             <td className="actionbtn">
               <button className="deleteIconBtn">
-                <RiDeleteBin6Fill onClick={handleDelete} className="icon" />
+                <DeleteSharpIcon onClick={handleDelete} className="icon" />
               </button>
 
               <button
                 disabled={approvedBtnBg}
                 className={approvedBtnBg ? "disabled-button" : "approveBtn"}
               >
-                <RiAccountCircleLine onClick={handleApprove} className="icon" />
+                <CheckRoundedIcon onClick={handleApprove} className="icon" />
               </button>
               <button
                 disabled={rejectBtnBg}
                 className={rejectBtnBg ? "disabled-button" : "rejectedBtn"}
               >
-                <RiAccountCircleLine onClick={hadleReject} className="icon" />
+                <ClearRoundedIcon onClick={hadleReject} className="icon" />
               </button>
             </td>
           ) : (

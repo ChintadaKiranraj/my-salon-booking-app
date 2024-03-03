@@ -7,18 +7,20 @@
 }
 
 .approveBtn {
-  color: #169873;
+  color: #0a642c;
   border-style: none;
   background-color: transparent;
 }
 
 .rejectedBtn {
-  color: red;
+  color: rgb(205, 46, 46);
   border-style: none;
   background-color: transparent;
 }
 .icon {
-  font-size: 24px;
+  height: 100px;
+  width: 10px;
+  font-weight: 900;
 }
 
 .deleteIconBtn {
