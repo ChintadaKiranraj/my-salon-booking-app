@@ -7,6 +7,8 @@ import { Hourglass } from "react-loader-spinner";
 import "./index.css";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
+import ClearRoundedIcon from "@mui/icons-material/ClearRounded";
 
 const Admin = () => {
   const token = Cookie.get("jwt_token");

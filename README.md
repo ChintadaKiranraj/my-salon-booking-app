@@ -110,3 +110,12 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 // }
 
 // npm install @material-ui/core
+
+//npm install @coreui/react for reacr icons
+// npm install @coreui/coreui -- css files npm
+//import '@coreui/coreui/dist/css/coreui.min.css' react icons css import
+
+//npm install bootstrap
+//import 'bootstrap/dist/css/bootstrap.min.css'
+
+//npm install @mui/icons-material

@@ -14,7 +14,8 @@ import "./App.css";
 import Approvals from "./components/Approvals/Approvals";
 import Header from "./components/Header";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
-
+import "@coreui/coreui/dist/css/coreui.min.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 const App = () => (
   <Router>
     <div className="App">

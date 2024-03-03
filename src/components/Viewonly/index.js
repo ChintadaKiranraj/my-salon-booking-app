@@ -18,7 +18,7 @@ const ViewOnly = () => {
           when: (row) => row.status === "Pending",
           style: {
             color: "blue",
-            fontWeight: "1000",
+            fontWeight: "600",
             "&:hover": {
               cursor: "pointer",
             },
@@ -28,7 +28,7 @@ const ViewOnly = () => {
           when: (row) => row.status === "Rejected",
           style: {
             color: "red",
-            fontWeight: "1000",
+            fontWeight: "600",
             "&:hover": {
               cursor: "pointer",
             },
@@ -38,7 +38,7 @@ const ViewOnly = () => {
           when: (row) => row.status === "Approved",
           style: {
             color: "green",
-            fontWeight: "1000",
+            fontWeight: "600",
             "&:hover": {
               cursor: "not-allowed",
             },
@@ -46,6 +46,7 @@ const ViewOnly = () => {
         },
       ],
     },
+    { name: "Date&Time", selector: (row) => row.time, sortable: true },
   ];
 
   const fetchAppointments = async () => {
@@ -91,7 +92,7 @@ const ViewOnly = () => {
   const tableHeaderstyle = {
     headCells: {
       style: {
-        fontWeight: "bold",
+        fontWeight: "500",
         fontSize: "15px",
         backgroundColor: "#2874A6",
         color: "white",
@@ -113,7 +114,7 @@ const ViewOnly = () => {
         columns={columns}
         data={records}
         pagination
-        selectableRows
+        // selectableRows
         responsive={true}
         selectableRowsHighlight
         highlightOnHover
