@@ -1,9 +1,27 @@
-.container-home {
+/* .viwonly-form-table {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0px;
+  overflow-y: auto;
+  flex-grow: 1;
+} */
+.booking-detaisls-viwonly-form-table {
   display: flex;
   flex-direction: row;
+  overflow-y: auto;
+  /* background-color: yellow; */
+  height: 100vh;
+  padding: 10px;
   justify-content: center;
   align-items: center;
-  padding: 25px;
-  margin-bottom: 0px;
+}
+
+.page-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.content {
+  flex-grow: 1;
   overflow-y: auto;
 }

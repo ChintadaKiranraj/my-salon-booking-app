@@ -14,12 +14,7 @@
   background: url("https://images.pexels.com/photos/114979/pexels-photo-114979.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500");
   background-size: cover;
   background-position: center;
-  background-color: rgba(
-    117,
-    94,
-    113,
-    0.7
-  ); 
+  background-color: rgba(117, 94, 113, 0.7);
   border-radius: 10px;
   padding: 20px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -90,7 +85,7 @@
 
 .input-label {
   margin-bottom: 0px;
-  font-family: "Roboto";
+
   font-weight: bold;
   font-size: 12px;
   line-height: 16px;
@@ -120,7 +115,6 @@
 }
 
 .login-button {
-  font-family: "Roboto";
   font-weight: bold;
   font-size: 14px;
   color: #ffffff;
@@ -140,7 +134,7 @@
   font-size: 12px;
   margin-top: 3px;
   margin-bottom: 0px;
-  font-family: "Roboto";
+
   font-size: 12px;
   line-height: 16px;
   color: #ff0b37;
@@ -152,5 +146,5 @@
   font-size: 30px;
 }
 .input-label {
-  color: rgb(95, 155, 156); 
+  color: rgb(95, 155, 156);
 }

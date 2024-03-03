@@ -1,5 +1,3 @@
-
-
 .signup-form-container {
   width: 100vw;
   display: flex;
@@ -11,7 +9,6 @@
   background-size: cover;
   background-position: center;
 }
-
 
 .formstyle {
   padding: 10px;
@@ -46,7 +43,6 @@
 }
 @media screen and (min-width: 768px) {
   .registration-form {
-  
     justify-content: space-between;
     width: 45%;
   }
@@ -79,7 +75,6 @@
 }
 .error-message {
   color: red;
-  font-family: "Times New Roman", Times, serif;
 }
 
 .registrationForm-container {
@@ -96,7 +91,7 @@
   background-clip: text;
   font-size: 20px;
   text-align: center;
-  font-family: "roboto";
+
   font-weight: 700;
 }
 @media screen and (min-width: 767px) {
@@ -136,7 +131,6 @@
 @media screen and (min-width: 768px) {
   .form-control {
     font-size: 15px;
-   
   }
 }
 
@@ -146,11 +140,9 @@
   justify-content: flex-start;
   align-self: start;
   align-items: flex-start;
- 
 }
 
 .checkbox-label {
-  font-family: "Roboto";
   font-size: 16px;
   font-weight: 400;
   width: 100%;
@@ -160,7 +152,6 @@
   padding-left: 10px;
   padding-right: 20px;
   border-radius: 5px;
- 
 }
 .checkbox-input {
   width: 20px;

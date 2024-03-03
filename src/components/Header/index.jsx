@@ -16,7 +16,8 @@ const Header = (props) => {
   const tabsList = [
     { tabId: "HOME", displayText: "Home", to: "/" },
     { tabId: "ADMIN", displayText: "Admin", to: "/admin" },
-    { tabId: "BARBARS", displayText: "Barbars", to: "/barbars" },
+    { tabId: "BARBERS", displayText: "Barbers", to: "/barbers" },
+    { tabId: "APPROVALS", displayText: "Approvals", to: "/approvals" },
   ];
   const LoginUserLogo = () => {
     return <p className="user-logo">{Cookies.get("logidin_user_logo")}</p>;
@@ -31,11 +32,24 @@ const Header = (props) => {
     localStorage.removeItem("activeTabId");
   };
 
+  // const accessLevel = Cookies.get("access_level");
+  const accessLevel = parseInt(Cookies.get("access_level"));
+
+  let filteredTabsList = [];
+  if (accessLevel === 3) {
+    filteredTabsList = tabsList;
+  } else if (accessLevel === 0 || accessLevel === 1) {
+    filteredTabsList = tabsList.filter(
+      (tab) => tab.tabId === "HOME" || tab.tabId === "BARBERS"
+    );
+  } else if (accessLevel === 2) {
+    filteredTabsList = tabsList.filter((tab) => tab.tabId !== "APPROVALS");
+  }
   return (
     <nav className="nav-headers">
       <div className="user-logo-container">{LoginUserLogo()}</div>
       <ul className="nav-tabs-menu-container">
-        {tabsList.map((tabDetails) => (
+        {filteredTabsList.map((tabDetails) => (
           <TabItem
             key={tabDetails.tabId}
             tabDetails={tabDetails}

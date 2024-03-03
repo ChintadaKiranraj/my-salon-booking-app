@@ -1,0 +1,27 @@
+.disabled-button {
+  cursor: not-allowed;
+  border-style: none;
+}
+.disabled-button:hover {
+  cursor: not-allowed;
+}
+
+.approveBtn {
+  color: #169873;
+  border-style: none;
+  background-color: transparent;
+}
+
+.rejectedBtn {
+  color: red;
+  border-style: none;
+  background-color: transparent;
+}
+.icon {
+  font-size: 24px;
+}
+
+.deleteIconBtn {
+  border-style: none;
+  background-color: transparent;
+}
