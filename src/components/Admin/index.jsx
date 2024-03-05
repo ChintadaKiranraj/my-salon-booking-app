@@ -154,7 +154,7 @@ const Admin = () => {
 
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <div className="boocked-table-content">
         {!fetchedStatus ? (
           <div className="loading-spinner">

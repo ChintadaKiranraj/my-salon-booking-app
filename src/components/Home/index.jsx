@@ -53,7 +53,7 @@ const Home = () => {
 
   return (
     <div className="page-container">
-      <Header />
+      {/* <Header /> */}
       <div className="booking-detaisls-viwonly-form-table">
         <BookingForm onBooking={handleBooking} />
         <div className="content">
