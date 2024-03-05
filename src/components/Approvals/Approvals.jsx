@@ -76,7 +76,7 @@ const Approvals = () => {
   };
   return (
     <div className="main-container">
-      <Header />
+      {/* <Header /> */}
       <div className="table-container">
         <table className="table">
           <thead>

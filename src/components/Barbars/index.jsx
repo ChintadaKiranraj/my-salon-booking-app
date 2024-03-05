@@ -25,7 +25,7 @@ const Barber = () => {
 
   return (
     <div className="page-container">
-      <Header />
+      {/* <Header /> */}
       <div className="content">
         {loading ? (
           <div className="loading-spinner">
