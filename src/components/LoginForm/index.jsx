@@ -49,7 +49,7 @@ class LoginForm extends Component {
       expires: 30,
     });
     toast.success("Login successful. Welcome back!");
-    history.replace("/");
+    history.replace("/home");
   };
 
   onSubmitFailure = (errorMsg) => {
@@ -137,7 +137,7 @@ class LoginForm extends Component {
     const jwtToken = Cookies.get("jwt_token");
 
     if (jwtToken !== undefined) {
-      return <Redirect to="/" />;
+      return <Redirect to="/home" />;
     }
 
     if (redirectToSignup) {

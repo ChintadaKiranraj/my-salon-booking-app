@@ -25,7 +25,11 @@ const Barber = () => {
 
   return (
     <div className="page-container">
-      {/* <Header /> */}
+      <p>
+        We display the registred barbers in our platform and the system adimin
+        can hire new barber for ther shop
+      </p>
+      <button>Invite new barber to my plat form</button>
       <div className="content">
         {loading ? (
           <div className="loading-spinner">

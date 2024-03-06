@@ -14,10 +14,15 @@ const Header = (props) => {
     }
   }, []);
   const tabsList = [
-    { tabId: "HOME", displayText: "Home", to: "/" },
-    { tabId: "ADMIN", displayText: "Admin", to: "/admin" },
-    { tabId: "BARBERS", displayText: "Barbers", to: "/barbers" },
-    { tabId: "APPROVALS", displayText: "Approvals", to: "/approvals" },
+    { tabId: "HOME", displayText: "Barber Management", to: "/home" },
+    {
+      tabId: "BOOKING-DETAILS",
+      displayText: "Shop Schedule",
+      to: "/shop/schedules",
+    },
+
+    { tabId: "USER", displayText: "My_Bookings", to: "/user/schedules" },
+    { tabId: "ADMIN", displayText: "USER", to: "/admin" },
   ];
   const LoginUserLogo = () => {
     return <p className="user-logo">{Cookies.get("logidin_user_logo")}</p>;
