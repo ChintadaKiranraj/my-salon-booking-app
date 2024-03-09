@@ -1,0 +1,29 @@
+.barber-application-form-container{
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.experience-container{
+    display: flex;
+    flex-direction: row;
+    /* background-color: red; */
+    width: 50%;
+  
+   
+}
+.label-container{
+/* background-color: blue; */
+display: flex;
+flex-direction: column;
+justify-content: flex-start;
+
+width: 400px;
+
+}
+
+.label{
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}

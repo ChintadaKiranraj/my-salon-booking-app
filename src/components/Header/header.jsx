@@ -14,15 +14,48 @@ const Header = (props) => {
     }
   }, []);
   const tabsList = [
-    { tabId: "HOME", displayText: "Barber Management", to: "/home" },
-    {
-      tabId: "BOOKING-DETAILS",
-      displayText: "Shop Schedule",
-      to: "/shop/schedules",
-    },
 
-    { tabId: "USER", displayText: "My_Bookings", to: "/user/schedules" },
-    { tabId: "ADMIN", displayText: "USER", to: "/admin" },
+    //user registrations -form
+    { tabId: "USER-REGISTRATION", displayText: "user-regitration", to: "/RegistrationForm" },
+
+
+    //will show the all the list of users
+    { tabId: "USERS", displayText: "USERS", to: "/users" },
+
+    //all the list of the shop owners
+    { tabId: "SHOPOWNER", displayText: "shop-owner", to: "/shopowners" },
+
+    //shop registration -form
+    { tabId: "SHOP-REGISTRATION", displayText: "shop-registraion", to: "/shopregistrationForm" },
+
+    // all the shops
+    { tabId: "SHOPS", displayText: "shops", to: "/shops" },
+
+
+  
+
+  //barber application -form
+  { tabId: "BARBER-APPLICATION", displayText: "BarberApplication", to: "/BarberApplicationsForm" },
+
+    // all the barbers
+    { tabId: "NOOFBARBERS", displayText: "NOOFBARBERS", to: "/noofbarbers" },
+
+
+
+    // book the salon appointment -form
+  { tabId: "BOOKINGFORM", displayText: "Salon-BOOKINGFOTM", to: "/bookingformtwo" },
+    // all user bookings
+    { tabId: "USERBOOKINGS", displayText: "USERBOOKINGS", to: "/userbookings" },
+  
+
+    // barber registrat -form
+    // { tabId: "BARBER-REGISTRATION", displayText: "Barberr-registraion", to: "/barberregistration" },
+
+    // barber application -form
+
+    // shop registration -form
+
+    
   ];
   const LoginUserLogo = () => {
     return <p className="user-logo">{Cookies.get("logidin_user_logo")}</p>;

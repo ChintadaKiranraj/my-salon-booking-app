@@ -119,3 +119,12 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 //import 'bootstrap/dist/css/bootstrap.min.css'
 
 //npm install @mui/icons-material
+
+// npm install @syncfusion/ej2-react-popups --save
+and imports  in css
+@import "../node_modules/@syncfusion/ej2-base/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-react-popups/styles/material.css";
+imports in js
+import { TooltipComponent } from '@syncfusion/ej2-react-popups';
+import { ButtonComponent } from '@syncfusion/ej2-react-buttons';
+

@@ -1,19 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./homepage.css";
-const Homepage = () => {
+const WelcomePage = () => {
   return (
     <div className="homepage-container">
       <div className="home-head">
         <h1>Welcome to Our Salon Booking Platform!</h1>
-        <p>Choose Your Role:</p>
+        
         <div className="registration-options">
-          <Link to="/register/shop-owner" className="registration-button">
-            Register as Shop Owner
+          <Link to="/RegistrationForm" className="registration-button">
+            Register as new user
           </Link>
-          <Link to="/register/customer" className="registration-button">
-            Register as Customer
-          </Link>
+         
           <Link to="/login" className="registration-button">
             Sign In
           </Link>
@@ -131,4 +129,4 @@ const Homepage = () => {
   );
 };
 
-export default Homepage;
+export default WelcomePage;

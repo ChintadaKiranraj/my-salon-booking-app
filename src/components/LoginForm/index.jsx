@@ -137,11 +137,11 @@ class LoginForm extends Component {
     const jwtToken = Cookies.get("jwt_token");
 
     if (jwtToken !== undefined) {
-      return <Redirect to="/home" />;
+      return <Redirect to="/shops" />;
     }
 
     if (redirectToSignup) {
-      return <Redirect to="/signup" />;
+      return <Redirect to="/" />;
     }
 
     return (

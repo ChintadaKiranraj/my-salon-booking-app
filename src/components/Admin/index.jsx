@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import BookedAppointments from "../BookedAppointments";
-import Header from "../Header";
+import Header from "../Header/header";
 import Cookie from "js-cookie";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Hourglass } from "react-loader-spinner";

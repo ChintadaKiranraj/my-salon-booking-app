@@ -12,16 +12,24 @@ import ViewOnly from "./components/Viewonly";
 // import MyComponent from "./ConfirmationModal/confirmation";
 import "./App.css";
 import Approvals from "./components/Approvals/Approvals";
-import Header from "./components/Header";
+import Header from "./components/Header/header";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import "@coreui/coreui/dist/css/coreui.min.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import myProfilePick from "./Images/loginbg.svg";
 import myProfilePick2 from "./Images/profile.svg";
-import Homepage from "./components/Homepage/Homepage";
+import WelcomePage from "./components/WelcomePage/WelcomePage";
 import Barber from "./components/Barbars";
 import Bookings from "./components/Bookings";
 import UserBookings from "./components/UserBookings/userbookings";
+import RegistrationForm from "./components/RegistrationForm/registrationform";
+import Shops from "./components/Shops/shops";
+import ShopOwners from "./components/ShopOwners/shopowner";
+import Users from "./components/Users/users";
+import BookingFormTwo from "./components/BookingFormTwo/bookingformTwo";
+import BarberRegistrationForm from "./components/BarberRegistrationForm/barberregistrationform";
+import ShopRegistrationForm from "./components/ShopRegistrationForm/shopregistrationform";
+import BarberApplicationsForm from "./components/BarberApplicationsForm/BarberApplicationsForm";
 
 const App = () => (
   <Router>
@@ -37,13 +45,26 @@ const App = () => (
         <ProtectedRoute exact path="/approvals" component={Approvals} />
         <ProtectedRoute exact path="/user" component={ViewOnly} /> */}
         {/* <Route path="/not-found" component={NotFound} /> */}
-        <Route exact path="/" component={Homepage} />
+        {/* <ProtectedRoute exact path="/barberregistration" component={UserBookings} /> */}
+        {/* <ProtectedRoute exact path="/user/schedules" component={UserBookings} /> */}
+      
+        <Route exact path="/" component={WelcomePage} />
         <Route exact path="/login" component={LoginForm} />
-        <Route exact path="/register/shop-owner" component={SignupForm} />
-        <Route exact path="/register/customer" component={SignupForm} />
-        <ProtectedRoute exact path="/home" component={Barber} />
-        <ProtectedRoute exact path="/shop/schedules" component={Bookings} />
-        <ProtectedRoute exact path="/user/schedules" component={UserBookings} />
+        <Route exact path="/RegistrationForm" component={RegistrationForm} />
+       
+        <ProtectedRoute exact path="/shops" component={Shops} />
+        <ProtectedRoute exact path="/shopowners" component={ShopOwners} />
+        <ProtectedRoute exact path="/users" component={Users} />
+
+        <ProtectedRoute exact path="/noofbarbers" component={Barber} />
+      
+        <ProtectedRoute exact path="/userbookings" component={Bookings} />
+        <ProtectedRoute exact path="/bookingformtwo" component={BookingFormTwo} />
+        <ProtectedRoute exact path="/barberregistration" component={BarberRegistrationForm} />
+        <ProtectedRoute exact path="/shopregistrationForm" component={ShopRegistrationForm} />
+        <ProtectedRoute exact path="/BarberApplicationsForm" component={BarberApplicationsForm} />
+        
+        
 
         <Route component={NotFound} />
       </Switch>
