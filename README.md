@@ -128,3 +128,6 @@ imports in js
 import { TooltipComponent } from '@syncfusion/ej2-react-popups';
 import { ButtonComponent } from '@syncfusion/ej2-react-buttons';
 
+//npm install react-datepicker  
+
+
