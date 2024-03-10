@@ -1,3 +1,9 @@
+.active{
+  background-color: #1d4ed8;
+}
+
+
+
 .tab-item-container {
   padding-right: 4px;
 }
@@ -28,4 +34,29 @@
   color: #000033;
   text-decoration: underline;
   text-decoration-thickness: 0.2em;
+}
+
+
+ul{
+  list-style-type: none;
+  display:flex ;
+}
+
+ul li{
+  list-style: none;
+  /* text-transform: uppercase; */
+}
+ul li a{
+  display: block;
+  text-decoration: none;
+  color: white;
+  padding: 0.5rem;
+  margin:0 0.5rem;
+  border-radius: 0.5rem;
+}
+
+ul li a:not(.active):hover{
+  background-color: #172554;
+  color: white;
+  border-radius: 0.5rem;
 }
