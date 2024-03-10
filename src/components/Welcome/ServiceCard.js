@@ -1,8 +1,5 @@
 import "./index.css";
 
-
-
-
 const ServiceCard = (props) => {
   const { service } = props;
   const { id, servicename, description, icons } = service;
@@ -11,10 +8,6 @@ const ServiceCard = (props) => {
     <>
       <li>
         <div className="service-card">
-          {/* <div className="card-icon">
-            <i className="flaticon-salon"></i>
-          </div> */}
-
           <h3 className="h3">
             <a href="#" className="card-title">
               {servicename}
