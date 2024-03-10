@@ -2,10 +2,8 @@ import React, { useEffect } from "react";
 // import "./welcome.css";
 import "./index.css";
 import { useState } from "react";
-import GalleryImg from "../../assets/images/gallery-1.jpg";
 import ServiceCard from "./ServiceCard";
-import Pricing from "./Pricing";
-import CarList from "./carlist.js";
+
 
 import BookingFormTwo from "../BookingFormTwo/bookingformTwo.js";
 const Welcome = () => {
