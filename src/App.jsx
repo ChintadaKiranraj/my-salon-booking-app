@@ -30,6 +30,7 @@ import BookingFormTwo from "./components/BookingFormTwo/bookingformTwo";
 import BarberRegistrationForm from "./components/BarberRegistrationForm/barberregistrationform";
 import ShopRegistrationForm from "./components/ShopRegistrationForm/shopregistrationform";
 import BarberApplicationsForm from "./components/BarberApplicationsForm/BarberApplicationsForm";
+import Welcome from "./components/Welcome/Welcome";
 
 const App = () => (
   <Router>
@@ -48,7 +49,8 @@ const App = () => (
         {/* <ProtectedRoute exact path="/barberregistration" component={UserBookings} /> */}
         {/* <ProtectedRoute exact path="/user/schedules" component={UserBookings} /> */}
       
-        <Route exact path="/" component={WelcomePage} />
+        <Route exact path="/" component={Welcome} />
+        {/* <Route exact path="/" component={WelcomePage} /> */}
         <Route exact path="/login" component={LoginForm} />
         <Route exact path="/RegistrationForm" component={RegistrationForm} />
        

@@ -9,10 +9,10 @@ const Bookings = () => {
   const [bookings, setBookings] = useState([]);
   useEffect(() => {
     const fetchBookings = async () => {
-      const response = await fetch("http://localhost:4001/api/get-all-bookings");
+      const response = await fetch("http://localhost:4001/api/users-with-bookings");
       const bookingsFromServer = await response.json();
-      setBookings(bookingsFromServer.bookings);
-      console.log(bookingsFromServer.bookings)
+      setBookings(bookingsFromServer.data);
+      console.log(bookingsFromServer.data,"--------------------------")
     };
     fetchBookings();
   }, []);

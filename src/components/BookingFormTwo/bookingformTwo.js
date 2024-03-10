@@ -5,6 +5,7 @@ import Tooltip from "@material-ui/core/Tooltip";
 import PersonIcon from "@material-ui/icons/Person";
 import DeleteIcon from "@material-ui/icons/Delete";
 import "./bookingformtwo.css";
+// import "../Welcome/welcome.css";
 // import React, { useState } from 'react';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -49,23 +50,15 @@ const BookingFormTwo = () => {
     fetchAllLocation();
     // fetchShops()
   }, []);
-  // const [selectedShopObj, setSelectedShopObj] = useState();
 
   const [selectedShop, setSelectedShop] = useState("");
-  // const handleSelectService = (event) => {
-  //   setSelectedService(event.target.value);
-  // };
-  // const handleSelectedShop = (event) => {
-  //   setSelectedShop(event.target.value);
-  // };
+
   const [salonBookingData, setSalonBookingData] = useState({
     datetime: "",
     status: "pending",
     saloonService: "",
     shopName: "",
-    // userId: "",
-    // barberId: "",
-    // shopId: "",
+
     location: "",
   });
   const [errors, setErrors] = useState({
@@ -73,9 +66,7 @@ const BookingFormTwo = () => {
     status: "pending",
     saloonService: "",
     shopName: "",
-    // userId: "",
-    // barberId: "",
-    // shopId: "",
+
     location: "",
   });
   const fetchShopNamesByLocation = async (location) => {
@@ -112,24 +103,10 @@ const BookingFormTwo = () => {
     }
   };
 
-  // const onSelectShop = (event) => {
-  //   const { name, value } = event.target;
-  //   setSalonBookingData({
-  //     ...salonBookingData,
-  //     [name]: value,
-  //   });
-  //   setErrors({
-  //     ...errors,
-  //     [name]: value.trim() === "" ? `*${name} is required` : "",
-  //   });
-
-  //   setSelectedShopObj(salonShops.find((shop) => shop.shopname === value));
-  // }
-
   const onSubmitSaloonBooking = (event) => {
     event.preventDefault();
     let formIsValid = true;
-    debugger
+    debugger;
     const newErrors = { ...errors };
     console.log("salonBookingData ====>   ", salonBookingData);
     Object.keys(salonBookingData).forEach((fieldName) => {
@@ -138,24 +115,24 @@ const BookingFormTwo = () => {
       if (value.trim() === "") {
         newErrors[fieldName] = `*${fieldName} is required`;
         formIsValid = false;
-      } 
-      // else {
-      //   newErrors.fieldName = "";
-      // }
+      }
     });
     setErrors(newErrors);
-    debugger
+    debugger;
     if (formIsValid) {
       console.log("salonBookingData", salonBookingData);
       const userId = 1; //get this user id from the login uaser
-      const { shopId,ownerId } = shopIdOwnerId;
-      fetch(`http://localhost:4001/api/saloon-booking/${userId}/${shopId}/${ownerId}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(salonBookingData),
-      })
+      const { shopId, ownerId } = shopIdOwnerId;
+      fetch(
+        `http://localhost:4001/api/saloon-booking/${userId}/${shopId}/${ownerId}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(salonBookingData),
+        }
+      )
         .then((response) => response.json())
         .then((data) => {
           console.log("Success:", data);
@@ -168,38 +145,28 @@ const BookingFormTwo = () => {
 
   return (
     <div>
-      <h2>Saloon Booking</h2>
-      <form onSubmit={onSubmitSaloonBooking}>
-        <label>Booking Date&Time:</label>
+      <form onSubmit={onSubmitSaloonBooking} className="appoin-form">
+        <label>Appointment Date & Time:</label>
         <input
+          className="input-field"
           type="datetime-local"
           name="datetime"
           value={salonBookingData.datetime}
+          placeholder="Select a date and time"
           onChange={handleChange}
         />
 
-        {/* <DatePicker
-          // selected={selectedDate}
-          onChange={handleChange}
-          showTimeSelect
-          name="datetime"
-          timeFormat="HH:mm"
-          timeIntervals={15}
-          dateFormat="MMMM d, yyyy h:mm aa"
-          minDate={new Date()} 
-          value={salonBookingData.datetime}
-        /> */}
-
         <span style={{ color: "red" }}>{errors.datetime}</span>
-        <label className="label">Location:</label>
+        <label >Select Location:</label>
 
         <select
+          className="input-field"
           value={salonBookingData.location}
           onChange={handleChange}
           name="location"
         >
           <option value="" disabled>
-            Select a saloon shop
+          Choose a location
           </option>
           {shopsLocations.map((service, index) => (
             <option key={index} value={service.location}>
@@ -208,41 +175,34 @@ const BookingFormTwo = () => {
           ))}
         </select>
         <span style={{ color: "red" }}>{errors.location}</span>
-        <br />
-        <label>Shop:</label>
+        <label>Select Salon Shop:</label>
 
         <select
+          className="input-field"
           value={salonBookingData.shopName}
           onChange={handleChange}
           name="shopName"
         >
           <option value="" disabled>
-            Select a saloon shop
+          Choose a salon shop
           </option>
           {salonShopsList.map((service, index) => (
-            // <option key={service.shopid} value={service.shopname} onClick={()=>{
-            //   setSelectedShopObj(service)
-            // }}>
-            // {service.shopname}
             <option key={index} value={service.shopname}>
               {service.shopname}
             </option>
           ))}
         </select>
-        {/* <input type="hidden" name="saloonShop" value={salonBookingData.selectedShop} /> */}
         <span style={{ color: "red" }}>{errors.shopName}</span>
-        {/* {salonBookingData.saloonShop &&  <Tooltip title={<ShopDetails shopDetails={selectedShopObj}/>} placement="top-start" arrow>
-      <p>You selected: {salonBookingData.saloonShop}</p>
-       </Tooltip>} */}
 
-        <label>Select a Salon Service:</label>
+        <label>Select Salon Service:</label>
         <select
+          className="input-field"
           value={salonBookingData.saloonService}
           onChange={handleChange}
           name="saloonService"
         >
           <option value="" disabled>
-            Select a service
+          Choose a salon service
           </option>
           {salonServices.map((service, index) => (
             <option key={index} value={service}>
@@ -250,15 +210,11 @@ const BookingFormTwo = () => {
             </option>
           ))}
         </select>
-        {/* <input type="hidden" name="saloonService" value={salonBookingData.saloonService} /> */}
         <span style={{ color: "red" }}>{errors.saloonService}</span>
 
-        {salonBookingData.saloonService && (
-          <p>You selected: {salonBookingData.saloonService}</p>
-        )}
-
-        <br />
-        <button type="submit">Submit</button>
+        <button type="submit" className="form-btn">
+          BOOK AN APPOINTMENT
+        </button>
       </form>
     </div>
   );
