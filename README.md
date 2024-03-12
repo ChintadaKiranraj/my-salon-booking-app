@@ -130,4 +130,28 @@ import { ButtonComponent } from '@syncfusion/ej2-react-buttons';
 
 //npm install react-datepicker  
 
+//npm install mdb-react-ui-kit   for footer code these are the imports
+
+
+
+
+Creating a color scheme for a website is a subjective process and depends on the overall theme and branding you want to achieve. Here's a suggestion for a modern and attractive color scheme:
+
+1. **Primary Color (Buttons, Accents):**
+   - Hex: `#3498db` (Bright Blue)
+
+2. **Secondary Color (Nav Bars, Backgrounds):**
+   - Hex: `#2c3e50` (Dark Slate Blue)
+
+3. **Text Color:**
+   - Hex: `#333333` (Dark Gray)
+
+4. **Form Inputs:**
+   - Hex: `#ecf0f1` (Light Gray)
+
+5. **Header Background:**
+   - Hex: `#ffffff` (White)
+
+6. **Footer Background:**
+   - Hex: `#2c3e50` (Dark Slate Blue)
 

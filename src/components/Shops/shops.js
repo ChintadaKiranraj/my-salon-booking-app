@@ -41,4 +41,6 @@ const Shops=()=>{
         </div>
     )
 }
-export default Shops
+
+
+export default Shops;

@@ -49,14 +49,15 @@ ul li{
 ul li a{
   display: block;
   text-decoration: none;
-  color: white;
+  color:white;
   padding: 0.5rem;
   margin:0 0.5rem;
   border-radius: 0.5rem;
+  font-weight: 400;
 }
 
 ul li a:not(.active):hover{
-  background-color: #172554;
+  background-color:#A1D6E2;
   color: white;
   border-radius: 0.5rem;
 }

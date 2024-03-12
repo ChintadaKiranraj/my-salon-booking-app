@@ -1,4 +1,4 @@
-import "./index.css";
+
 
 const ServiceCard = (props) => {
   const { service } = props;

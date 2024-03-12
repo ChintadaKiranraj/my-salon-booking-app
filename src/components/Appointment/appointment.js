@@ -4,10 +4,12 @@ import IconButton from "@material-ui/core/IconButton";
 import Tooltip from "@material-ui/core/Tooltip";
 import PersonIcon from "@material-ui/icons/Person";
 import DeleteIcon from "@material-ui/icons/Delete";
-import "./bookingformtwo.css";
+
+import "./appointment.css";
 // import "../Welcome/welcome.css";
 // import React, { useState } from 'react';
-import DatePicker from "react-datepicker";
+// import   {EachShop }  from './components/Shops';
+// import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 const BookingFormTwo = () => {
   const salonServices = [
@@ -102,7 +104,21 @@ const BookingFormTwo = () => {
       });
     }
   };
-
+  const EachShop=(props)=>{
+    const {shop}=props
+    const {shopid,shopname,location,ownername,phonenumber,userid,owneremail}=shop
+    return(
+        <li className="service-card">
+            <p>shopid: {shopid}</p>
+            <p>userid: {userid}</p>
+            <p>shopname: {shopname}</p>
+            <p>location: {location}</p>
+            <p>ownername: {ownername}</p>
+            <p>owneremail: {owneremail}</p>
+            <p>shop Phone number: {phonenumber}</p>
+        </li>
+    )
+}
   const onSubmitSaloonBooking = (event) => {
     event.preventDefault();
     let formIsValid = true;
@@ -143,7 +159,9 @@ const BookingFormTwo = () => {
     }
   };
 
+ 
   return (
+    
     <div>
       <form onSubmit={onSubmitSaloonBooking} className="appoin-form">
         <label>Appointment Date & Time:</label>
@@ -216,6 +234,11 @@ const BookingFormTwo = () => {
           BOOK AN APPOINTMENT
         </button>
       </form>
+      {true&&   <ul>
+                {salonShopsList.map((shop)=>(
+                     <EachShop key={shop.shopid} shop={shop}/>
+                ))}
+              </ul>}
     </div>
   );
 };

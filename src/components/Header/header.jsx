@@ -38,14 +38,14 @@ const Header = (props) => {
   { tabId: "BARBER-APPLICATION", displayText: "BarberApplication", to: "/BarberApplicationsForm" },
 
     // all the barbers
-    { tabId: "NOOFBARBERS", displayText: "NOOFBARBERS", to: "/noofbarbers" },
+    { tabId: "NO-OF-BARBERS", displayText: "NOOFBARBERS", to: "/noofbarbers" },
 
 
 
     // book the salon appointment -form
-  { tabId: "BOOKINGFORM", displayText: "Salon-BOOKINGFOTM", to: "/bookingformtwo" },
+  { tabId: "BOOK-APPOINTMENT-FORM", displayText: "APPOINTMENT-FORM", to: "/appointment" },
     // all user bookings
-    { tabId: "USERBOOKINGS", displayText: "USERBOOKINGS", to: "/userbookings" },
+    { tabId: "USERBOOKINGS", displayText: "USER-APPOINTMENTS", to: "/userbookings" },
   
 
     // barber registrat -form

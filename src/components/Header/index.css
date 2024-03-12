@@ -22,7 +22,7 @@
 .user-logo-container {
   width: 50px;
   height: 50px;
-  background-color: #2b2c41;
+  background-color: #353cb6;
   font-size: 15px;
   font-weight: bold;
   display: flex;
@@ -34,11 +34,14 @@
   margin-top: 5px;
   margin-bottom: 5px;
   color: white;
+  
 }
 .nav-headers {
   display: flex;
   flex-direction: row;
-  background-color:   #7da1c8;
+
+  background-color: #00246B;
   justify-content: space-between;
   padding: 2px;
+  
 }

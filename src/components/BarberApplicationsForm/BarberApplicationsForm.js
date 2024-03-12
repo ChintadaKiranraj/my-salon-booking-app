@@ -155,7 +155,7 @@ if(resFromSErver.success===true){
           name="location"
         >
           <option value="" disabled>
-            Select a saloon shop
+            Choose  a  shop location
           </option>
           {shopsLocations.map((service, index) => (
             <option key={index} value={service.location}>
@@ -165,14 +165,14 @@ if(resFromSErver.success===true){
         </select>
         <span style={{ color: "red" }}>{errors.location}</span>
 
-        <label className="label">Shop:</label>
+        <label className="label">Shop name:</label>
         <select
           value={salaonApplicationData.shopName}
           onChange={handleChange}
           name="shopName"
         >
           <option value="" disabled>
-            Select a service
+            Choose shop name
           </option>
           {shopNames.map((service, index) => (
             <option key={service.shopid} value={service.shopname}>

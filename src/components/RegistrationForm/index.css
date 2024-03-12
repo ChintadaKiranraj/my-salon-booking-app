@@ -1,65 +1,91 @@
-
-
-.user-registration-form-container{
-  /* background-color: aquamarine; */
-  padding: 10px;
-  /* 
+.user-registration-form-out-container {
+  height: 100vh;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: center; */
-  
+  /* background-color: red; */
+  align-items:center;
+
+
+  /* padding:90px;
+  margin: 40px; */
+  /* background-image: url("../../assets/images/beautyTwo.jpg"); */
+  /* background-image: url("../../assets/images/salontools.jpg"); */
+
+}
+
+/* .registration-form-img {
+  width: 550px;
+  height: 610px;
+  border-radius: 8px;
+  flex-shrink: 0;
+  margin-left: 60px;
+  outline: 3px solid #5a0b0b; 
+  outline-offset: 30px;
+} */
+.user-registration-form-container {
+  /* max-width: 600px; */
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 40%;
+}
+
+.user-registration-form h1 {
+  text-align: center;
 }
 
 .user-registration-form {
-     display: flex;
-    flex-direction: column;
-    justify-content:flex-start;
-    align-items: flex-start;
-    height: 100vh;
-    /* background-color: #45a049; */
-    padding: 20px;
-overflow-y: auto;
-    
-  }
-  
-  /* .registration-form {
-    width: 300px;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  } */
-  
-  .form-group {
-    margin-bottom: 15px;
-  }
-  
-  label {
-    display: block;
-    margin-bottom: 5px;
-  }
-  
-  input,
-  select {
-    width: 50%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    box-sizing: border-box;
-    margin-top: 5px;
-  }
-  
-  /* button {
-    background-color: #4caf50;
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-  } */
-  
-  /* button:hover {
-    background-color: #45a049;
-  } */
-  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  font-weight: bold;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.btn {
+  background-color: #3498db;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn:hover {
+  background-color: #007bb5;
+}
+
+.h1 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+  padding: 10px;
+}

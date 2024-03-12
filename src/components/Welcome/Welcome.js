@@ -1,11 +1,14 @@
 import React, { useEffect } from "react";
-// import "./welcome.css";
-import "./index.css";
+
 import { useState } from "react";
 import ServiceCard from "./ServiceCard";
 
+import BookingFormTwo from "../Appointment/appointment.js";
+import Footer from "./Footer.js";
+import ShopRegistrationForm from "../ShopRegistrationForm/shopregistrationform.js";
+import RegistrationForm from "../RegistrationForm/registrationform.js";
+import IndividualIntervals from "./IndividualIntervals.js";
 
-import BookingFormTwo from "../BookingFormTwo/bookingformTwo.js";
 const Welcome = () => {
   const [servicessList, setServicessList] = useState([]);
 
@@ -55,14 +58,19 @@ const Welcome = () => {
                   </a>
                 </li>
 
-                <li className="navbar-item">
+                {/* <li className="navbar-item">
                   <a href="#appointment" className="navbar-link" data-nav-link>
                     Appointment
+                  </a>
+                </li> */}
+                <li className="navbar-item">
+                  <a href="#registration" className="navbar-link" data-nav-link>
+                    Registration
                   </a>
                 </li>
 
                 <li className="navbar-item">
-                  <a href="#" className="navbar-link" data-nav-link>
+                  <a href="#contact" className="navbar-link" data-nav-link>
                     Contact
                   </a>
                 </li>
@@ -77,8 +85,8 @@ const Welcome = () => {
               <ion-icon name="menu-outline" aria-hidden="true"></ion-icon>
             </button>
 
-            <a href="#appointment" className="btn has-before">
-              <span className="span">Appointment</span>
+            <a href="#registration" className="btn has-before">
+              <span className="span">Register Now</span>
 
               <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
             </a>
@@ -105,8 +113,6 @@ const Welcome = () => {
         </div>
       </section>
 
-      {/* service section */}
-
       <section className="service-section" id="services">
         <div className="service-container">
           <h2 className="service-headder">Service We Provide</h2>
@@ -123,7 +129,7 @@ const Welcome = () => {
         </div>
       </section>
 
-      <section class="section appoin" id="appointment" aria-label="appointment">
+      {/* <section class="section appoin" id="appointment" aria-label="appointment">
         <div class="appointment-container">
           <div class="appoin-card">
             <div class="appointment-card-content">
@@ -140,65 +146,14 @@ const Welcome = () => {
             </div>
           </div>
         </div>
+      </section> */}
+      <section id="registration">
+        <RegistrationForm />
       </section>
 
-      <footer class="site-footer">
-        <div class="container">
-          <div class="footer-content">
-            <div class="footer-logo">
-              <img src="logo.png" alt="Logo" />
-            </div>
-
-            <div class="footer-social">
-              <ul>
-                <ul class="footer-list">
-                  <li>
-                    <p class="footer-list-title">Contact Us</p>
-                  </li>
-
-                  <li class="footer-list-item">
-                    <ion-icon
-                      name="location-outline"
-                      aria-hidden="true"
-                    ></ion-icon>
-
-                    <address class="contact-link">
-                      7528 XXXXX Ave. Palm Bay, FL xxxxxx
-                    </address>
-                  </li>
-
-                  <li class="footer-list-item">
-                    <ion-icon name="call-outline" aria-hidden="true"></ion-icon>
-
-                    <a href="tel:7893558435" class="contact-link">
-                      7893558435
-                    </a>
-                  </li>
-
-                  <li class="footer-list-item">
-                    <ion-icon name="time-outline" ></ion-icon>
-
-                    <span class="contact-link">
-                      Sun - Friday, 08 am - 09 pm
-                    </span>
-                  </li>
-
-                  <li class="footer-list-item">
-                    <ion-icon name="mail-outline" aria-hidden="true"></ion-icon>
-
-                    <a href="mailto:support@gmail.com" class="contact-link">
-                      support@gmail.com
-                    </a>
-                  </li>
-                </ul>
-              </ul>
-            </div>
-          </div>
-          <div class="footer-bottom">
-            <p>&copy; 2024 Your Salon Name. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
+      <section id="contact">
+        <Footer />
+      </section>
     </>
   );
 };

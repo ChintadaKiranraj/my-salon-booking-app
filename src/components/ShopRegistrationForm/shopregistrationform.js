@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 const SHOP_NAME_EXISTS_MESSAGE = "Shop name already exists.";
 
 const ShopRegistrationForm = () => {
+  const [shopsLocations, setShopsLocations] = useState([]);
   const [shopRegistrationData, setShopRegistrationData] = useState({
     shopName: "",
     location: "",
@@ -10,6 +11,16 @@ const ShopRegistrationForm = () => {
     shopName: "",
     location: "",
   });
+
+  useEffect(() => {     
+    const fetchShopsLocations = async () => {
+      const response = await fetch("http://localhost:4001/api/get-locations");
+      const shopsFromServer = await response.json();
+      console.log(shopsFromServer.data);
+      setShopsLocations(shopsFromServer.data)
+    };
+    fetchShopsLocations();
+  }, []);
   const saveShopRegistrationData = async () => {
     console.log("shopRegistrationData", shopRegistrationData);
     let ownerId = 1; // get the login user id as ownerId
@@ -31,24 +42,26 @@ if(shopOwnerData.success && shopOwnerData.code === 201){
   shopRegistrationData.shopName = "";
   shopRegistrationData.location = "";
       alert("Shop registration is successful");
+      setShopRegistrationData({location:"", shopName:""});  
     }
+
   };
 
-  const isShopNmaeIsAvailable = async (shopName) => {
-    let ownerId = 6; // get the login user id as ownerId
-    const response = await fetch(
-      `http://localhost:4001/api/shop-name-availability/${shopName}/${ownerId}`
-    );
-    const data = await response.json();
-    console.log("data  =====>", data);
+  // const isShopNmaeIsAvailable = async (shopName) => {
+  //   let ownerId = 6; // get the login user id as ownerId
+  //   const response = await fetch(
+  //     `http://localhost:4001/api/shop-name-availability/${shopName}/${ownerId}`
+  //   );
+  //   const data = await response.json();
+  //   console.log("data  =====>", data);
 
-    if (data.message.toLowerCase() === SHOP_NAME_EXISTS_MESSAGE.toLowerCase()) {
-      setErrors({
-        ...errors,
-        shopName: "Shop name is already taken",
-      });
-    }
-  };
+  //   if (data.message.toLowerCase() === SHOP_NAME_EXISTS_MESSAGE.toLowerCase()) {
+  //     setErrors({
+  //       ...errors,
+  //       shopName: "Shop name is already taken",
+  //     });
+  //   }
+  // };
   const handleChange = (event) => {
     const { name, value } = event.target;
     setShopRegistrationData({
@@ -60,11 +73,11 @@ if(shopOwnerData.success && shopOwnerData.code === 201){
       [name]: value.trim() === "" ? `*${name} is required` : "",
     });
 
-    if (name === "shopName" && value.trim() !== "") {
-      // make api call to fetch the location
-      // is shop name is alredy tacken by the other users or not
-      isShopNmaeIsAvailable(value);
-    }
+    // if (name === "shopName" && value.trim() !== "") {
+    //   // make api call to fetch the location
+    //   // is shop name is alredy tacken by the other users or not
+    //   isShopNmaeIsAvailable(value);
+    // }
   };
   const onSubmitShopRegistration = (event) => {
     event.preventDefault();
@@ -108,12 +121,24 @@ if(shopOwnerData.success && shopOwnerData.code === 201){
         <span style={{ color: "red" }}>{errors.shopName}</span>
         <br />
         <label>Location:</label>
-        <input
+
+        <select name="location"
+          value={shopRegistrationData.location}
+          onChange={handleChange}>
+          <option value="" disabled>
+        
+            Select a location for the shop
+          </option>
+          {shopsLocations.map((eachLocationObj) =>(<option key={eachLocationObj.locationid} value={eachLocationObj.locationname}
+          >{eachLocationObj.locationname}</option>))}
+        
+        </select>
+        {/* <input
           type="text"
           name="location"
           value={shopRegistrationData.location}
           onChange={handleChange}
-        />
+        /> */}
         <span style={{ color: "red" }}>{errors.location}</span>
 
         <br />

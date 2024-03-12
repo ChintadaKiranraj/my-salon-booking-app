@@ -26,7 +26,7 @@ import RegistrationForm from "./components/RegistrationForm/registrationform";
 import Shops from "./components/Shops/shops";
 import ShopOwners from "./components/ShopOwners/shopowner";
 import Users from "./components/Users/users";
-import BookingFormTwo from "./components/BookingFormTwo/bookingformTwo";
+import Appointment from "./components/Appointment/appointment";
 import BarberRegistrationForm from "./components/BarberRegistrationForm/barberregistrationform";
 import ShopRegistrationForm from "./components/ShopRegistrationForm/shopregistrationform";
 import BarberApplicationsForm from "./components/BarberApplicationsForm/BarberApplicationsForm";
@@ -61,7 +61,7 @@ const App = () => (
         <ProtectedRoute exact path="/noofbarbers" component={Barber} />
       
         <ProtectedRoute exact path="/userbookings" component={Bookings} />
-        <ProtectedRoute exact path="/bookingformtwo" component={BookingFormTwo} />
+        <ProtectedRoute exact path="/appointment" component={Appointment} />
         <ProtectedRoute exact path="/barberregistration" component={BarberRegistrationForm} />
         <ProtectedRoute exact path="/shopregistrationForm" component={ShopRegistrationForm} />
         <ProtectedRoute exact path="/BarberApplicationsForm" component={BarberApplicationsForm} />
