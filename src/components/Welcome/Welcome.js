@@ -85,7 +85,7 @@ const Welcome = () => {
               <ion-icon name="menu-outline" aria-hidden="true"></ion-icon>
             </button>
 
-            <a href="#registration" className="btn has-before">
+            <a href="#registration" className="register-now">
               <span className="span">Register Now</span>
 
               <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
@@ -105,7 +105,7 @@ const Welcome = () => {
             to enhance your unique personality.
           </p>
 
-          <a href="#" class="btn has-before">
+          <a href="#" class="">
             <span class="span">Explore Our Services</span>
 
             <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
