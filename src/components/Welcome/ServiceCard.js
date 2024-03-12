@@ -1,5 +1,3 @@
-
-
 const ServiceCard = (props) => {
   const { service } = props;
   const { id, servicename, description, icons } = service;
@@ -8,17 +6,13 @@ const ServiceCard = (props) => {
     <>
       <li>
         <div className="service-card">
-          <h3 className="h3">
-            <a href="#" className="card-title">
-              {servicename}
-            </a>
-          </h3>
+          <h3 className="card-title">{servicename}</h3>
 
           <p className="card-text">{description}</p>
 
-          <a href="#" className="card-btn" aria-label="more">
+          <button  className="card-btn">
             <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
-          </a>
+          </button>
         </div>
       </li>
     </>

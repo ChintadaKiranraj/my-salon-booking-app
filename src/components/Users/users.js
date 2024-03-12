@@ -1,6 +1,7 @@
 
 
 import React,{useEffect,useState} from 'react'
+import "./index.css"
 const Users=()=>{
     const[users,setUsers]=useState([]);
     useEffect(()=>{
@@ -16,22 +17,23 @@ const EachUser=(props)=>{
     const {user}=props
     const {userid,username,usertype,firstname,lastname,email,phonenumber,profilephoto}=user
     return(
-        <li>
-            <p>userid: {userid}</p>
-            <p>username: {username}</p>
-            <p>email: {email}</p>
-            <p>phonenumber: {phonenumber}</p>
-            <p>usertype: {usertype}</p>
-            <p>full  name: {firstname +" "+ lastname}</p>
-            <p>email: {email}</p>
-            <p>profilephoto: {profilephoto}</p>
-        </li>
+        <li className="card">
+        <p>userid: {userid}</p>
+        <p>username: {username}</p>
+        <p>email: {email}</p>
+        <p>phonenumber: {phonenumber}</p>
+        <p>usertype: {usertype}</p>
+        <p>full name: {firstname + " " + lastname}</p>
+        <p>email: {email}</p>
+        <p>profilephoto: {profilephoto}</p>
+      </li>
+      
     )
 }
     return(
         <div>
             <h1>Users</h1>
-            <ul>
+            <ul className='user-card-list-container'>
                 {users.map((user)=>(
                     <EachUser key={user.userid} user={user}/>
                 ))}

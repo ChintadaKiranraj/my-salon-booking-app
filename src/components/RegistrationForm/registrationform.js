@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./index.css";
 // import registrationAvatar from "../../assets/images/registration-avatar.svg";
 import   beautyImages from "../../assets/images/beautyImages.jpg";
-import IndividualIntervals from "../Welcome/IndividualIntervals";
+import IndividualIntervals from "../Welcome/PhotoCarousel";
 const RegistrationForm = () => {
   const [userRegistrationData, setUserData] = useState({
     firstName: "",

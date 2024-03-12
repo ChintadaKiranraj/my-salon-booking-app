@@ -52,7 +52,7 @@ const App = () => (
         <Route exact path="/" component={Welcome} />
         {/* <Route exact path="/" component={WelcomePage} /> */}
         <Route exact path="/login" component={LoginForm} />
-        <Route exact path="/RegistrationForm" component={RegistrationForm} />
+        {/* <Route exact path="/RegistrationForm" component={RegistrationForm} /> */}
        
         <ProtectedRoute exact path="/shops" component={Shops} />
         <ProtectedRoute exact path="/shopowners" component={ShopOwners} />

@@ -7,7 +7,9 @@ import BookingFormTwo from "../Appointment/appointment.js";
 import Footer from "./Footer.js";
 import ShopRegistrationForm from "../ShopRegistrationForm/shopregistrationform.js";
 import RegistrationForm from "../RegistrationForm/registrationform.js";
-import IndividualIntervals from "./IndividualIntervals.js";
+import IndividualIntervals from "./PhotoCarousel.js";
+import { Link } from "@mui/material";
+import { NavLink } from "react-router-dom/cjs/react-router-dom.min.js";
 
 const Welcome = () => {
   const [servicessList, setServicessList] = useState([]);
@@ -25,14 +27,14 @@ const Welcome = () => {
   return (
     <>
       <header className="header">
-        <div class="header-bottom" data-header>
-          <div class="container">
-            <a href="#" class="logo">
+        <div className="main-header">
+          <div className="nav-head-container">
+            <a href="#" className="logo">
               Barber
-              <span class="span">Hair Salon</span>
+              <span className="span">Hair Salon</span>
             </a>
 
-            <nav class="navbar container" data-navbar>
+            <nav className="navbar nav-head-container">
               <ul className="navbar-list">
                 <li className="navbar-item">
                   <a href="#home" className="navbar-link">
@@ -77,51 +79,54 @@ const Welcome = () => {
               </ul>
             </nav>
 
-            <button
+            {/* <button
               className="nav-toggle-btn"
               aria-label="toggle menu"
               data-nav-toggler
             >
               <ion-icon name="menu-outline" aria-hidden="true"></ion-icon>
-            </button>
+            </button> */}
 
             <a href="#registration" className="register-now">
               <span className="span">Register Now</span>
 
               <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
             </a>
+            <NavLink  to="login" className="register-now">
+              <span className="span">Login</span>
+            </NavLink>
           </div>
         </div>
       </header>
 
       {/* home section */}
       <section className="home-section-bgimg" id="home">
-        <div className="home-container">
+        <div className="section-home-container">
           <h1 className="baraber-title-head">Barbers & Hair Cutting</h1>
 
-          <p className="hero-text">
+          <p className="quotation">
             Elevate your style with our expert barbers, where every haircut is a
             masterpiece. Step into a realm of precision and creativity, tailored
             to enhance your unique personality.
           </p>
 
-          <a href="#" class="">
-            <span class="span">Explore Our Services</span>
+          <a href="#" className="explore-services">
+            <span className="span">Explore Our Services</span>
 
-            <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
+            <ion-icon nameName="arrow-forward" aria-hidden="true"></ion-icon>
           </a>
         </div>
       </section>
 
       <section className="service-section" id="services">
-        <div className="service-container">
+        <div className="service-section-container">
           <h2 className="service-headder">Service We Provide</h2>
           <p className="service-section-text">
             Elevate your style with our expert barbers, where every haircut is a
             masterpiece. Step into a realm of precision and creativity, tailored
             to enhance your unique personality.
           </p>
-          <ul className="grid-list">
+          <ul className="service-cards-list-container">
             {servicessList.map((service) => (
               <ServiceCard service={service} key={service.id} />
             ))}

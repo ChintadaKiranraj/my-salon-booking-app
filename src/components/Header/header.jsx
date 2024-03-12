@@ -16,7 +16,7 @@ const Header = (props) => {
   const tabsList = [
 
     //user registrations -form
-    { tabId: "USER-REGISTRATION", displayText: "user-regitration", to: "/RegistrationForm" },
+    // { tabId: "USER-REGISTRATION", displayText: "user-regitration", to: "/RegistrationForm" },
 
 
     //will show the all the list of users

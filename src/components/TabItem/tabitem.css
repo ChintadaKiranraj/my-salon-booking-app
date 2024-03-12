@@ -1,5 +1,7 @@
 .active{
-  background-color: #1d4ed8;
+  background-color:#ffcc99;
+  color: black;
+  font-weight: 600;
 }
 
 
@@ -57,7 +59,8 @@ ul li a{
 }
 
 ul li a:not(.active):hover{
-  background-color:#A1D6E2;
-  color: white;
+  background-color:#847e77;;
+  color: rgb(23, 1, 1);
   border-radius: 0.5rem;
+  font-weight: 700;
 }
