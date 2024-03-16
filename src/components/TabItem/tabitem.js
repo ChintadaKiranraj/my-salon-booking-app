@@ -6,10 +6,8 @@ const TabItem = (props) => {
   const { to } = tabDetails;
 
   return (
-    
     <li>
       <NavLink to={to}>{tabDetails.displayText}</NavLink>
-      
     </li>
   );
 };

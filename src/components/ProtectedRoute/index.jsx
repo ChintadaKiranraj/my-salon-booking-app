@@ -17,10 +17,11 @@ const ProtectedRoute = (props) => {
   return (
     <div className="layout-container">
       <Header1 />
-      <div className="sidebar-and-content">
+      <div className="sidebar-and-main-content">
+     
         <Sidebar />
         <div className="main-container">
-         
+        
         <Route {...props} />
         </div>
       </div>

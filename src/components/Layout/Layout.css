@@ -20,8 +20,10 @@
 }
 
 .Sidebar {
-    /* min-width: 60px; 
-    max-width: 150px; */
+    
+     min-width: 100px; 
+    max-width: 220px; 
+   
     background-color: #7f96b8; 
     /* position: fixed;
     top: 60px; 
@@ -33,9 +35,13 @@
     padding: 10px;
     border-radius: 5px;
     flex-shrink: 0; */
+    height: 100%;
+    /* width: 100%; */
+    padding: 12px;
+   
     
   }
-.horizontal-header{
+.horizontal-headersssss{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -50,9 +56,12 @@
     background-color: #e4e7ec;
     padding: 5px;
     border-radius: 5px;
+   
 }
 .admin-icon:hover{
     background-color: #00246b;
     color: white;
     cursor: pointer;
 }
+
+
