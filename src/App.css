@@ -4,6 +4,11 @@
 
 * {
   box-sizing: border-box;
+ 
+}
+button:active {
+  background-color: #2980b9; /* Change the background color when button is clicked */
+  /* Add other styles as needed */
 }
 body {
   margin: 0;
@@ -24,3 +29,16 @@ select:focus {
 
   outline: none;
 }
+
+
+/* .button {
+  background-color: #3498db; 
+  color: #ffffff; 
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, box-shadow 0.3s;
+} */
+
+
+

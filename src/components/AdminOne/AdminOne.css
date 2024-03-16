@@ -1,0 +1,81 @@
+.admin-header-nav-bar{
+  display: flex;
+  flex-direction: column;
+  background-color: #00246b;
+  justify-content: space-between;
+  padding-left: 10px;
+  padding-right: 10px;
+  color: rgb(240, 248, 255);
+  padding: 10px;
+}
+
+
+
+.active{
+    background-color:#ffcc99;
+    color: black;
+    font-weight: 600;
+  }
+  
+  
+  
+  .tab-item-container {
+    padding-right: 4px;
+  }
+  
+  @media screen and (min-width: 992px) {
+    .tab-item-container {
+      padding-right: 24px;
+    }
+  }
+  
+  .admin-header-nav-bar .tab-btn {
+    color: #9aa5b1;
+    font-weight: 500;
+    font-size: 16px;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  @media screen and (min-width: 992px) {
+    .tab-btn {
+      font-size: 24px;
+    }
+  }
+  
+  .active-tab-btn {
+    color: #000033;
+    text-decoration: underline;
+    text-decoration-thickness: 0.2em;
+  }
+  
+  
+  ul{
+    list-style-type: none;
+    display:flex ;
+  }
+  
+  ul li{
+    list-style: none;
+    /* text-transform: uppercase; */
+   
+  }
+  .admin-header-nav-bar ul li a{
+    display: block;
+    text-decoration: none;
+    color:white;
+    padding: 0.5rem;
+    margin:0 0.5rem;
+    border-radius: 0.5rem;
+    font-weight: 400;
+  }
+  
+  ul li a:not(.active):hover{
+    background-color:#847e77;;
+    color: rgb(23, 1, 1);
+    border-radius: 0.5rem;
+    font-weight: 500;
+  }
+  

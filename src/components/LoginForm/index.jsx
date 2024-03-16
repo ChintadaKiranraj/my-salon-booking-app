@@ -4,13 +4,13 @@ import { Redirect, Link } from "react-router-dom";
 import Cookies from "js-cookie";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { ToastContainer } from "react-toastify";
+// import { ToastContainer } from "react-toastify";
 import "./index.css";
-import log from "loglevel";
-
+// import log from "loglevel";
+import { jwtDecode } from "jwt-decode";
 class LoginForm extends Component {
   state = {
-    username: "",
+    email: "",
     password: "",
     showSubmitError: false,
     errorMsg: "",
@@ -19,7 +19,7 @@ class LoginForm extends Component {
   };
 
   onChangeUsername = (event) => {
-    this.setState({ username: event.target.value });
+    this.setState({ email: event.target.value });
     this.setState({ showSubmitError: true, errorMsg: "" });
   };
 
@@ -31,60 +31,50 @@ class LoginForm extends Component {
   onSubmitSuccess = (jsonData) => {
     const { history } = this.props;
 
-    const { data, token } = jsonData;
+    const { jwt_token } = jsonData;
+    const userDetails = jwtDecode(jwt_token);
+    console.log("userDetails  ===> ", userDetails);
 
-    const fullName =
-      data.firstName[0].toUpperCase() + data.lastName[0].toUpperCase();
+    Cookies.set("jwt_token", jwt_token, {
+      expires: 30,
+    });
 
-    Cookies.set("jwt_token", token, {
-      expires: 30,
-    });
-    Cookies.set("access_level", data.accessLevel, {
-      expires: 30,
-    });
-    Cookies.set("logidin_user_logo", fullName, {
-      expires: 30,
-    });
-    Cookies.set("email_id", data.emailId, {
-      expires: 30,
-    });
-    toast.success("Login successful. Welcome back!");
-    history.replace("/home");
+    history.replace("/users");
   };
 
   onSubmitFailure = (errorMsg) => {
     this.setState({ showSubmitError: true, errorMsg });
   };
-  encodePassword = (password) => {
-    const encodedPassword = btoa(password);
 
-    return encodedPassword;
-  };
   submitForm = async (event) => {
     event.preventDefault();
-    const { username, password } = this.state;
+    const { email, password } = this.state;
     try {
-      const url = "http://localhost:4001/validation";
+      const url = "http://localhost:4001/api/login";
       const options = {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          emailId: username,
-          password: this.encodePassword(password),
+          email,
+          password,
         }),
       };
       const response = await fetch(url, options);
 
       const jsonData = await response.json();
       console.log(jsonData);
-      if (response.ok === true) {
+      if (jsonData.status === "success") {
+        toast.success("Login successful. Welcome back!");
         this.onSubmitSuccess(jsonData);
+
         this.setState({ isLoading: false });
       }
     } catch (error) {
+      toast.error("invalid username or password");
       this.onSubmitFailure("invalid username or password");
+      this.setState({ isLoading: false });
     }
   };
 
@@ -113,18 +103,18 @@ class LoginForm extends Component {
   };
 
   renderUsernameField = () => {
-    const { username } = this.state;
+    const { email } = this.state;
 
     return (
       <>
-        <label className="input-label" htmlFor="username">
+        <label className="input-label" htmlFor="email">
           EMAIL_ID
         </label>
         <input
           type="text"
-          id="username"
+          id="email"
           className="username-input-field"
-          value={username}
+          value={email}
           onChange={this.onChangeUsername}
           placeholder="Email Id"
         />

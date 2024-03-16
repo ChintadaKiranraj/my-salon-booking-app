@@ -11,6 +11,16 @@ import IndividualIntervals from "./PhotoCarousel.js";
 import { Link } from "@mui/material";
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min.js";
 
+
+
+export const  BarberLogoTitle=()=>{
+  return(
+    <div className="logo">
+             <h1>Barber</h1> 
+              <span className="logo-sub-title">Hair Salon</span>
+      </div>
+  )
+}
 const Welcome = () => {
   const [servicessList, setServicessList] = useState([]);
 
@@ -29,10 +39,10 @@ const Welcome = () => {
       <header className="header">
         <div className="main-header">
           <div className="nav-head-container">
-            <a href="#" className="logo">
-              Barber
-              <span className="span">Hair Salon</span>
-            </a>
+            <div className="logo">
+              {<BarberLogoTitle/>}
+           
+            </div>
 
             <nav className="navbar nav-head-container">
               <ul className="navbar-list">

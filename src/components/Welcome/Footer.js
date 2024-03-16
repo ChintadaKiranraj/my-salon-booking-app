@@ -15,7 +15,7 @@ const Footer = () => {
       </div>
 
       <div className="footer-container">
-      {/* Copyright Notice */}
+    
       <div>
         <span className="copyright-text">
           © 2024 Copyright:

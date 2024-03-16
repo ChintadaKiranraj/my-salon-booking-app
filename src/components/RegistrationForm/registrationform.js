@@ -3,6 +3,7 @@ import "./index.css";
 // import registrationAvatar from "../../assets/images/registration-avatar.svg";
 import   beautyImages from "../../assets/images/beautyImages.jpg";
 import IndividualIntervals from "../Welcome/PhotoCarousel";
+import PhotoCarousel from "../Welcome/PhotoCarousel";
 const RegistrationForm = () => {
   const [userRegistrationData, setUserData] = useState({
     firstName: "",
@@ -186,11 +187,7 @@ const RegistrationForm = () => {
     //   </div>
     // );
     <div  className="user-registration-form-out-container">
-      {/* <div className="courosil">
-      {/* <img src={beautyImages} className="registration-form-img"/> */}
-      {/* <IndividualIntervals/> */}
-      
-      <IndividualIntervals/>
+      <PhotoCarousel/>
         <div className="user-registration-form-container col-6">
           <h1 className="h1">Create Your Account</h1>
           <form onSubmit={handleSubmit} className="user-registration-form">

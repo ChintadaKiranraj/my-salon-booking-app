@@ -155,3 +155,10 @@ Creating a color scheme for a website is a subjective process and depends on the
 6. **Footer Background:**
    - Hex: `#2c3e50` (Dark Slate Blue)
 
+
+   npm install jsonwebtoken
+
+   npm install jwt-decode
+
+npm i react-router-dom --save styled-components --save react-icons
+

@@ -31,11 +31,14 @@ import BarberRegistrationForm from "./components/BarberRegistrationForm/barberre
 import ShopRegistrationForm from "./components/ShopRegistrationForm/shopregistrationform";
 import BarberApplicationsForm from "./components/BarberApplicationsForm/BarberApplicationsForm";
 import Welcome from "./components/Welcome/Welcome";
+import AdminOne from "./components/AdminOne/AdminOne";
+  
 
 const App = () => (
   <Router>
     <div className="App">
       <Switch>
+      {/* <ProtectedRoute exact path="/home" component={Home} /> */}
         {/* <img alt="profilePick" src={myProfilePick2} id="profilepic" /> */}
 
         {/* <Route exact path="/login" component={LoginForm} />
@@ -65,9 +68,7 @@ const App = () => (
         <ProtectedRoute exact path="/barberregistration" component={BarberRegistrationForm} />
         <ProtectedRoute exact path="/shopregistrationForm" component={ShopRegistrationForm} />
         <ProtectedRoute exact path="/BarberApplicationsForm" component={BarberApplicationsForm} />
-        
-        
-
+        <ProtectedRoute exact path="/admin-tabs" component={AdminOne} />
         <Route component={NotFound} />
       </Switch>
     </div>

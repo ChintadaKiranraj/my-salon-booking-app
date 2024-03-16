@@ -5,33 +5,24 @@
   justify-content: center;
   /* background-color: red; */
   align-items:center;
+  padding: 50px;
+ 
 
-
-  /* padding:90px;
-  margin: 40px; */
-  /* background-image: url("../../assets/images/beautyTwo.jpg"); */
-  /* background-image: url("../../assets/images/salontools.jpg"); */
 
 }
 
-/* .registration-form-img {
-  width: 550px;
-  height: 610px;
-  border-radius: 8px;
-  flex-shrink: 0;
-  margin-left: 60px;
-  outline: 3px solid #5a0b0b; 
-  outline-offset: 30px;
-} */
+
 .user-registration-form-container {
   /* max-width: 600px; */
-  margin: 0 auto;
-  padding: 20px;
+  /* margin: 0 auto; */
+  padding: 10px;
   background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  width: 40%;
+  width: 50%;
+  /* height: 100%; */
+
 }
 
 .user-registration-form h1 {
@@ -45,7 +36,7 @@
 }
 
 .form-group {
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 label {
@@ -55,7 +46,7 @@ label {
 input,
 select {
   width: 100%;
-  padding: 10px;
+  padding: 8px;
   margin-top: 5px;
   border: 1px solid #ddd;
   border-radius: 4px;
@@ -83,9 +74,9 @@ select {
 }
 
 .h1 {
-  font-size: 20px;
+  font-size: 15px;
   font-weight: bold;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   text-align: center;
   padding: 10px;
 }
