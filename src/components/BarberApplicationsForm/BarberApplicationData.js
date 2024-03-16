@@ -54,6 +54,18 @@ const BarberApplicationData = () => {
         },
 
     ]
+
+    const columns = [
+        {
+          name: "FullName",
+          selector: (row) => row.firstname + " " + row.lastname,
+          sortable: true,
+        },
+        { name: "Email", selector: (row) => row.email, sortable: true },
+        { name: "Phonenumber", selector: (row) => row.phonenumber, sortable: true },
+        { name: "Experience", selector: (row) => row.experience, sortable: true },
+        { name: "Stsatus", selector: (row) => row.stsatus, sortable: true },
+      ];
   return (
     <div>
       <ul>
