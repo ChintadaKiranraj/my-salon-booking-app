@@ -42,9 +42,9 @@
 }
 
 .main-container {
-  overflow-y: auto;
+  /* overflow-y: auto; */
   /* background-color: red; */
   padding: 20px;
   flex-shrink: 1;
-  display: flex;
+  /* display: flex; */
 }
