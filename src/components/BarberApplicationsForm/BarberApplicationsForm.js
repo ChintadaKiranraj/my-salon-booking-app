@@ -16,8 +16,11 @@ const BarberApplicationsForm = () => {
   });
   const [shopNames, setShopsNames] = useState([]);
   const [shopsLocations, setShopsLocations] = useState([]);
-const [shopIdOwnerId, setShopIdOwnerId] = useState({shopId:"", ownerId:""});
- 
+  const [shopIdOwnerId, setShopIdOwnerId] = useState({
+    shopId: "",
+    ownerId: "",
+  });
+
   useEffect(() => {
     const fetchShopsLocations = async () => {
       const response = await fetch("http://localhost:4001/api/shops-locations");
@@ -32,7 +35,7 @@ const [shopIdOwnerId, setShopIdOwnerId] = useState({shopId:"", ownerId:""});
     console.log(name);
     setSalaonApplicationData({
       ...salaonApplicationData,
-      [name]: value.trim(),
+      [name]: value,
     });
     setErrors({
       ...errors,
@@ -43,15 +46,13 @@ const [shopIdOwnerId, setShopIdOwnerId] = useState({shopId:"", ownerId:""});
       console.log("fetching shops");
       fetchShops(value);
     }
-    if(name === "shopName" && value.trim() !== ""){
+    if (name === "shopName" && value.trim() !== "") {
       console.log("selected shop value -<", value);
-      shopNames.some((shop)=>{
-        if( shop.shopname===value){
-          setShopIdOwnerId({shopId:shop.shopid, ownerId:shop.ownerid})
+      shopNames.some((shop) => {
+        if (shop.shopname === value) {
+          setShopIdOwnerId({ shopId: shop.shopid, ownerId: shop.ownerid });
         }
-      
       });
-      
     }
   };
 
@@ -69,9 +70,8 @@ const [shopIdOwnerId, setShopIdOwnerId] = useState({shopId:"", ownerId:""});
     try {
       console.log("saveBarberApplicationData:  --> ", data);
       let barberId = 11; //get login user id as barberid
-    const { shopId, ownerId } = shopIdOwnerId;
-  console.log("shopIdOwnerId --> ", shopId , ownerId)
-
+      const { shopId, ownerId } = shopIdOwnerId;
+      console.log("shopIdOwnerId --> ", shopId, ownerId);
 
       const response = await fetch(
         `http://localhost:4001/api/save-barberApplication-data/${barberId}/${shopId}/${ownerId}`,
@@ -84,37 +84,34 @@ const [shopIdOwnerId, setShopIdOwnerId] = useState({shopId:"", ownerId:""});
         }
       );
 
-
-console.log("response   =====>   ", response)
-const resFromSErver = await response.json();
-console.log("resFromSErver   =====>   ", resFromSErver)
-if(resFromSErver.success===true){
-  alert("Barber Application submitted successfully");
-  setSalaonApplicationData({
-    location: "",
-    shopName: "",
-    status: "pending",
-    description: "",
-    months: 0,
-    years: 0,
-  });
-  setErrors({
-    location: "",
-    shopName: "",
-    description: "",
-  });
-  
-}
-      if (resFromSErver.errorCode===400) {
+      console.log("response   =====>   ", response);
+      const resFromSErver = await response.json();
+      console.log("resFromSErver   =====>   ", resFromSErver);
+      if (resFromSErver.success === true) {
+        alert("Barber Application submitted successfully");
+        setSalaonApplicationData({
+          location: "",
+          shopName: "",
+          status: "pending",
+          description: "",
+          months: 0,
+          years: 0,
+        });
+        setErrors({
+          location: "",
+          shopName: "",
+          description: "",
+        });
+      }
+      if (resFromSErver.errorCode === 400) {
         setErrors({
           ...errors,
           description: resFromSErver.message,
         });
-        
       }
-
     } catch (error) {
-      console.log("error", error);}
+      console.log("error", error);
+    }
   };
 
   const onSubmitBarberApplication = (event) => {
@@ -142,48 +139,53 @@ if(resFromSErver.success===true){
   };
   return (
     <div className="barber-application-form-container">
-      <h1 className="text-uppercase text-danger">Barber Applications Form</h1>
+      <h3>Barber Applications Form</h3>
       <form
         onSubmit={onSubmitBarberApplication}
         className="barber-application-form"
       >
-        <label className="label">Location:</label>
+        <div className="row">
+          <div className="col-6">
+            <label className="label">Location:</label>
 
-        <select
-          value={salaonApplicationData.location}
-          onChange={handleChange}
-          name="location"
-        >
-          <option value="" disabled>
-            Choose  a  shop location
-          </option>
-          {shopsLocations.map((service, index) => (
-            <option key={index} value={service.location}>
-              {service.location}
-            </option>
-          ))}
-        </select>
-        <span style={{ color: "red" }}>{errors.location}</span>
+            <select
+              value={salaonApplicationData.location}
+              onChange={handleChange}
+              name="location"
+            >
+              <option value="" disabled>
+                Choose a shop location
+              </option>
+              {shopsLocations.map((service, index) => (
+                <option key={index} value={service.location}>
+                  {service.location}
+                </option>
+              ))}
+            </select>
+            <span style={{ color: "red" }}>{errors.location}</span>
+          </div>
+          <div className="col-6">
+            <label className="label">Shop name:</label>
+            <select
+              value={salaonApplicationData.shopName}
+              onChange={handleChange}
+              name="shopName"
+            >
+              <option value="" disabled>
+                Choose shop name
+              </option>
+              {shopNames.map((service, index) => (
+                <option key={service.shopid} value={service.shopname}>
+                  {service.shopname}
+                </option>
+              ))}
+            </select>
+            <span style={{ color: "red" }}>{errors.shopName}</span>
+          </div>{" "}
+        </div>
 
-        <label className="label">Shop name:</label>
-        <select
-          value={salaonApplicationData.shopName}
-          onChange={handleChange}
-          name="shopName"
-        >
-          <option value="" disabled>
-            Choose shop name
-          </option>
-          {shopNames.map((service, index) => (
-            <option key={service.shopid} value={service.shopname}>
-              {service.shopname}
-            </option>
-          ))}
-        </select>
-        {/* <input type="hidden" name="saloonService" value={salonBookingData.saloonService} /> */}
-        <span style={{ color: "red" }}>{errors.shopName}</span>
-        <div className="experience-container">
-          <div className="label-container">
+        <div className="row">
+          <div className="col-3">
             <label className="label"> Years of Experience:</label>
             <input
               type="number"
@@ -196,7 +198,7 @@ if(resFromSErver.success===true){
             />
           </div>
 
-          <div className="label-container">
+          <div className="col-3">
             <label className="label">Months of Experience: </label>
             <input
               type="number"
@@ -209,18 +211,22 @@ if(resFromSErver.success===true){
               required
             />
           </div>
+          <div className="col-6">
+            <label className="label">Description:</label>
+            <textarea
+              rows="2"
+              cols="50"
+              maxLength={100}
+              value={salaonApplicationData.description}
+              onChange={handleChange}
+              name="description"
+            ></textarea>
+            <br />
+            <span style={{ color: "red" }}>{errors.description}</span>
+          </div>
         </div>
-        <label className="label">Description:</label>
-        <textarea
-          value={salaonApplicationData.description}
-          onChange={handleChange}
-          name="description"
-        ></textarea>
-        <span style={{ color: "red" }}>{errors.description}</span>
-        <br />
-        <button type="submit" className="btn btn-primary mt-4">
-          Submit
-        </button>
+
+        <button type="submit">Submit</button>
       </form>
     </div>
   );

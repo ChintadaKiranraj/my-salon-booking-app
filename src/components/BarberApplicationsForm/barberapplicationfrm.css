@@ -1,9 +1,17 @@
 .barber-application-form-container{
     display: flex;
     flex-direction: column;
+    /* background-color: red; */
+    padding: 20px;
     
 }
+.barber-application-form-container h3{
+    text-align: center;
+    margin-bottom: 10px;
+    color: #007bff;
+    font-size:20px
 
+}
 .experience-container{
     display: flex;
     flex-direction: row;

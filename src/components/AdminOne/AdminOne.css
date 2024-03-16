@@ -7,7 +7,7 @@
 
 }
 .active{
-    background-color:#ffcc99;
+    background-color:#00246b;
     color: black;
     font-weight: 600;
   }
@@ -23,12 +23,7 @@
     
   }
   
-  /* .ul-li-a:not(.active):hover{
-    border-color: aqua !important;
-    color: rgb(23, 1, 1);
-    border-radius: 0.5rem;
-    font-weight: 700;
-  } */
+  
 
  
 

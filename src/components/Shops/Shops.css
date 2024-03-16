@@ -20,8 +20,9 @@
   flex-direction: row;
   flex-wrap: wrap;
   overflow-y: auto;
-  /* background-color:red;   */
+
   justify-content: center;
+  
 }
 
 .salon-item-card {
@@ -41,4 +42,43 @@
   width: 300px;
   height: 300px;
   margin: 10px;
+}
+
+.input-add-new-shop{
+display: flex;
+flex-direction:row;
+justify-content: center;
+align-items: center;
+
+}
+
+.shop-icon{
+    color: #3498db;
+    height: 30px;
+    width: 30px;
+}
+.add-shop-icon{
+   
+   color:green;
+    height: 20px;
+    width: 20px; 
+}
+.add-new-shop-icons-container{
+    padding:8px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    /* background-color: #3498db; */
+}
+
+.add-new-shop-icons-container :hover{
+    cursor: pointer;
+   
+}
+.shops-outer-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }

@@ -1,5 +1,6 @@
 .active{
-  background-color:#ffcc99;
+  /* background-color:#ffcc99; */
+  background-color:#00246b;
  
   color:white;
   border-radius: 0.5rem;
@@ -65,7 +66,7 @@ ul li a{
 
 ul li a:not(.active):hover{
   /* background-color:#847e77; */
-  border-color: #007bff;
+  border-color: #00246b;
   border-style: solid;
   color:white;
   border-radius: 0.5rem;

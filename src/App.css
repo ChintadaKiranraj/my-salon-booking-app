@@ -4,11 +4,9 @@
 
 * {
   box-sizing: border-box;
- 
 }
 button:active {
-  background-color: #2980b9; /* Change the background color when button is clicked */
-  /* Add other styles as needed */
+  background-color: #2980b9;
 }
 body {
   margin: 0;
@@ -30,15 +28,37 @@ select:focus {
   outline: none;
 }
 
+ 
 
-/* .button {
-  background-color: #3498db; 
-  color: #ffffff; 
+button {
+  border-color: #007bff;
+  color:#001933;
   padding: 10px 20px;
-  border-radius: 5px;
+
   cursor: pointer;
   transition: background-color 0.3s, box-shadow 0.3s;
-} */
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
 
+  border-radius: 10px !important;
+}
 
+button:hover {
+  background-color:#00246b;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.4);
+  color: white;
+}
+
+button:active {
+  background-color: #001933;
+  box-shadow: none;
+}
+label{
+  font-weight: bold;
+  font-size: 16px;
+  color:#00246b;;
+}

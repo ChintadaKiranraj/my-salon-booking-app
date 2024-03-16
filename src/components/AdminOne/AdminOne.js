@@ -15,10 +15,13 @@ const AdminOne = () => {
           <NavLink to="/users" className="ul--li-a">Users</NavLink>
         </li>
         <li>
-          <NavLink to="/userbookings" className="ul--li-a">userbookings</NavLink>
+          <NavLink to="/userbookings" className="ul--li-a">SalonAppointments</NavLink>
         </li>
         <li>
           <NavLink to="/BarberApplicationsForm" className="ul--li-a">BarberApplication</NavLink>
+        </li>
+        <li>
+          <NavLink to="/BarberApplicationData" className="ul--li-a">Requests</NavLink>
         </li>
       </ul>
    

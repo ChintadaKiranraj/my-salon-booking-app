@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import "./shopregistrationform.css";
+import shopImg from "../../assets/images/nine.jpg";
 const SHOP_NAME_EXISTS_MESSAGE = "Shop name already exists.";
 
 const ShopRegistrationForm = () => {
@@ -12,12 +14,12 @@ const ShopRegistrationForm = () => {
     location: "",
   });
 
-  useEffect(() => {     
+  useEffect(() => {
     const fetchShopsLocations = async () => {
       const response = await fetch("http://localhost:4001/api/get-locations");
       const shopsFromServer = await response.json();
       console.log(shopsFromServer.data);
-      setShopsLocations(shopsFromServer.data)
+      setShopsLocations(shopsFromServer.data);
     };
     fetchShopsLocations();
   }, []);
@@ -38,13 +40,12 @@ const ShopRegistrationForm = () => {
     );
     const shopOwnerData = await shopOwnerResponse.json();
     console.log("shopOwnerData  ==<<<  ", shopOwnerData);
-if(shopOwnerData.success && shopOwnerData.code === 201){
-  shopRegistrationData.shopName = "";
-  shopRegistrationData.location = "";
+    if (shopOwnerData.success && shopOwnerData.code === 201) {
+      shopRegistrationData.shopName = "";
+      shopRegistrationData.location = "";
       alert("Shop registration is successful");
-      setShopRegistrationData({location:"", shopName:""});  
+      setShopRegistrationData({ location: "", shopName: "" });
     }
-
   };
 
   // const isShopNmaeIsAvailable = async (shopName) => {
@@ -92,7 +93,7 @@ if(shopOwnerData.success && shopOwnerData.code === 201){
       if (value.trim() === "") {
         newErrors[fieldName] = `*${fieldName} is required`;
         formIsValid = false;
-      } 
+      }
       //  {
       //   newErrors.fieldName = "";
       // }
@@ -100,7 +101,7 @@ if(shopOwnerData.success && shopOwnerData.code === 201){
 
     setErrors(newErrors);
 
-    if (formIsValid && Object.values(errors).every((error) => error === "")){
+    if (formIsValid && Object.values(errors).every((error) => error === "")) {
       console.log("shopRegistrationData", shopRegistrationData);
       // make api call to store the  shop registration data
       saveShopRegistrationData(shopRegistrationData);
@@ -108,9 +109,12 @@ if(shopOwnerData.success && shopOwnerData.code === 201){
   };
 
   return (
-    <div>
-      <h2 className="text-uppercase text-dark">Shop Registration Form</h2>
+    <div className="shop-registration-form-container">
+      <div>
+        <img src={shopImg}/>
+      </div>
       <form onSubmit={onSubmitShopRegistration}>
+      <h2>Salon Registration Form</h2>
         <label>Shop Name:</label>
         <input
           type="text"
@@ -122,27 +126,28 @@ if(shopOwnerData.success && shopOwnerData.code === 201){
         <br />
         <label>Location:</label>
 
-        <select name="location"
-          value={shopRegistrationData.location}
-          onChange={handleChange}>
-          <option value="" disabled>
-        
-            Select a location for the shop
-          </option>
-          {shopsLocations.map((eachLocationObj) =>(<option key={eachLocationObj.locationid} value={eachLocationObj.locationname}
-          >{eachLocationObj.locationname}</option>))}
-        
-        </select>
-        {/* <input
-          type="text"
+        <select
           name="location"
           value={shopRegistrationData.location}
           onChange={handleChange}
-        /> */}
+        >
+          <option value="" disabled>
+            Select a location for the shop
+          </option>
+          {shopsLocations.map((eachLocationObj) => (
+            <option
+              key={eachLocationObj.locationid}
+              value={eachLocationObj.locationname}
+            >
+              {eachLocationObj.locationname}
+            </option>
+          ))}
+        </select>
+
         <span style={{ color: "red" }}>{errors.location}</span>
 
         <br />
-        <button className="btn btn-primary" type="submit">
+        <button type="submit">
           Submit
         </button>
       </form>

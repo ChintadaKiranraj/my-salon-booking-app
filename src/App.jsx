@@ -32,6 +32,7 @@ import ShopRegistrationForm from "./components/ShopRegistrationForm/shopregistra
 import BarberApplicationsForm from "./components/BarberApplicationsForm/BarberApplicationsForm";
 import Welcome from "./components/Welcome/Welcome";
 import AdminOne from "./components/AdminOne/AdminOne";
+import BarberApplicationData from "./components/BarberApplicationsForm/BarberApplicationData";
   
 
 const App = () => (
@@ -47,7 +48,7 @@ const App = () => (
         <ProtectedRoute exact path="/admin" component={Admin} />
         <ProtectedRoute exact path="/barbers" component={Barbars} />
         <ProtectedRoute exact path="/approvals" component={Approvals} />
-        <ProtectedRoute exact path="/user" component={ViewOnly} /> */}
+        // <ProtectedRoute exact path="/user" component={ViewOnly} /> */}
         {/* <Route path="/not-found" component={NotFound} /> */}
         {/* <ProtectedRoute exact path="/barberregistration" component={UserBookings} /> */}
         {/* <ProtectedRoute exact path="/user/schedules" component={UserBookings} /> */}
@@ -56,7 +57,7 @@ const App = () => (
         {/* <Route exact path="/" component={WelcomePage} /> */}
         <Route exact path="/login" component={LoginForm} />
         {/* <Route exact path="/RegistrationForm" component={RegistrationForm} /> */}
-       
+     <ProtectedRoute exact path="/user" component={ViewOnly} /> 
         <ProtectedRoute exact path="/shops" component={Shops} />
         <ProtectedRoute exact path="/shopowners" component={ShopOwners} />
         <ProtectedRoute exact path="/users" component={Users} />
@@ -69,6 +70,7 @@ const App = () => (
         <ProtectedRoute exact path="/shopregistrationForm" component={ShopRegistrationForm} />
         <ProtectedRoute exact path="/BarberApplicationsForm" component={BarberApplicationsForm} />
         <ProtectedRoute exact path="/admin-tabs" component={AdminOne} />
+        <ProtectedRoute exact path="/BarberApplicationData" component={BarberApplicationData} />
         <Route component={NotFound} />
       </Switch>
     </div>
