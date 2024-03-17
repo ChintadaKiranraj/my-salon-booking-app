@@ -84,7 +84,6 @@ const BarberApplicationsForm = () => {
           body: JSON.stringify(data),
         }
       );
-
       const responseData = await response.json();
       console.log("responseData   =====>   ", responseData);
       if (responseData.code === 201) {

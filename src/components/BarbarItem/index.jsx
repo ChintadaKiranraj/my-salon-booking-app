@@ -2,12 +2,13 @@ import React from "react";
 import "./index.css";
 
 const BarberItem = ({ barber }) => {
+  console.log("barber:", barber);
   return (
     <li className="barber-card">
-      <img src={barber.image} className="image" alt="img" />
-      <p>Name:{barber.firstName}</p>
+      <img src={barber.profilephoto} className="image" alt="img" />
+      <p>Name:{barber.firstname}</p>
       <p>Email:{barber.email}</p>
-      <p>Contact:{barber.phone}</p>
+      <p>Contact:{barber.phonenumber}</p>
     </li>
   );
 };

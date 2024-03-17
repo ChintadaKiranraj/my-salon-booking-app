@@ -12,10 +12,12 @@ const Barber = () => {
   }, []);
 
   const fetchData = async () => {
+    const ownerid=1;
     try {
-      const response = await fetch("https://dummyjson.com/users");
+      // const response = await fetch("https://dummyjson.com/users");
+      const response = await fetch(`http://localhost:4001/api/get-barbers-by-shoownerId/${ownerid}`);
       const jsonData = await response.json();
-      setData(jsonData.users);
+      setData(jsonData.data);
       setLoading(false);
     } catch (error) {
       console.error("Error fetching data:", error);
