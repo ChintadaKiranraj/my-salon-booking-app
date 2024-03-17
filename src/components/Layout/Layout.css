@@ -1,12 +1,12 @@
 .user-logo-dropdown-header {
   display: flex;
   flex-direction: row;
-
   width: 100%;
   justify-content: center;
   flex-grow: 0;
   align-items: center;
   background-color:#00246b;
+  padding-left: 10px;
 }
 
 .logoand-account-details {
@@ -41,7 +41,7 @@
    
     
   }
-.horizontal-headersssss{
+.horizontal-header{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -49,8 +49,9 @@
     background-color: #00246b;
     color: white;
     align-items: center;
-    border-radius: 5px;
-    /* margin-bottom: 10px; */
+    border-radius: 3px;
+  
+  
 }
 .admin-icon{
     background-color: #e4e7ec;

@@ -1,9 +1,9 @@
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Offcanvas from "react-bootstrap/Offcanvas";
-import "./Offcanvas.css";
+import "./UserAccount.css";
 import logopng from "../../assets/images/six.jpg";
-function OffcanvasCoponent() {
+const  UserAccount=()=> {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -50,4 +50,4 @@ function OffcanvasCoponent() {
   );
 }
 
-export default OffcanvasCoponent;
+export default UserAccount;
