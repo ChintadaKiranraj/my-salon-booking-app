@@ -4,13 +4,15 @@ import Modal from "react-bootstrap/Modal";
 import Cookies from "js-cookie";
 import "./AccountDropdown.css";
 import UserAccount from "../UserAccount/UserAccount";
-
+import { useHistory } from 'react-router-dom';
 const AccountDropdown = () => {
+  const history = useHistory();
   const [showModal, setShowModal] = useState(false);
 
   const handleLogout = () => {
     console.log("Logout");
     Cookies.remove("jwt_token");
+    history.replace("/login");
   };
 
   const handleChangePassword = () => {
