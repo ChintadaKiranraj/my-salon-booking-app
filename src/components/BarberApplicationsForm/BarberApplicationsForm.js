@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./barberapplicationfrm.css";
+import { ToastContainer, toast } from "react-toastify";
 const BarberApplicationsForm = () => {
   const [salaonApplicationData, setSalaonApplicationData] = useState({
     location: "",
@@ -67,11 +68,11 @@ const BarberApplicationsForm = () => {
     console.log(shopsFromServer.data);
   };
   const saveBarberApplicationData = async (data) => {
+    let barberId = 100; //get login user id as barberid
+    const { shopId, ownerId } = shopIdOwnerId;
+    console.log("shopIdOwnerId --> ", shopId, ownerId);
     try {
-      console.log("saveBarberApplicationData:  --> ", data);
-      let barberId = 11; //get login user id as barberid
-      const { shopId, ownerId } = shopIdOwnerId;
-      console.log("shopIdOwnerId --> ", shopId, ownerId);
+     
 
       const response = await fetch(
         `http://localhost:4001/api/save-barberApplication-data/${barberId}/${shopId}/${ownerId}`,
@@ -84,11 +85,10 @@ const BarberApplicationsForm = () => {
         }
       );
 
-      console.log("response   =====>   ", response);
-      const resFromSErver = await response.json();
-      console.log("resFromSErver   =====>   ", resFromSErver);
-      if (resFromSErver.success === true) {
-        alert("Barber Application submitted successfully");
+      const responseData = await response.json();
+      console.log("responseData   =====>   ", responseData);
+      if (responseData.code === 201) {
+        toast.success("Barber Application submitted successfully");
         setSalaonApplicationData({
           location: "",
           shopName: "",
@@ -103,14 +103,21 @@ const BarberApplicationsForm = () => {
           description: "",
         });
       }
-      if (resFromSErver.errorCode === 400) {
+
+      if (responseData.code === 400) {
         setErrors({
           ...errors,
-          description: resFromSErver.message,
+          description: responseData.message,
         });
+        toast.error(responseData.message);
+      } else if (responseData.code === 500) {
+        toast.error(responseData.message);
+        return
       }
     } catch (error) {
-      console.log("error", error);
+      toast.error(
+        "Barber Application submitted failed due to " + error.message
+      );
     }
   };
 
@@ -118,10 +125,7 @@ const BarberApplicationsForm = () => {
     event.preventDefault();
     let formIsValid = true;
     const newErrors = { ...errors };
-    console.log(
-      "salaonApplicationData -------------->>>>",
-      salaonApplicationData
-    );
+    console.log("salaonApplicationData -->", salaonApplicationData);
     Object.keys(salaonApplicationData).forEach((fieldName) => {
       console.log("fieldName", fieldName);
       let value = salaonApplicationData[fieldName];
@@ -227,6 +231,7 @@ const BarberApplicationsForm = () => {
         </div>
 
         <button type="submit">Submit</button>
+        <ToastContainer />
       </form>
     </div>
   );
