@@ -189,7 +189,7 @@ const RegistrationForm = () => {
     <div  className="user-registration-form-out-container">
       <PhotoCarousel/>
         <div className="user-registration-form-container col-6">
-          <h1 className="h1">Create Your Account</h1>
+          <h1>Sign Up Now</h1>
           <form onSubmit={handleSubmit} className="user-registration-form">
             <div className="row">
               <div className="form-group col-6">
@@ -294,8 +294,8 @@ const RegistrationForm = () => {
               <span className="error-message">{errors.userType}</span>
             </div>
 
-            <button type="submit" className="btn btn-primary">
-              Register
+            <button type="submit">
+            Sign Up Now
             </button>
           </form>
       

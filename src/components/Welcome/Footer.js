@@ -25,6 +25,7 @@ const Footer = () => {
         </span>
       </div>
     </div>
+    
     </div>
   );
 };
