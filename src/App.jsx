@@ -29,6 +29,7 @@ import BarberApplicationsForm from "./components/BarberApplicationsForm/BarberAp
 import Welcome from "./components/Welcome/Welcome";
 import AdminOne from "./components/AdminOne/AdminOne";
 import BarberApplicationData from "./components/BarberApplicationsForm/BarberApplicationData";
+
   
 
 const App = () => (

@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "./shopregistrationform.css";
+import { ToastContainer, toast } from "react-toastify";
 import shopImg from "../../assets/images/nine.jpg";
+
+import axios from "axios";
 const SHOP_NAME_EXISTS_MESSAGE = "Shop name already exists.";
 
 const ShopRegistrationForm = () => {
@@ -23,28 +26,33 @@ const ShopRegistrationForm = () => {
     };
     fetchShopsLocations();
   }, []);
+
   const saveShopRegistrationData = async () => {
-    console.log("shopRegistrationData", shopRegistrationData);
-    let ownerId = 1; // get the login user id as ownerId
-    const shopOwnerResponse = await fetch(
-      `http://localhost:4001/api/barber-shop-registration/${ownerId}`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          ...shopRegistrationData,
-        }),
+    try {
+      const ownerId = 1; // get the login user id as ownerId
+      const response = await axios.post(
+        `http://localhost:4001/api/barber-shop-registration/${ownerId}`,
+        shopRegistrationData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (response.status !== 201) {
+        toast.error("Failed to save shop registration data");
+        return;
       }
-    );
-    const shopOwnerData = await shopOwnerResponse.json();
-    console.log("shopOwnerData  ==<<<  ", shopOwnerData);
-    if (shopOwnerData.success && shopOwnerData.code === 201) {
-      shopRegistrationData.shopName = "";
-      shopRegistrationData.location = "";
-      alert("Shop registration is successful");
+
+      const responseData = response.data;
+
       setShopRegistrationData({ location: "", shopName: "" });
+      toast.success("Shop registration is successful");
+    } catch (error) {
+      toast.error(
+        "Failed to save shop registration data due to " + error.message
+      );
     }
   };
 
@@ -100,7 +108,7 @@ const ShopRegistrationForm = () => {
     });
 
     setErrors(newErrors);
-
+    debugger;
     if (formIsValid && Object.values(errors).every((error) => error === "")) {
       console.log("shopRegistrationData", shopRegistrationData);
       // make api call to store the  shop registration data
@@ -111,10 +119,10 @@ const ShopRegistrationForm = () => {
   return (
     <div className="shop-registration-form-container">
       <div>
-        <img src={shopImg}/>
+        <img src={shopImg} />
       </div>
       <form onSubmit={onSubmitShopRegistration}>
-      <h2>Salon Registration Form</h2>
+        <h2>Salon Registration Form</h2>
         <label>Shop Name:</label>
         <input
           type="text"
@@ -147,9 +155,8 @@ const ShopRegistrationForm = () => {
         <span style={{ color: "red" }}>{errors.location}</span>
 
         <br />
-        <button type="submit">
-          Submit
-        </button>
+        <button type="submit">Submit</button>
+        <ToastContainer />
       </form>
     </div>
   );

@@ -23,6 +23,7 @@ const AdminOne = () => {
         <li>
           <NavLink to="/BarberApplicationData" className="ul--li-a">Requests</NavLink>
         </li>
+       
       </ul>
    
   );

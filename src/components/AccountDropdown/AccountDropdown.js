@@ -1,6 +1,5 @@
 import { useState } from "react";
 import Dropdown from "react-bootstrap/Dropdown";
-import Modal from "react-bootstrap/Modal";
 import Cookies from "js-cookie";
 import "./AccountDropdown.css";
 import UserAccount from "../UserAccount/UserAccount";
@@ -22,7 +21,7 @@ const AccountDropdown = () => {
 
   const handleMyAccount = () => {
     console.log("My account");
-    setShowModal(true);
+    setShowModal(!showModal);
   };
 
   return (
