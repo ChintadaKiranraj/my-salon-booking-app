@@ -1,0 +1,50 @@
+.layout-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  
+}
+
+.Header1 {
+  height: 60px;
+  background-color: #333;
+  color: white;
+  text-align: center;
+  line-height: 60px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+.sidebar-and-main-content {
+  display: flex;
+  width: 100vw;
+  justify-content: flex-start;
+  align-items: flex-start;
+  /* background-color: blue; */
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.main-container {
+  overflow-y: auto;
+  height: 100%;
+  width: 100%;
+  flex-shrink: 1;
+}
+
+.layout-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.main-container {
+  /* overflow-y: auto; */
+  /* background-color: red; */
+  padding: 20px;
+  flex-shrink: 1;
+  /* display: flex; */
+}

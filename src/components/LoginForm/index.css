@@ -115,18 +115,10 @@
 }
 
 .login-button {
-  font-weight: bold;
-  font-size: 14px;
-  color: #ffffff;
-  height: 40px;
+  
   width: 100%;
-  margin-top: 20px;
-  margin-bottom: 2px;
-  background-color: #0b69ff;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
-  outline: none;
+  margin-top: 7px;
+ 
 }
 
 .error-message {

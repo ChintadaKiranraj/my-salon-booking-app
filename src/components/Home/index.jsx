@@ -5,7 +5,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 // import BookedAppointments from "../BookedAppointments";
 import ViewOnly from "../Viewonly";
-import Header from "../Header";
+import Header from "../Header/header";
 import "./index.css";
 import { useEffect, useState } from "react";
 import Cookie from "js-cookie";
