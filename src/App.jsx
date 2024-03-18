@@ -29,6 +29,7 @@ import BarberApplicationsForm from "./components/BarberApplicationsForm/BarberAp
 import Welcome from "./components/Welcome/Welcome";
 import AdminOne from "./components/AdminOne/AdminOne";
 import BarberApplicationData from "./components/BarberApplicationsForm/BarberApplicationData";
+import ShpoRegistraction from "./components/ShopsTwo/shopTwo";
 
   
 
@@ -64,6 +65,7 @@ const App = () => (
         <ProtectedRoute exact path="/BarberApplicationsForm" component={BarberApplicationsForm} />
         <ProtectedRoute exact path="/admin-tabs" component={AdminOne} />
         <ProtectedRoute exact path="/BarberApplicationData" component={BarberApplicationData} />
+        <ProtectedRoute exact path="/ShpoRegistraction" component={ShpoRegistraction} />
         <Route component={NotFound} />
       </Switch>
     </div>

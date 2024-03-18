@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./index.css";
+import { ToastContainer, toast } from "react-toastify";
 // import registrationAvatar from "../../assets/images/registration-avatar.svg";
 import PhotoCarousel from "../Welcome/PhotoCarousel";
 const RegistrationForm = () => {
@@ -49,7 +50,8 @@ const RegistrationForm = () => {
       // Check if the user registration was successful
       if (!userDataFromServer.success) {
         // Handle error
-        console.error("User registration failed:", userDataFromServer.message);
+        // console.error("User registration failed:", userDataFromServer.message);
+        toast.error("User registration failed:", userDataFromServer.message);
         return;
       }else{
         setUserRegistrationData({...userRegistrationData,firstName: "",
@@ -60,11 +62,11 @@ const RegistrationForm = () => {
         profilePhoto: "",
         phoneNumber: "",
         userType: "",});
-        alert("User registration successful");
+        toast.success("User registration successful");
 
       }
     } catch (error) {
-      console.error("Error during registration:", error);
+      toast.error("Error during registration:", error);
     }
   }
 
@@ -203,7 +205,7 @@ const RegistrationForm = () => {
             Sign Up Now
             </button>
           </form>
-      
+      <ToastContainer/>
       </div>
     </div>
   );

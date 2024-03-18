@@ -4,7 +4,7 @@ import BarberItem from "../BarbarItem";
 import "./index.css";
 import { Hourglass } from "react-loader-spinner";
 const Barber = () => {
-  const [data, setData] = useState([]);
+  const [barbersData, setBarbersData] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -12,13 +12,17 @@ const Barber = () => {
   }, []);
 
   const fetchData = async () => {
-    const ownerid=1;
+    const ownerid = 1;
+    const status = "accepted";
     try {
       // const response = await fetch("https://dummyjson.com/users");
-      const response = await fetch(`http://localhost:4001/api/get-barbers-by-shoownerId/${ownerid}`);
+      const response = await fetch(
+        `http://localhost:4001/api/get-barbers-by-shoownerId/${ownerid}/${status}`
+      );
       const jsonData = await response.json();
-      setData(jsonData.data);
+      setBarbersData(jsonData.data);
       setLoading(false);
+      console.log("jsonData", jsonData.data);
     } catch (error) {
       console.error("Error fetching data:", error);
       setLoading(false);
@@ -27,7 +31,6 @@ const Barber = () => {
 
   return (
     <div className="page-container">
-      
       <div className="content">
         {loading ? (
           <div className="loading-spinner">
@@ -42,16 +45,18 @@ const Barber = () => {
             />
             <p>Loading...</p>
           </div>
-        ) : data.length === 0 ? (
+        ) : barbersData.length === 0 ? (
           <div className="barbars-component">
             No data yet to display......!!!
           </div>
         ) : (
-          <ul className="barbars-component-ul">
-            {data.map((barber) => (
-              <BarberItem key={barber.id} barber={barber} />
-            ))}
-          </ul>
+         
+            <ul className="barbars-component-ul">
+              {barbersData.map((barber) => (
+                <BarberItem key={barber.id} barber={barber} />
+              ))}
+            </ul>
+        
         )}
       </div>
     </div>

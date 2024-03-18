@@ -10,11 +10,13 @@ import image3 from "../../assets/images/ten.jpg";
 import image4 from "../../assets/images/cut3.jpg";
 
 import image5 from "../../assets/images/cut4.avif";
+import s1 from "../../assets/images/s1.jpg";
+import s3 from "../../assets/images/s3.webp";
 
 const PhotoCarousel = () => {
  
 
-  const images = [image1, image2, , image3, image4, image5];
+  const images = [image4, image5,s1,s3];
 
   return (
     <div className="carousel-container">

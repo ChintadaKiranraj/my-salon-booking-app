@@ -3,7 +3,9 @@ import "./Shops.css";
 import image1 from "../../assets/images/nine.jpg";
 import { FaShop } from "react-icons/fa6";
 import { FaPlus } from "react-icons/fa";
+import { Buffer } from 'buffer';
 import ShopRegistrationForm from "../ShopRegistrationForm/shopregistrationform";
+import { toast ,ToastContainer} from "react-toastify";
 const Shops = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [showForm, setShowForm] = useState(false);
@@ -34,13 +36,29 @@ const Shops = () => {
       shopid,
       shopname,
       location,
-
+      profilephoto,
       phonenumber,
       userid,
       firstname,
       lastname,
       email,
     } = shop;
+
+
+    // let imageUrl=null
+    // if(profilephoto!=null){
+    //   // const base64String = profilephoto.toString('base64');
+    //   const base64String = Buffer.from(profilephoto).toString('base64');
+    //    imageUrl = `data:image/jpeg;base64,${base64String}`;
+    //   console.log("imageUrl", imageUrl)
+    //   toast.success(  <>
+    //     <img src={imageUrl}/>
+    //     </> );
+    
+    // }
+
+   
+   
     return (
       <li
         className="salon-item-card"
@@ -48,8 +66,8 @@ const Shops = () => {
       >
         <div className="shop-profile-container">
           <h2 className="shop-title">{shopname}</h2>
-          <img src={image1} className="shop-img-size" />{" "}
-          {/* Placeholder for the profile image */}
+          <img src={image1} className="shop-img-size" alt="avatar"/>
+      
         </div>
         <div className="details">
           <p>
@@ -82,6 +100,7 @@ const Shops = () => {
     setFilteredShops(filtered);
   };
   return (
+    
     <div className="shops-outer-container">
       <div className="input-add-new-shop">
         <input
@@ -102,7 +121,7 @@ const Shops = () => {
           <EachShop key={shop.shopid} shop={shop} />
         ))}
       </ul>
-     
+     <ToastContainer/>
     </div>
   );
 };
