@@ -1,0 +1,18 @@
+.large-content {
+    min-width: 600px;
+    
+  }
+  
+  .modal-button-accept-btn:hover{
+    background-color: green;
+    color: white;
+  }
+
+  .modal-button-reject-btn:hover{
+    background-color: rgb(128, 0, 0);
+    color: white;
+  }
+
+  
+
+  

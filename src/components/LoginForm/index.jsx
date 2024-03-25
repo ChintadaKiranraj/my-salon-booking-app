@@ -30,9 +30,11 @@ class LoginForm extends Component {
 
   onSubmitSuccess = (jsonData) => {
     const { history } = this.props;
-
+    debugger
+console.log("jsonData  ===> ",jsonData )
     const { jwt_token } = jsonData;
     const userDetails = jwtDecode(jwt_token);
+
     console.log("userDetails  ===> ", userDetails);
 
     Cookies.set("jwt_token", jwt_token, {
@@ -64,8 +66,9 @@ class LoginForm extends Component {
       const response = await fetch(url, options);
 
       const jsonData = await response.json();
-      console.log(jsonData);
-      if (jsonData.status === "success") {
+      console.log("jsonData ==> ",jsonData);
+      if (jsonData.status === true) {
+        console.log("Login successful. Welcome back!")
         toast.success("Login successful. Welcome back!");
         this.onSubmitSuccess(jsonData);
 

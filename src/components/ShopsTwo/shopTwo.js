@@ -10,8 +10,38 @@ export const toBase64 = (file) => {
         reader.onerror = (error) => reject(error);
     });
 };
+export const compressAndConvertToBase64 = async (file) => {
+    try {
+        const compressedBlob = await compressImage(file);
+        const base64String = await toBase64(compressedBlob);
+        return base64String;
+    } catch (error) {
+        console.error('Error compressing image:', error);
+        throw error;
+    }
+};
 
-
+export const compressImage = (file) => {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = (event) => {
+            const img = new Image();
+            img.src = event.target.result;
+            img.onload = () => {
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+                canvas.width = img.width;
+                canvas.height = img.height;
+                ctx.drawImage(img, 0, 0);
+                canvas.toBlob((blob) => {
+                    resolve(blob);
+                }, file.type);
+            };
+        };
+        reader.onerror = (error) => reject(error);
+    });
+};
 const ShpoRegistraction = () => {
 
     const [profilr ,setProfile] = useState(null);

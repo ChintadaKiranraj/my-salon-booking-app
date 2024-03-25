@@ -2,7 +2,7 @@ import { useState } from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import Cookies from "js-cookie";
 import "./AccountDropdown.css";
-import UserAccount from "../UserAccount/UserAccount";
+import UserAccount from "../UserManagment/UserAccount/UserAccount";
 import { useHistory } from 'react-router-dom';
 const AccountDropdown = () => {
   const history = useHistory();

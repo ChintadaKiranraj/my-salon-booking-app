@@ -10,20 +10,22 @@ import { jwtDecode } from "jwt-decode";
 
 
 
-export  const  LoginUserLogo = () => {
-  const jwtToken = Cookies.get("jwt_token");
-  const userDetails = jwtDecode(jwtToken);
-const fullName = userDetails.full_name;
-console.log("fullName", fullName);
-  const userInitials = fullName.split(" ").map((word) => word.charAt(0)) .join("");
-  const email = userDetails.email;
-  return (
-    <div className="logo-email-container">
-     <p className="user-logo">{userInitials}</p>
-      <p className="user-name">{fullName}</p>
-    </div>
-  );
-};
+// export  const  LoginUserLogo = () => {
+//   const jwtToken = Cookies.get("jwt_token");
+//   const userDetails = jwtDecode(jwtToken);
+// const fullName = userDetails.firstname + " " + userDetails.lastname;
+
+
+
+//   const userInitials = fullName.split(" ").map((word) => word.charAt(0)) .join("");
+//   const email = userDetails.email;
+//   return (
+//     <div className="logo-email-container">
+//      <p className="user-logo">{userInitials}</p>
+//       <p className="user-name">{fullName}</p>
+//     </div>
+//   );
+// };
 const Header = (props) => {
   const [ActiveTabId, setActiveTabId] = useState("HOME");
   useEffect(() => {

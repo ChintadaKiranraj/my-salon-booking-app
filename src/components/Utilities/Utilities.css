@@ -1,0 +1,75 @@
+.loader-modal-contents {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(0.1px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .popup-model-outer-container {
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border: 1px solid #888;
+    border-radius: 10px;
+    overflow: auto;
+    transition: all 0.3s ease;
+  }
+  
+  
+  .popup-model-contents {
+    background-color: #fefefe;
+    background-color:red;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    max-width: 400px;
+    border-radius: 10px;
+    border-style: solid;
+    background: linear-gradient(to right, #007bff, #87ceeb);
+    border-style: solid;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .user-logo {
+    width: 45px;
+    height: 45px;
+    background-color: #007bff;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50px;
+  
+    text-transform: uppercase;
+    color: white;
+    font-weight: 800;
+  }
+  .logo-email-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-right: 13px;
+    margin-left: 3px;
+    margin-top: 10px;
+  }
+  .user-name {
+    font-size: 16px;
+    color: white;
+    font-weight: 500;
+    margin-right: 1px;
+    padding: 6px;
+    text-transform: capitalize;
+  }

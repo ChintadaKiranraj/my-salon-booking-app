@@ -1,5 +1,5 @@
 // import React, { useState, useEffect } from "react";
-import BookingForm from "../BookingForm";
+import BookingForm from "../UserManagment/AppointmentForm/AppointmentForm";
 // import { toast } from "react-toastify";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";

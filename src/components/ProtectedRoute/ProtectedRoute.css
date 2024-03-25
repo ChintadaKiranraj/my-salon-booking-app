@@ -1,7 +1,7 @@
 .layout-container {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  /* height: 100vh; */
   
 }
 
@@ -27,12 +27,23 @@
   height: 100vh;
   overflow-y: auto;
 }
+.sidebar-and-main-content::-webkit-scrollbar {
+  width: 0px; /* Width of the scrollbar */
+}
 
+/* Style the scrollbar thumb */
+.sidebar-and-main-content::-webkit-scrollbar-thumb {
+  background-color: #ccc; /* Color of the scrollbar thumb */
+  border-radius: 6px; /* Rounded corners of the scrollbar thumb */
+}
 .main-container {
-  overflow-y: auto;
-  height: 100%;
-  width: 100%;
+ 
+  /* height: 100%; */
+  /* width: 100%; */
+  height: 100vh;
+width: 100vw;
   flex-shrink: 1;
+  overflow-y: auto;
 }
 
 .layout-container {

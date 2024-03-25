@@ -3,12 +3,12 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import ServiceCard from "./ServiceCard";
 
-import BookingFormTwo from "../Appointment/appointment.js";
+// import BookingFormTwo from "../Appointment/appointment.js";
 import Footer from "./Footer.js";
-import ShopRegistrationForm from "../ShopRegistrationForm/shopregistrationform.js";
-import RegistrationForm from "../RegistrationForm/registrationform.js";
-import IndividualIntervals from "./PhotoCarousel.js";
-import { Link } from "@mui/material";
+// import ShopRegistrationForm from "../ShopRegistrationForm/shopregistrationform.js";
+import RegistrationForm from "../UserManagment/UserRegistrationForm/UserRegistrationForm.js";
+// import IndividualIntervals from "./PhotoCarousel.js";
+// import { Link } from "@mui/material";
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min.js";
 
 export const BarberLogoTitle = () => {

@@ -5,7 +5,7 @@ import "./ProtectedRoute.css";
 
 import AdminOne from "../AdminOne/AdminOne";
 import Layout from "../Layout/Layout";
-import Header1 from "../Layout/Header1";
+import HeaderBar from "../Layout/HeaderBar";
 import Sidebar from "../Layout/Sidebar";
 
 const ProtectedRoute = (props) => {
@@ -16,7 +16,7 @@ const ProtectedRoute = (props) => {
  
   return (
     <div className="layout-container">
-      <Header1 />
+      <HeaderBar />
       <div className="sidebar-and-main-content">
      
         <Sidebar />

@@ -21,7 +21,7 @@
 // export default Sidebar;
 import { NavLink } from "react-router-dom";
 import "./Layout.css";
-import { FaUser } from "react-icons/fa";
+import { RiAdminLine } from "react-icons/ri";
 import AdminOne from "../AdminOne/AdminOne";
 import { useState, useEffect } from "react";
 
@@ -44,7 +44,7 @@ const Sidebar = () => {
 
   return (
     <div className="Sidebar">
-      <span onClick={isAdminClicked} className="admin-icon"><FaUser/>Admin</span>
+      <span onClick={isAdminClicked} className="admin-icon"><RiAdminLine/>Admin</span>
       {isAdminVisible && <AdminOne />}
     </div>
   );

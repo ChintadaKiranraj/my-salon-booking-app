@@ -1,4 +1,4 @@
-.nav-tabs-menu-container {
+.nav-tabs-menu-containerXXX {
   display: flex;
   flex-direction: row;
   list-style-type: none;
@@ -8,56 +8,30 @@
   align-items: center;
 }
 
-.nav-menu-item {
+.nav-menu-itemXXX{
   margin: 10px;
   font-weight: 400;
   font-size: 16px;
   border-radius: 5px;
 }
-.nav-link-items {
+.nav-link-itemsXXXX {
   text-decoration: none;
   color: black;
   font-weight: 500;
 }
-.user-logo {
-  width: 45px;
-  height: 45px;
-  background-color: #007bff;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50px;
 
-  text-transform: uppercase;
-  color: white;
-  font-weight: 800;
-}
-.user-name {
-  font-size: 16px;
-  color: white;
-  font-weight: 500;
-  margin-right: 1px;
-  padding: 6px;
-  text-transform: capitalize;
-}
-.logo-email-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  margin-right: 0px;
-  margin-top: 10px;
-}
+
+
 .user-logo-dropdown{
   display: flex;
   flex-direction: row;
 }
 
-.nav-headers {
+/* .nav-headers {
   display: flex;
   flex-direction: row;
   background-color: #00246b;
   justify-content: space-between;
   padding: 2px;
-}
+  background-color: blueviolet;
+} */

@@ -1,0 +1,94 @@
+.user-card {
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  
+}
+
+.title-profile-container{
+  display: flex;
+  align-items: center;
+
+  margin-bottom: 0px;
+  padding: 5px;
+ 
+}
+
+.user-full-name {
+  margin-right: 10px;
+  color: #333;
+  font-size: 15px !important;
+  padding-left: 10px; 
+  padding-right: 10px; 
+  margin-bottom: 0px;
+ 
+}
+
+.user-info {
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+}
+
+
+
+
+.card-text {
+  margin: 5px 0;
+  color: #555;
+}
+
+.highlight {
+  font-weight: bold;
+  color: #007bff;
+}
+
+.user-card:hover {
+  border-color: #007bff;
+  border-style: solid;
+}
+
+
+.user-info-item {
+  margin-bottom: 10px;
+}
+
+.highlight {
+  font-weight: bold;
+  color: #007bff;
+}
+
+.Account-title-Edit-icon-container{
+  /* background-color: red; */
+  text-align: center;
+  width: 100%;
+  margin-bottom: 0px !important;
+  color: #007bff;
+  display: flex;
+  flex-direction: row;
+  justify-content:center;
+  align-items: center;
+
+}
+
+.edit-icon-style{
+ 
+  font-size: 10px;
+  color: black !important;
+  
+
+  
+ 
+}
+.edit-icon-styles:hover{
+  color: #838498dd !important;
+  cursor: pointer;
+  background-color: red;
+}
+
+
+
+
+

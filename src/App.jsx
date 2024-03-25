@@ -6,7 +6,7 @@ import LoginForm from "./components/LoginForm";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import NotFound from "./components/NotFound";
 import SignupForm from "./components/SignupForm";
-import Barbars from "./components/Barbars";
+import Barbars from "./components/BarberManagement/Barber/Barber";
 import ViewOnly from "./components/Viewonly";
 
 
@@ -17,19 +17,26 @@ import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import "@coreui/coreui/dist/css/coreui.min.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import Barber from "./components/Barbars";
+import Barber from "./components/BarberManagement/Barber/Barber";
+import BarberApplicationsForm from "./components/BarberManagement/ApplicationForm/ApplicationForm";
+import BarberApplicationData from "./components/BarberManagement/ApplicationsList/ApplicationsList";
+import BarberRegistrationForm from "./components/BarberManagement/RegistrationForm/RegistrationForm";
 import Bookings from "./components/Bookings";
-import Shops from "./components/Shops/shops";
-import ShopOwners from "./components/ShopOwners/shopowner";
-import Users from "./components/Users/users";
-import Appointment from "./components/Appointment/appointment";
-import BarberRegistrationForm from "./components/BarberRegistrationForm/barberregistrationform";
-import ShopRegistrationForm from "./components/ShopRegistrationForm/shopregistrationform";
-import BarberApplicationsForm from "./components/BarberApplicationsForm/BarberApplicationsForm";
+import Shops from "./components/Shops/ShopsList/ShopsList";
+import ShopOwners from "./components/Shops/ShopOwners/shopowner";
+import Users from "./components/UserManagment/Users/users";
+import Appointment from "./components/UserManagment/Appointment/appointment";
+
+import ShopRegistrationForm from "./components/Shops/ShopRegistrationForm/shopregistrationform";
+
 import Welcome from "./components/Welcome/Welcome";
 import AdminOne from "./components/AdminOne/AdminOne";
-import BarberApplicationData from "./components/BarberApplicationsForm/BarberApplicationData";
+
 import ShpoRegistraction from "./components/ShopsTwo/shopTwo";
+import BookingFormTwo from "./components/UserManagment/Appointment/appointment";
+import BookedAppointments from "./components/BookedAppointments";
+import EditShopsData from "./components/Shops/EditShops/EditShopsData";
+import MyAppointments from "./components/UserManagment/MyAppointments/MyAppointments";
 
   
 
@@ -58,16 +65,20 @@ const App = () => (
         <ProtectedRoute exact path="/shopowners" component={ShopOwners} />
         <ProtectedRoute exact path="/users" component={Users} />
         <ProtectedRoute exact path="/noofbarbers" component={Barber} />
-        <ProtectedRoute exact path="/userbookings" component={Bookings} />
-        <ProtectedRoute exact path="/appointment" component={Appointment} />
+        {/* <ProtectedRoute exact path="/userbookings" component={Bookings} /> */}
+        <ProtectedRoute exact path="/Appointment" component={Appointment} />
         <ProtectedRoute exact path="/barberregistration" component={BarberRegistrationForm} />
         <ProtectedRoute exact path="/shopregistrationForm" component={ShopRegistrationForm} />
         <ProtectedRoute exact path="/BarberApplicationsForm" component={BarberApplicationsForm} />
         <ProtectedRoute exact path="/admin-tabs" component={AdminOne} />
         <ProtectedRoute exact path="/BarberApplicationData" component={BarberApplicationData} />
         <ProtectedRoute exact path="/ShpoRegistraction" component={ShpoRegistraction} />
+        <ProtectedRoute exact path="/BookingFormTwo" component={BookingFormTwo} />
+        <ProtectedRoute exact path="/Bookings" component={Bookings} />
+        <ProtectedRoute exact path="/MyAppointments" component={MyAppointments} />
         <Route component={NotFound} />
       </Switch>
+     
     </div>
   </Router>
 );
