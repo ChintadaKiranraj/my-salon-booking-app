@@ -5,10 +5,10 @@ import BarberItem from "../BarberItem/BarberItem";
 import { useState } from "react";
 
 import { toast } from "react-toastify";
-import{ Loader, getUserDetails }from "../../Utilities/Utilities";
+import { Loader, User, getUserDetails } from "../../Utilities/Utilities";
 
 import "./ApplicationPop.css";
-import "../../Utilities/Utilities.css";;
+import "../../Utilities/Utilities.css";
 const ACCEPTED = "accepted";
 const REJECTED = "rejected";
 
@@ -25,14 +25,19 @@ const ApplicationViwePop = (props) => {
     const userDetails = getUserDetails();
     const ownerid = userDetails.userid;
     const status = "pending";
+    let user_type = userDetails.usertype;
+    if (userDetails.usertype === "Shop Owner") {
+      user_type = "shopowner";
+    }
+
     try {
       const response = await fetch(
-        `http://localhost:4001/api/get-barbers-by-shoownerId/${ownerid}/${status}/${applicationId}`
+        `http://localhost:4001/api/get-barbers-by-shoownerId/${ownerid}/${status}/${applicationId}/${user_type}`
       );
       const jsonData = await response.json();
-      console.log("fetch data by applicationn id",jsonData)
+      console.log("fetch data by applicationn id", jsonData);
       setBarbersData(jsonData.data[0]);
-      if(jsonData.code===200){
+      if (jsonData.code === 200) {
         setIsLoading(false);
       }
       console.log("fetch data---> ", jsonData.data[0]);
@@ -59,7 +64,6 @@ const ApplicationViwePop = (props) => {
       const jsonData = await response.json();
 
       if (jsonData.code === 200 && jsonData.status === true) {
-        
         toast.success("Barber application status updated successfully");
       }
     } catch (error) {
@@ -69,39 +73,44 @@ const ApplicationViwePop = (props) => {
   return (
     <div>
       <div className="modalss">
+        {isLoading ? (
+          <div className="loader-modal-contents">
+            <Loader />
+          </div>
+        ) : (
+          <div className="modal-contents large-content">
+            <h2>Application Details</h2>
 
-      
-          {isLoading ? (
-            <div className="loader-modal-contents"><Loader/></div>
-          ) : (
-            <div className="modal-contents large-content">
-              <h2>Application Details</h2>
+            <div className="modal-button-container">
+              <BarberItem barber={barbersData} isViewMode={true} />
 
-              <div className="modal-button-container">
-                <BarberItem barber={barbersData} isViewMode={true} />
-                <button
-                  className="modal-button-accept-btn"
-                  onClick={() => {
-                    updateStatus(barbersData, ACCEPTED);
-                  }}
-                >
-                  Accept <TiTick />
-                </button>
-                <button
-                  onClick={() => {
-                    updateStatus(barbersData, REJECTED);
-                  }}
-                  className="modal-button-reject-btn"
-                >
-                  Reject <IoCloseCircleOutline />
-                </button>
-                <button className="modal-button" onClick={hidePopupModel}>
+              {getUserDetails().usertype === "Shop Owner" && (
+                <>
+                  <button
+                    className="modal-button-accept-btn"
+                    onClick={() => {
+                      updateStatus(barbersData, ACCEPTED);
+                    }}
+                  >
+                    Accept <TiTick />
+                  </button>
+                  <button
+                    onClick={() => {
+                      updateStatus(barbersData, REJECTED);
+                    }}
+                    className="modal-button-reject-btn"
+                  >
+                    Reject <IoCloseCircleOutline />
+                  </button>
+                </>
+              )}
+
+              <button className="modal-button" onClick={hidePopupModel}>
                 Cancel
-                </button>
-              </div>
+              </button>
             </div>
-          )}
-        
+          </div>
+        )}
       </div>
     </div>
   );

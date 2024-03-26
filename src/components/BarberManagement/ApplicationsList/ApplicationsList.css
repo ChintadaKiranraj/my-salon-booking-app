@@ -1,7 +1,7 @@
 .barber-application-form-container {
   display: flex;
   flex-direction: column;
-  /* background-color: red; */
+ 
   padding: 20px;
 }
 .barber-application-form-container h3 {
@@ -13,11 +13,11 @@
 .experience-container {
   display: flex;
   flex-direction: row;
-  /* background-color: red; */
+ 
   width: 50%;
 }
 .label-container {
-  /* background-color: blue; */
+ 
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -31,16 +31,16 @@
   margin-bottom: 10px;
 }
 
-.icons {
-  font-size: 90px;
+.vie-del-icons {
+  font-size: 50px;
   margin-right: 10px;
 
-  height: 35px !important;
-  width: 35px !important;
-  /* background-color: red; */
+  height: 20px ;
+  width: 20px;
+  
   margin: 5px;
 }
-.icons:hover {
+.vie-del-icons:hover {
   color: #007bff;
   border-radius: 4px;
   cursor: pointer;
@@ -105,11 +105,11 @@
   margin: 10px;
 }
 
-.icons {
+/* .vie-del-icons {
   position: relative;
-}
+} */
 
-.icons::after {
+/* .vie-del-icons::after {
   content: attr(title);
   position: absolute;
   bottom: 100%;
@@ -117,20 +117,21 @@
   transform: translateX(-50%);
   padding: 4px 8px;
   background-color: black;
-  /* color: white; */
+ 
   border-radius: 4px;
   font-size: 12px;
   white-space: nowrap;
   opacity: 0;
   transition: opacity 0.3s;
   border-radius: 3px;
-}
-
-.icons:hover::after {
-  opacity: 1;
-}
-
-/* .delete-confirmation-card {
-  padding: 10px;
-  width: 100%;
 } */
+
+/* .vie-del-icons:hover::after {
+  opacity: 1;
+} */
+
+
+.circular-icon{
+  margin-left: 3px;
+  cursor: pointer;
+}

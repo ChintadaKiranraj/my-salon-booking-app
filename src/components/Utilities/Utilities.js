@@ -5,6 +5,19 @@ import Cookie from "js-cookie";
 // import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 import Cookies from "js-cookie";
 import "./Utilities.css";
+
+export const Barber=()=>{
+  return "Barber";
+
+}
+export const ShopOwner=()=>{
+
+  return "Shop Owner";
+}
+export const User=()=>{
+  return "User";
+}
+
 export const toBase64 = (file) => {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();

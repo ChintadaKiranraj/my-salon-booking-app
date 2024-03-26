@@ -30,7 +30,7 @@ class LoginForm extends Component {
 
   onSubmitSuccess = (jsonData) => {
     const { history } = this.props;
-    debugger
+    
 console.log("jsonData  ===> ",jsonData )
     const { jwt_token } = jsonData;
     const userDetails = jwtDecode(jwt_token);
@@ -40,7 +40,7 @@ console.log("jsonData  ===> ",jsonData )
     Cookies.set("jwt_token", jwt_token, {
       expires: 30,
     });
-
+debugger
     history.replace("/users");
   };
 

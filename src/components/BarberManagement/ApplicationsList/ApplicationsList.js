@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
+import { FaCircle } from "react-icons/fa6";
 import { FcViewDetails } from "react-icons/fc";
 import { GrFormView } from "react-icons/gr";
 import { MdDeleteOutline } from "react-icons/md";
@@ -48,9 +49,17 @@ const BarberApplicationData = () => {
     const userDetails = getUserDetails();
     const ownerid = userDetails.userid;
     const status = "pending";
+    let userType = userDetails.usertype;
+    if (userType === "Shop Owner") {
+      userType = "shopowner";
+    } 
 
+    
+    console.log(userType,"usertype at the barber application data page")
+
+   
     fetch(
-      `http://localhost:4001/api/get-barbers-by-shoownerId/${ownerid}/${status}`
+      `http://localhost:4001/api/barbers-list/${ownerid}/${status}/${userType}`
     )
       .then((response) => response.json())
       .then((jsonData) => {
@@ -71,19 +80,66 @@ const BarberApplicationData = () => {
       sortable: true,
     },
     { name: "Email", selector: (row) => row.email, sortable: true },
-    { name: "Status", selector: (row) => row.status, sortable: true },
+    // { name: "Status", selector: (row) => row.status, sortable: true },
+    {
+      name: "Status",
+      selector: (row) =>    (<>
+      {row.status}
+      <FaCircle className="circular-icon"/> 
+      </>)  
+      
+      
+      
+     ,
+      
+    
+      
+      sortable: true,
+      conditionalCellStyles: [
+        {
+          when: (row) => row.status === "pending",
+          style: {
+            color: "#007bff",
+            fontWeight: "600",
+            "&:hover": {
+              cursor: "pointer",
+            },
+          },
+        },
+        {
+          when: (row) => row.status === "cancelled",
+          style: {
+            color: "red",
+            fontWeight: "600",
+            "&:hover": {
+              cursor: "pointer",
+            },
+          },
+        },
+        {
+          when: (row) => row.status === "accepted",
+          style: {
+            color: "green",
+            fontWeight: "600",
+            "&:hover": {
+              cursor: "not-allowed",
+            },
+          },
+        },
+      ],
+    },
     { name: "Experience", selector: (row) => row.experience, sortable: true },
     {
       name: "Action",
       cell: (row) => (
         <div>
           <GrFormView
-            className="icons"
+            className="vie-del-icons"
             title="Edit"
             onClick={() => viewAndAccept(row)}
           />
           <MdDeleteOutline
-            className="icons"
+            className="vie-del-icons"
             title="Delete"
             onClick={() => confirmDelete(row)}
           />

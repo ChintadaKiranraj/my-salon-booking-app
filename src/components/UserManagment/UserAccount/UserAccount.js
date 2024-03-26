@@ -13,6 +13,7 @@ const UserAccount = () => {
 
   const [show, setShow] = useState(false);
   const [editUser, setEditUser] = useState(false);
+  const [editUserData,setEditUserData]=useState({firstName:"",lastName:"",phoneNumber:""});  
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -49,12 +50,12 @@ const UserAccount = () => {
             <span className="highlight">Phone:</span>
             <span>{userDetails.phonenumber}</span>
           </div>
-          <div className="user-info-item">
+          {/* <div className="user-info-item">
             <span className="highlight">Address:</span>
             <span>Hyderabad, Kukatpally</span>
-          </div>
+          </div> */}
           <div className="user-info-item">
-            <span className="highlight">User Type:</span>
+            <span className="highlight">Role:</span>
             <span>{userDetails.usertype}</span>
           </div>
           <div className="user-info-item">
@@ -65,12 +66,39 @@ const UserAccount = () => {
       </div>
     );
   };
+
+const onChangeInput = (event) => {
+
+  const { name, value } = event.target;
+  console.log(name, value)
+  setEditUserData({
+    ...editUserData,
+    [name]: value,
+  });
+}
   const EditUserCard = () => {
     return (
       <div>
-        <h1>Edit user card bdetails</h1>
+        <div className="row">
+          <div className="col-6">
+            <label>First Name</label>
+            <input type="text" onChange={onChangeInput}  name="firstName" value={editUserData.firstName}/>
+          </div>
+          <div className="col-6">
+            <label>First Name</label>
+            <input type="text" onChange={onChangeInput} name="lastName"value={editUserData.lastName}/>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-12">
+            <label>Phone Number</label>
+            <input type="text" onChange={onChangeInput}  name="phoneNumber"value={editUserData.phoneNumber}/>
+          </div>
+        
+        </div>
+
         <button type="submit">Update</button>
-        <button
+        <button  className="m-3"
           onClick={() => {
             setEditUser(false);
           }}
@@ -88,15 +116,20 @@ const UserAccount = () => {
 
       <Offcanvas show={show} onHide={handleClose} placement="end">
         <Offcanvas.Header closeButton>
-          <div className="Account-title-Edit-icon-container">
+          <div className="account-title-Edit-icon-container">
             <h5>MyAccount</h5>
-            {/* onClick={ediUserProfile}  */}
-            <LiaUserEditSolid className="edit-icon-style" onClick={ediUserProfile}/>
+            {/* <LiaUserEditSolid
+              className={
+                !editUser ? "edit-user-account" : "edit-user-account-active"
+              }
+              onClick={ediUserProfile}
+              title="Edit Accout"
+            /> */}
           </div>
         </Offcanvas.Header>
 
-        <Offcanvas.Body>
-          {editUser ? <EditUserCard /> : <UserCard />}
+        <Offcanvas.Body className="p-5">
+          { <UserCard />}
         </Offcanvas.Body>
       </Offcanvas>
     </>

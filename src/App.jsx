@@ -25,7 +25,7 @@ import Bookings from "./components/Bookings";
 import Shops from "./components/Shops/ShopsList/ShopsList";
 import ShopOwners from "./components/Shops/ShopOwners/shopowner";
 import Users from "./components/UserManagment/Users/users";
-import Appointment from "./components/UserManagment/Appointment/appointment";
+// import Appointment from "./components/Appointment/appointment";
 
 import ShopRegistrationForm from "./components/Shops/ShopRegistrationForm/shopregistrationform";
 
@@ -33,12 +33,16 @@ import Welcome from "./components/Welcome/Welcome";
 import AdminOne from "./components/AdminOne/AdminOne";
 
 import ShpoRegistraction from "./components/ShopsTwo/shopTwo";
-import BookingFormTwo from "./components/UserManagment/Appointment/appointment";
-import BookedAppointments from "./components/BookedAppointments";
+
+// import BookedAppointments from "./components/BookedAppointments";
 import EditShopsData from "./components/Shops/EditShops/EditShopsData";
 import MyAppointments from "./components/UserManagment/MyAppointments/MyAppointments";
+import Appointment from "./components/UserManagment/Appointment/appointment";
 
-  
+
+
+
+
 
 const App = () => (
   <Router>
@@ -66,14 +70,14 @@ const App = () => (
         <ProtectedRoute exact path="/users" component={Users} />
         <ProtectedRoute exact path="/noofbarbers" component={Barber} />
         {/* <ProtectedRoute exact path="/userbookings" component={Bookings} /> */}
-        <ProtectedRoute exact path="/Appointment" component={Appointment} />
+        
         <ProtectedRoute exact path="/barberregistration" component={BarberRegistrationForm} />
         <ProtectedRoute exact path="/shopregistrationForm" component={ShopRegistrationForm} />
         <ProtectedRoute exact path="/BarberApplicationsForm" component={BarberApplicationsForm} />
         <ProtectedRoute exact path="/admin-tabs" component={AdminOne} />
         <ProtectedRoute exact path="/BarberApplicationData" component={BarberApplicationData} />
         <ProtectedRoute exact path="/ShpoRegistraction" component={ShpoRegistraction} />
-        <ProtectedRoute exact path="/BookingFormTwo" component={BookingFormTwo} />
+        <ProtectedRoute exact path="/Appointment" component={Appointment} />
         <ProtectedRoute exact path="/Bookings" component={Bookings} />
         <ProtectedRoute exact path="/MyAppointments" component={MyAppointments} />
         <Route component={NotFound} />

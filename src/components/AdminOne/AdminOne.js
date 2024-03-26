@@ -42,7 +42,7 @@ const AdminOne = () => {
         </NavLink>
       </li>
       <li>
-        <NavLink to="/BarberApplicationsForm" className="ul--li-a">
+        <NavLink to="/BarberApplicationData" className="ul--li-a">
           My  job Application
         </NavLink>
       </li>

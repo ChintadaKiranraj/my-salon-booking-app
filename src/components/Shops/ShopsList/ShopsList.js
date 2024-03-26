@@ -113,7 +113,7 @@ const Shops = () => {
           <div className="edit-delete-options">
             <>
               <FaEdit
-                className="edit-icon-style"
+                className="edit-icon-styles"
                 onClick={() => {
                   onEditShopData(shopid);
                 }}
@@ -121,7 +121,7 @@ const Shops = () => {
             </>
             <>
               <MdDeleteOutline
-                className="edit-icon-style"
+                className="edit-icon-styles"
                 onClick={() => {
                   onClickDelShop(shopid);
                 }}

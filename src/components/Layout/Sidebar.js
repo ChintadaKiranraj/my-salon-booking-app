@@ -19,11 +19,15 @@
 // };
 
 // export default Sidebar;
+
 import { NavLink } from "react-router-dom";
 import "./Layout.css";
 import { RiAdminLine } from "react-icons/ri";
 import AdminOne from "../AdminOne/AdminOne";
 import { useState, useEffect } from "react";
+import { FaScissors } from "react-icons/fa6";
+import { FaRegUser } from "react-icons/fa6";
+import { Barber, ShopOwner, User, getUserDetails } from "../Utilities/Utilities";
 
 const Sidebar = () => {
   const [isAdminVisible, setIsAdminVisible] = useState(false);
@@ -41,10 +45,30 @@ const Sidebar = () => {
     // Store isAdminVisible state in localStorage
     localStorage.setItem('isAdminVisible', JSON.stringify(!isAdminVisible));
   };
+const userType=getUserDetails().usertype;
+console.log("userType:",userType);
+
+const getTheCurrentUserIcon=(userType)=>{
+  switch(userType){
+    case ShopOwner():
+      return <><RiAdminLine/>ShopOwner</>
+    case Barber():
+      return <><FaScissors/>Barber
+      </>
+    case User():
+      return <><FaRegUser/> User
+      </>
+    default:
+      return null
+  }
+
+}
 
   return (
     <div className="Sidebar">
-      <span onClick={isAdminClicked} className="admin-icon"><RiAdminLine/>Admin</span>
+      <span onClick={isAdminClicked} className="admin-icon">{getTheCurrentUserIcon(userType)}</span>
+
+     
       {isAdminVisible && <AdminOne />}
     </div>
   );

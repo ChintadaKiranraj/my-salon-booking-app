@@ -6,7 +6,7 @@ import PersonIcon from "@material-ui/icons/Person";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
-import "./appointment.css";
+import "./Appointment.css";
 // import "../Welcome/welcome.css";
 // import React, { useState } from 'react';
 // import   {EachShop }  from './components/Shops';
@@ -16,7 +16,7 @@ import { getUserDetails } from "../../Utilities/Utilities";
 
 
 
-const BookingFormTwo = (  props) => {
+const Appointment = (  props) => {
   // const {buttonContent,isEditMode,userId} = props;
 
   // const formBtnContent=isEditMode?buttonContent:"BOOK AN APPOINTMENT";
@@ -273,7 +273,7 @@ const BookingFormTwo = (  props) => {
   );
 };
 
-export default BookingFormTwo;
+export default Appointment;
 // try{
 //   fetch(
 //     `http://localhost:4001/api/saloon-booking/${userId}/${shopId}/${ownerId}`,

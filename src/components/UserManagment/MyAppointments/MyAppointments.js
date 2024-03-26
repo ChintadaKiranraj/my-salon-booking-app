@@ -3,10 +3,11 @@ import DataTable from "react-data-table-component";
 
 import { FcViewDetails } from "react-icons/fc";
 import { MdDeleteOutline } from "react-icons/md";
+import { FaCircle } from "react-icons/fa6";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import { useHistory } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
-import BookingFormTwo from "../Appointment/appointment";
+
 import { getUserDetails } from "../../Utilities/Utilities";
 const btnContent = "UPDATE APPOINTMENT DATA";
 const MyAppointments = () => {
@@ -48,7 +49,54 @@ const confirmDelete=()=>{
     },
     { name: "Shopname", selector: (row) => row.shopname, sortable: true },
     { name: "Bokingdatetime", selector: (row) => row.bookingdatetime, sortable: true },
-    { name: "Status", selector: (row) => row.status, sortable: true },
+    // { name: "Status", selector: (row) => row.status, sortable: true },
+    {
+      name: "Status",
+      selector: (row) =>    (<>
+      {row.status}
+      <FaCircle className="circular-icon"/> 
+      </>)  
+      
+      
+      
+     ,
+      
+    
+      
+      sortable: true,
+      conditionalCellStyles: [
+        {
+          when: (row) => row.status === "pending",
+          style: {
+            color: "#007bff",
+            fontWeight: "600",
+            "&:hover": {
+              cursor: "pointer",
+            },
+          },
+        },
+        {
+          when: (row) => row.status === "cancelled",
+          style: {
+            color: "red",
+            fontWeight: "600",
+            "&:hover": {
+              cursor: "pointer",
+            },
+          },
+        },
+        {
+          when: (row) => row.status === "accepted",
+          style: {
+            color: "green",
+            fontWeight: "600",
+            "&:hover": {
+              cursor: "not-allowed",
+            },
+          },
+        },
+      ],
+    },
     {
         name: "Action",
         cell: (row) => (
@@ -89,4 +137,5 @@ const confirmDelete=()=>{
 };
 
 // export default MyAppointments;
+
 export default withRouter(MyAppointments);

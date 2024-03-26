@@ -16,10 +16,15 @@ const Barber = () => {
   const userDetails=  getUserDetails()
     const ownerid = userDetails.userid
     const status = "accepted";
+    let userType = userDetails.usertype;
+    if (userDetails.usertype === "Shop Owner") {
+      userType = "shopowner";
+    }
+    console.log("user_type",userType)
     try {
-    
+     
       const response = await fetch(
-        `http://localhost:4001/api/get-barbers-by-shoownerId/${ownerid}/${status}`
+        `http://localhost:4001/api/barbers-list/${ownerid}/${status}/${userType}`
       );
       const jsonData = await response.json();
       setBarbersData(jsonData.data);
