@@ -31,22 +31,7 @@
   margin-bottom: 10px;
 }
 
-.icons {
-  font-size: 90px;
-  margin-right: 10px;
 
-  height: 35px !important;
-  width: 35px !important;
-  /* background-color: red; */
-  margin: 5px;
-}
-.icons:hover {
-  color: #007bff;
-  border-radius: 4px;
-  cursor: pointer;
-  border-radius: 3px;
-  border-style: solid;
-}
 
 .modal-contents h2 {
   text-align: center;
@@ -66,27 +51,6 @@
   margin: 10px;
 }
 
-.icons {
-  position: relative;
-}
 
-.icons::after {
-  content: attr(title);
-  position: absolute;
-  bottom: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 4px 8px;
-  background-color: black;
-  /* color: white; */
-  border-radius: 4px;
-  font-size: 12px;
-  white-space: nowrap;
-  opacity: 0;
-  transition: opacity 0.3s;
-  border-radius: 3px;
-}
 
-.icons:hover::after {
-  opacity: 1;
-}
+

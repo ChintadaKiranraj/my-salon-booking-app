@@ -37,7 +37,7 @@ import ShpoRegistraction from "./components/ShopsTwo/shopTwo";
 // import BookedAppointments from "./components/BookedAppointments";
 import EditShopsData from "./components/Shops/EditShops/EditShopsData";
 import MyAppointments from "./components/UserManagment/MyAppointments/MyAppointments";
-import Appointment from "./components/UserManagment/Appointment/appointment";
+import Appointment from "./components/UserManagment/AppointmentForm/appointment";
 
 
 

@@ -1,25 +1,11 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import IconButton from "@material-ui/core/IconButton";
-import Tooltip from "@material-ui/core/Tooltip";
-import PersonIcon from "@material-ui/icons/Person";
-import DeleteIcon from "@material-ui/icons/Delete";
 import { ToastContainer, toast } from "react-toastify";
-import axios from "axios";
 import "./Appointment.css";
-// import "../Welcome/welcome.css";
-// import React, { useState } from 'react';
-// import   {EachShop }  from './components/Shops';
-// import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { getUserDetails } from "../../Utilities/Utilities";
 
-
-
-const Appointment = (  props) => {
-  // const {buttonContent,isEditMode,userId} = props;
-
-  // const formBtnContent=isEditMode?buttonContent:"BOOK AN APPOINTMENT";
+const AppointmentForm = () => {
   const salonServices = [
     "kiranraj",
     "Haircut",
@@ -31,8 +17,6 @@ const Appointment = (  props) => {
     "Massage",
   ];
 
-  
-  const [isBooingOrUpdation, setIsBookingOrUpdation] = useState(true);
   const [salonShopsList, setSalonShopsList] = useState([]);
   const [shopsLocations, setShopsLocations] = useState([]);
   const [shopIdOwnerId, setShopIdOwnerId] = useState({
@@ -49,8 +33,6 @@ const Appointment = (  props) => {
     fetchAllLocation();
     // fetchShops()
   }, []);
-
-  
 
   const [salonBookingData, setSalonBookingData] = useState({
     datetime: "",
@@ -102,34 +84,10 @@ const Appointment = (  props) => {
       });
     }
   };
-  const EachShop = (props) => {
-    const { shop } = props;
-    const {
-      shopid,
-      shopname,
-      location,
-      ownername,
-      phonenumber,
-      userid,
-      owneremail,
-    } = shop;
-    return (
-      <li className="service-card">
-        <p>shopid: {shopid}</p>
-        <p>userid: {userid}</p>
-        <p>shopname: {shopname}</p>
-        <p>location: {location}</p>
-        <p>ownername: {ownername}</p>
-        <p>owneremail: {owneremail}</p>
-        <p>shop Phone number: {phonenumber}</p>
-      </li>
-    );
-  };
 
   const bookAnAppointment = async (appointmentData) => {
     debugger;
     const userId = getUserDetails().userid;
-    //get this user id from the login uaser
     const { shopId, ownerId } = shopIdOwnerId;
     console.log("appointmentData", appointmentData);
     console.log("userId", userId);
@@ -250,60 +208,14 @@ const Appointment = (  props) => {
           ))}
         </select>
         <span style={{ color: "red" }}>{errors.saloonService}</span>
-        <button  type="submit" className="form-btn">Submit Appointment</button>
-        {/* form-btn */}
-          {/* <button type="submit" className={!isEditMode ?"form-btn":""}> */}
-           {/* {formBtnContent} */}
-          {/* </button> */}
-          {/* { isEditMode &&<button className="mr-auto" type="button">Cancle</button>} */}
+        <button type="submit" className="form-btn">
+          Submit Appointment
+        </button>
       </form>
-     
-   
-
-      {/* {true && (
-        <ul>
-          {salonShopsList.map((shop) => (
-            <EachShop key={shop.shopid} shop={shop} />
-          ))}
-        </ul>
-      )} */}
 
       <ToastContainer />
     </div>
   );
 };
 
-export default Appointment;
-// try{
-//   fetch(
-//     `http://localhost:4001/api/saloon-booking/${userId}/${shopId}/${ownerId}`,
-//     {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//       body: JSON.stringify(salonBookingData),
-//     }
-//   )
-//     .then((response) => response.json())
-//     .then((data) => {
-//       console.log("Success:", data);
-//     })
-//     .catch((error) => {
-//       console.error("Error:", error);
-//     });
-// }catch(exception){
-//   toast.error("Error in booking appointment")
-// }
-// const ShopDetails=(shopDetails)=>{
-  //   console.log("shopDetails at shop card ",shopDetails)
-  //  const {location,owneremail,ownername,phonenumber,shopid,shopname,userid}=shopDetails;
-  //   return(
-  //     <div className="card">
-  //     <h2>{shopname}</h2>
-  //     <p><span className="highlight">Owner:</span> {ownername}</p>
-  //     <p><span className="highlight">Email:</span> {owneremail}</p>
-  //     <p><span className="highlight">Location:</span> {location}</p>
-  //     <p><span className="highlight">Phone:</span> {phonenumber}</p>
-  //   </div>
-  // )}
+export default AppointmentForm;
