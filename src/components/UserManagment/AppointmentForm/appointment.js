@@ -143,7 +143,7 @@ const AppointmentForm = () => {
     <div>
       <h2 className="form-title">Book Your Beauty Appointment</h2>
       <form onSubmit={onSubmitSaloonBooking} className="appoin-form">
-        <label>Appointment Date & Time:</label>
+        <label>Appointment Date & Time*:</label>
         <input
           className="input-field"
           type="datetime-local"
@@ -154,7 +154,8 @@ const AppointmentForm = () => {
         />
 
         <span style={{ color: "red" }}>{errors.datetime}</span>
-        <label>Select Location:</label>
+        <br />
+        <label>Select Location*:</label>
 
         <select
           className="input-field"
@@ -172,7 +173,8 @@ const AppointmentForm = () => {
           ))}
         </select>
         <span style={{ color: "red" }}>{errors.location}</span>
-        <label>Select Salon Shop:</label>
+        <br />
+        <label>Select Salon Shop*:</label>
 
         <select
           className="input-field"
@@ -190,8 +192,9 @@ const AppointmentForm = () => {
           ))}
         </select>
         <span style={{ color: "red" }}>{errors.shopName}</span>
+        <br />
 
-        <label>Select Salon Service:</label>
+        <label>Select Salon Service*:</label>
         <select
           className="input-field"
           value={salonBookingData.saloonService}

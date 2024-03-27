@@ -50,7 +50,7 @@ const MyAppointments = () => {
   const columns = [
     {
       name: "Location",
-      selector: (row) => row.location + " " + row.lastname,
+      selector: (row) => row.location,
       sortable: true,
     },
     { name: "Shopname", selector: (row) => row.shopname, sortable: true },
