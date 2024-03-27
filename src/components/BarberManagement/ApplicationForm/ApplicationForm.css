@@ -1,0 +1,56 @@
+.barber-application-form-container {
+  display: flex;
+  flex-direction: column;
+  /* background-color: red; */
+  padding: 20px;
+}
+.barber-application-form-container h3 {
+  text-align: center;
+  margin-bottom: 10px;
+  color: #007bff;
+  font-size: 20px;
+}
+.experience-container {
+  display: flex;
+  flex-direction: row;
+  /* background-color: red; */
+  width: 50%;
+}
+.label-container {
+  /* background-color: blue; */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  width: 400px;
+}
+
+.label {
+  font-size: 12px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+
+
+.modal-contents h2 {
+  text-align: center;
+  margin-bottom: 10px;
+  color: white;
+}
+.modal-contents p {
+  text-align: center;
+  margin-bottom: 10px;
+  color: white;
+}
+.modal-button-container {
+  text-align: center;
+}
+
+.modal-button {
+  margin: 10px;
+}
+
+
+
+

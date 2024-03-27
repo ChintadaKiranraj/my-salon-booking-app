@@ -1,0 +1,96 @@
+.user-card {
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  /* background: linear-gradient(to right, #eaedef, #87ceeb);
+  background: linear-gradient(to right, #007bff, #00246b); */
+  /* background: linear-gradient(to right, #007bff, #87ceeb); */
+  background: linear-gradient(to right, #b3e0ff, #e6f7ff);
+
+}
+
+.title-profile-container {
+  display: flex;
+  align-items: center;
+
+  margin-bottom: 0px;
+  padding: 5px;
+}
+
+.user-full-name {
+  margin-right: 10px;
+  color: #333;
+  font-size: 15px !important;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-bottom: 0px;
+}
+
+.user-info {
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+}
+
+.card-text {
+  margin: 5px 0;
+  color: #555;
+}
+
+.highlight {
+  font-weight: bold;
+  color: #007bff;
+}
+
+.user-card:hover {
+  border-color: #007bff;
+  border-style: solid;
+}
+
+.user-info-item {
+  margin-bottom: 10px;
+}
+
+.highlight {
+  font-weight: bold;
+  color: #007bff;
+}
+
+.edit-user-account {
+  font-size: 30px;
+  color: black;
+  margin-left: 10px;
+  border-radius: 6px;
+  background: linear-gradient(to right, #eaedef, #87ceeb);
+}
+
+
+.edit-user-account-active{
+  cursor: pointer;
+  color: green;
+  border-radius: 6px;
+  font-size: 30px;
+
+  margin-left: 10px;
+  box-shadow: 0 2px 4px rgba(1, 0, 0, 0.4);
+}
+.edit-user-account:hover {
+ 
+  cursor: pointer;
+  color: blue;
+  box-shadow: 0 2px 4px rgba(1, 0, 0, 0.4);
+}
+.account-title-Edit-icon-container {
+ 
+  text-align: center;
+  width: 100%;
+  margin-bottom: 0px;
+  color: #007bff;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-transform: capitalize;
+}

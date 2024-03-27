@@ -1,0 +1,17 @@
+.MdDeleteOutline-CiEdit {
+  font-size: 25px;
+  margin-right: 10px;
+  margin: 5px;
+}
+.MdDeleteOutline-CiEdit:hover {
+  color: #007bff;
+  border-radius: 4px;
+  cursor: pointer;
+  border-radius: 3px;
+  border-style: solid;
+}
+
+
+.circular-icon{
+  margin-left: 5px;
+}

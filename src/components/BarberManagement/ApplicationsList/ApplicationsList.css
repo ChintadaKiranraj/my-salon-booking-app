@@ -1,0 +1,106 @@
+.barber-application-form-container {
+  display: flex;
+  flex-direction: column;
+ 
+  padding: 20px;
+}
+.barber-application-form-container h3 {
+  text-align: center;
+  margin-bottom: 10px;
+  color: #007bff;
+  font-size: 20px;
+}
+.experience-container {
+  display: flex;
+  flex-direction: row;
+ 
+  width: 50%;
+}
+.label-container {
+ 
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  width: 400px;
+}
+
+.label {
+  font-size: 12px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.vie-del-icons {
+  font-size: 50px;
+  margin-right: 10px;
+
+  height: 20px ;
+  width: 20px;
+  
+  margin: 5px;
+}
+.vie-del-icons:hover {
+  color: #007bff;
+  border-radius: 4px;
+  cursor: pointer;
+  border-radius: 3px;
+  border-style: solid;
+}
+
+.modalss {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+
+  background-color: rgba(0, 0, 0, 0.5);
+
+  padding: 20px;
+  border: 1px solid #888;
+
+  border-radius: 10px;
+  overflow: auto;
+
+  transition: all 0.3s ease;
+}
+
+.modal-contents {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  max-width: 400px;
+  border-radius: 10px;
+  border-style: solid;
+  background: linear-gradient(to right, #007bff, #87ceeb);
+  border-style: solid;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+.small-popup {
+  max-width: 300px;
+}
+
+.large-content {
+  min-width: 600px;
+}
+.modal-contents h2 {
+  text-align: center;
+  margin-bottom: 10px;
+  color: white;
+}
+.modal-contents p {
+  text-align: center;
+  margin-bottom: 10px;
+  color: white;
+}
+.modal-button-container {
+  text-align: center;
+}
+
+.modal-button {
+  margin: 10px;
+}
