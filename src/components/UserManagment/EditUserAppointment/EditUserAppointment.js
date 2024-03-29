@@ -8,10 +8,11 @@ import { Loader, User, getUserDetails } from "../../Utilities/Utilities";
 import "../../Utilities/Utilities.css";
 
 const EditUserAppointment = (props) => {
+  debugger;
   const { userAppointmentsEditData, setUserAppointmentsEditData } = props;
 
   const { appointment } = userAppointmentsEditData;
-  // console.log("appointment ____XXXXXXXXXX", appointment);
+  console.log("appointment ____XXXXXXXXXX", appointment);
 
   //1.once the user click on the cancel button we are setting the isEditAppointmentClicked
   //2.to false to close the edit user appointment form
@@ -26,6 +27,7 @@ const EditUserAppointment = (props) => {
   const [shopsLocations, setShopsLocations] = useState([]);
   const [salonShops, setSalonShopsList] = useState([]);
   const [isDataLoaded, setDataLoaded] = useState(false);
+  const [myAppointments, setMyAppointment] = useState({ ...appointment });
   const [shopIdOwnerId, setShopIdOwnerId] = useState({
     shopId: "",
     ownerId: "",
@@ -61,6 +63,7 @@ const EditUserAppointment = (props) => {
     }
   };
   const fetchShopNamesByLocation = async (location = appointment.location) => {
+    debugger
     console.log("location", location);
 
     try {
@@ -72,18 +75,16 @@ const EditUserAppointment = (props) => {
       console.log("fetchShopNamesByLocation");
 
       console.log(responseData.data);
-    } catch (e) {
-      toast.error(e);
-
-      if (e.message === "Network error") {
-        toast.error(
-          "Network error occurred. Please check your internet connection."
-        );
-      } else {
-        toast.error(
-          "Error in fetching shop names by location. Please try again later."
-        );
+debugger
+      if (responseData.code === 200) {
+        setMyAppointment({...myAppointments,
+          shopname : responseData.data[0].shopname})
       }
+
+    } catch (e) {
+      toast.error(
+        "Error in fetching shop names by location. Please try again later."
+      );
     }
   };
   useEffect(() => {
@@ -94,17 +95,20 @@ const EditUserAppointment = (props) => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setUserAppointmentsEditData({
-      ...userAppointmentsEditData,
-      appointment: {
-        ...appointment,
-        [name]: value,
-      },
+
+
+
+    
+    setMyAppointment({
+      ...myAppointments,
+      [name]: value,
     });
-    if (name === "location" && value.trim() !== "") {
-      fetchShopNamesByLocation(value);
-    }
-    if (name === "shopName" && value.trim() !== "") {
+
+    // if (name === "location" && value.trim() !== "") {
+    //   fetchShopNamesByLocation(value);
+    //   // setMyAppointment({ ...myAppointments, shopname: "" });
+    // }
+    if (name === "shopname" && value.trim() !== "") {
       salonShops.some((shop) => {
         if (shop.shopname === value) {
           setShopIdOwnerId({ shopId: shop.shopid, ownerId: shop.ownerid });
@@ -113,9 +117,14 @@ const EditUserAppointment = (props) => {
     }
   };
   const UpdateUserAppontment = async () => {
-    const { appointment } = userAppointmentsEditData;
-    const updatedTime = !showDateTimeInput ? null : appointment.bookingdatetime;
-    const updatedAppointment = { ...appointment, bookingdatetime: updatedTime };
+    // const { appointment } = userAppointmentsEditData;
+    const updatedTime = !showDateTimeInput
+      ? null
+      : myAppointments.bookingdatetime;
+    const updatedAppointment = {
+      ...myAppointments,
+      bookingdatetime: updatedTime,
+    };
 
     console.log("updatedAppointment--xxxxxxxxx", updatedAppointment);
 
@@ -153,6 +162,11 @@ const EditUserAppointment = (props) => {
   const onClickDateChange = () => {
     setShowDateTimeInput(!showDateTimeInput);
   };
+
+  const handleLocationChange = (selectedLocation) => {
+    fetchShopNamesByLocation(selectedLocation);
+  };
+
   return (
     <div>
       {/* we are displaying this form based on the if all the data is loaded  or else we are showing the loader*/}
@@ -173,8 +187,11 @@ const EditUserAppointment = (props) => {
                   <select
                     name="location"
                     id="location"
-                    defaultValue={appointment.location || "Select Location"}
-                    onChange={handleChange}
+                    defaultValue={myAppointments.location}
+                    onChange={(e) => {
+                      handleChange(e);
+                      handleLocationChange(e.target.value);
+                    }}
                   >
                     {shopsLocations.map((locationObj, index) => (
                       <option key={index} value={locationObj.location}>
@@ -185,12 +202,16 @@ const EditUserAppointment = (props) => {
                 </div>
                 <div className="col-6">
                   <label>shopname</label>
+
                   <select
                     name="shopname"
                     id="shopname"
-                    defaultValue={appointment.shopname}
+                    defaultValue={myAppointments.shopname}
                     onChange={handleChange}
                   >
+                    <option value="" disabled>
+                      Choose a shopname
+                    </option>
                     {salonShops.map((service, index) => (
                       <option key={index} value={service.shopname}>
                         {service.shopname}
@@ -207,14 +228,14 @@ const EditUserAppointment = (props) => {
                     type="datetime-local"
                     name="bookingdatetime"
                     id="bookingdatetime"
-                    value={appointment.bookingdatetime}
+                    value={myAppointments.bookingdatetime}
                     onChange={handleChange}
                     style={{ display: showDateTimeInput ? "block" : "none" }}
                   />
 
                   <input
                     id="input-date-time"
-                    value={appointment.bookingdatetime}
+                    value={myAppointments.bookingdatetime}
                     onChange={onClickDateChange}
                     style={{ display: showDateTimeInput ? "none" : "block" }}
                   />
@@ -226,7 +247,7 @@ const EditUserAppointment = (props) => {
                     name="service"
                     id="service"
                     defaultValue={
-                      appointment.saloon_service || "Select service"
+                      myAppointments.saloon_service || "Select service"
                     }
                     onChange={handleChange}
                   >

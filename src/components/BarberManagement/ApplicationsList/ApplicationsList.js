@@ -52,18 +52,15 @@ const BarberApplicationData = () => {
     let userType = userDetails.usertype;
     if (userType === "Shop Owner") {
       userType = "shopowner";
-    } 
+    }
 
-    
-    console.log(userType,"usertype at the barber application data page")
+    console.log(userType, "usertype at the barber application data page");
 
-   
     fetch(
       `http://localhost:4001/api/barbers-list/${ownerid}/${status}/${userType}`
     )
       .then((response) => response.json())
       .then((jsonData) => {
-        console.log("XXXXXXXXXXXXXXXxxx");
         console.log(jsonData.data);
         setBarberapplications(jsonData.data);
       });
@@ -83,17 +80,13 @@ const BarberApplicationData = () => {
     // { name: "Status", selector: (row) => row.status, sortable: true },
     {
       name: "Status",
-      selector: (row) =>    (<>
-      {row.status}
-      <FaCircle className="circular-icon"/> 
-      </>)  
-      
-      
-      
-     ,
-      
-    
-      
+      selector: (row) => (
+        <>
+          {row.status}
+          <FaCircle className="circular-icon" />
+        </>
+      ),
+
       sortable: true,
       conditionalCellStyles: [
         {

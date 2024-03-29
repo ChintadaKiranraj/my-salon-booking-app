@@ -27,9 +27,9 @@ const BarberApplicationsForm = () => {
     const fetchShopsLocations = async () => {
       const response = await fetch("http://localhost:4001/api/shops-locations");
       const shopsFromServer = await response.json();
-      setShopsLocations(shopsFromServer.shopsLocations);
-      console.log("shopsFromServerXXXXXXXXXXXXXXXXXXXXX", shopsFromServer.shopsLocations);
-      console.log(shopsFromServer.shopsLocations);
+      setShopsLocations(shopsFromServer.data);
+      console.log("shopsFromServerXXXXXXXXXXXXXXXXXXXXX", shopsFromServer.data);
+      console.log(shopsFromServer.data);
     };
     fetchShopsLocations();
   }, []);
