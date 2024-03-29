@@ -12,15 +12,18 @@ import { withRouter } from "react-router-dom";
 import { getUserDetails } from "../../Utilities/Utilities";
 import Appointment from "../AppointmentForm/appointment";
 import EditUserAppointment from "../EditUserAppointment/EditUserAppointment";
-import "./MyAppointments.css";  
-
+import "./MyAppointments.css";
+import { ToastContainer, toast } from "react-toastify";
 
 const MyAppointments = () => {
   useEffect(() => {
     fetchMyAppointments();
   }, []);
 
-  const [userAppointmentEditMode, setUserAppointmentEditMode] = useState(false);
+  const [userAppointmentsEditData, setUserAppointmentsEditData] = useState({
+    editAppointment: false,
+    appointment: null,
+  });
 
   const [appointments, setAppointments] = useState([]);
 
@@ -32,19 +35,41 @@ const MyAppointments = () => {
         `http://localhost:4001/api/get-users-appointments/${userId}`
       );
       const responseJson = await response.json();
-      console.log("usersFromServer", responseJson);
+      console.log("User appointments XXXXX", responseJson);
       setAppointments(responseJson.data);
     } catch (error) {
       console.log("Error in fetching users", error);
     }
   };
 
-  const handleEdit = () => {
-    setUserAppointmentEditMode(true);
+  //on click edit appointment we are sending the data to the edit user appointment
+  const onClickEditAppointment = (appointment) => {
+    setUserAppointmentsEditData({
+      ...userAppointmentsEditData,
+      isEditAppointmentClicked: true,
+      appointment,
+    });
     localStorage.setItem("userAppointmentEditMode", true);
   };
-  const onClickDelAppointment = () => {
+  const onClickDelAppointment = async (myAppointment) => {
+   
     console.log("Delete");
+    try {
+      const response = await fetch(
+        `http://localhost:4001/api/delete-appointment/${myAppointment.bookingid}`,
+        {
+          method: "DELETE",
+        }
+      );
+      const responseJson = await response.json();
+
+      if (responseJson.code === 200) {
+        toast.success("Appointment deleted successfully");
+        fetchMyAppointments();
+      }
+    } catch (e) {
+      toast.error("Error in deleting appointment", e);
+    }
   };
 
   const columns = [
@@ -86,7 +111,6 @@ const MyAppointments = () => {
           style: {
             color: "red",
             fontWeight: "600",
-            
           },
         },
         {
@@ -94,7 +118,6 @@ const MyAppointments = () => {
           style: {
             color: "green",
             fontWeight: "600",
-            
           },
         },
       ],
@@ -106,7 +129,7 @@ const MyAppointments = () => {
           <CiEdit
             className="MdDeleteOutline-CiEdit"
             title="Edit"
-            onClick={() => handleEdit(row)}
+            onClick={() => onClickEditAppointment(row)}
           />
           <MdDeleteOutline
             className="MdDeleteOutline-CiEdit"
@@ -117,6 +140,7 @@ const MyAppointments = () => {
       ),
     },
   ];
+
   return (
     <div>
       <DataTable
@@ -132,12 +156,15 @@ const MyAppointments = () => {
         fixedHeader={true}
         //   fixedHeaderScrollHeight={"30px"}
       ></DataTable>
-      {userAppointmentEditMode && (
+         
+      {userAppointmentsEditData.isEditAppointmentClicked && (
         <EditUserAppointment
-          setUserAppointmentEditMode={setUserAppointmentEditMode}
+          setUserAppointmentsEditData={setUserAppointmentsEditData}
+          userAppointmentsEditData={userAppointmentsEditData}
+          
         />
       )}
-      
+     <ToastContainer/>
     </div>
   );
 };

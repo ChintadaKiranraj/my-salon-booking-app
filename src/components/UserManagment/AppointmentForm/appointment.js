@@ -6,32 +6,28 @@ import "react-datepicker/dist/react-datepicker.css";
 import { getUserDetails } from "../../Utilities/Utilities";
 
 const AppointmentForm = () => {
-  const salonServices = [
-    "kiranraj",
-    "Haircut",
-    "Shampoo and Blow Dry",
-    "Hair Color",
-    "Manicure",
-    "Pedicure",
-    "Facial",
-    "Massage",
-  ];
-
   const [salonShopsList, setSalonShopsList] = useState([]);
+  const [salonServices, setSalonServices] = useState([]);
   const [shopsLocations, setShopsLocations] = useState([]);
   const [shopIdOwnerId, setShopIdOwnerId] = useState({
     shopId: "",
     ownerId: "",
   });
   const fetchAllLocation = async () => {
-    const response = await fetch("http://localhost:4001/api/shops-locations");
-    const shopsFromServer = await response.json();
-    setShopsLocations(shopsFromServer.shopsLocations);
-    console.log(shopsFromServer.shopsLocations);
+    try {
+      const response = await fetch("http://localhost:4001/api/shops-locations");
+      const shopsFromServer = await response.json();
+      setShopsLocations(shopsFromServer.data);
+      console.log(shopsFromServer.data);
+    } catch (e) {
+      debugger;
+      toast.error(e);
+      toast.error("Error in fetching locations", e);
+    }
   };
   useEffect(() => {
     fetchAllLocation();
-    // fetchShops()
+    salonServicess();
   }, []);
 
   const [salonBookingData, setSalonBookingData] = useState({
@@ -52,14 +48,29 @@ const AppointmentForm = () => {
   });
   const fetchShopNamesByLocation = async (location) => {
     console.log("location", location);
-    const response = await fetch(
-      `http://localhost:4001/api/shopname-by-location/${location}`
-    );
-    const responseData = await response.json();
-    setSalonShopsList(responseData.data);
-    console.log("fetchShopNamesByLocation");
 
-    console.log(responseData.data);
+    try {
+      const response = await fetch(
+        `http://localhost:4001/api/shopname-by-location/${location}`
+      );
+      const responseData = await response.json();
+      setSalonShopsList(responseData.data);
+      console.log("fetchShopNamesByLocation");
+
+      console.log(responseData.data);
+    } catch (e) {
+      toast.error(e);
+
+      if (e.message === "Network error") {
+        toast.error(
+          "Network error occurred. Please check your internet connection."
+        );
+      } else {
+        toast.error(
+          "Error in fetching shop names by location. Please try again later."
+        );
+      }
+    }
   };
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -86,13 +97,11 @@ const AppointmentForm = () => {
   };
 
   const bookAnAppointment = async (appointmentData) => {
-    debugger;
+   
     const userId = getUserDetails().userid;
     const { shopId, ownerId } = shopIdOwnerId;
     console.log("appointmentData", appointmentData);
-    console.log("userId", userId);
-    console.log("shopId", shopId);
-    console.log("ownerId", ownerId);
+  
 
     try {
       const response = await fetch(
@@ -138,7 +147,18 @@ const AppointmentForm = () => {
       bookAnAppointment(salonBookingData);
     }
   };
+  const salonServicess = async () => {
+    try {
+      const response = await fetch("http://localhost:4001/api/salonServicess");
+      const responseJson = await response.json();
 
+      if (responseJson.code === 200) {
+        setSalonServices(responseJson.data);
+      }
+    } catch (e) {
+      toast.error("Error in fetching locations", e);
+    }
+  };
   return (
     <div>
       <h2 className="form-title">Book Your Beauty Appointment</h2>
@@ -205,8 +225,8 @@ const AppointmentForm = () => {
             Choose a salon service
           </option>
           {salonServices.map((service, index) => (
-            <option key={index} value={service}>
-              {service}
+            <option key={index} value={service.servicename}>
+              {service.servicename}
             </option>
           ))}
         </select>

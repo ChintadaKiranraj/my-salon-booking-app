@@ -4,9 +4,6 @@ import LoginForm from "./components/LoginForm";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import NotFound from "./components/NotFound";
 import ViewOnly from "./components/Viewonly";
-import "./App.css";
-import "@coreui/coreui/dist/css/coreui.min.css";
-import "bootstrap/dist/css/bootstrap.min.css";
 import Barber from "./components/BarberManagement/Barber/Barber";
 import BarberApplicationsForm from "./components/BarberManagement/ApplicationForm/ApplicationForm";
 import BarberApplicationData from "./components/BarberManagement/ApplicationsList/ApplicationsList";
@@ -21,6 +18,9 @@ import AdminOne from "./components/AdminOne/AdminOne";
 import ShpoRegistraction from "./components/ShopsTwo/shopTwo";
 import MyAppointments from "./components/UserManagment/MyAppointments/MyAppointments";
 import Appointment from "./components/UserManagment/AppointmentForm/appointment";
+import "./App.css";
+import "@coreui/coreui/dist/css/coreui.min.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const App = () => (
   <Router>

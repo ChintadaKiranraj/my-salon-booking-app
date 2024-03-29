@@ -1,58 +1,203 @@
-import React, { useState } from "react";
-import DataTable from "react-data-table-component";
-import { FaCircle } from "react-icons/fa6";
-import { FcViewDetails } from "react-icons/fc";
-import { GrFormView } from "react-icons/gr";
-import { MdDeleteOutline } from "react-icons/md";
+import React, { useEffect, useState } from "react";
+
 import { ToastContainer, toast } from "react-toastify";
 import { IoCloseCircleOutline } from "react-icons/io5";
-import { TiTick } from "react-icons/ti";
-import { CiEdit } from "react-icons/ci";
 import { FiSave } from "react-icons/fi";
 import { Loader, User, getUserDetails } from "../../Utilities/Utilities";
 
 import "../../Utilities/Utilities.css";
 
 const EditUserAppointment = (props) => {
-  const { setUserAppointmentEditMode } = props;
-  const [isLoading, setLoading] = useState(false);
+  const { userAppointmentsEditData, setUserAppointmentsEditData } = props;
 
-  const viewAppointments = () => {
-    setUserAppointmentEditMode(false);
+  const { appointment } = userAppointmentsEditData;
+  // console.log("appointment ____XXXXXXXXXX", appointment);
+
+  //1.once the user click on the cancel button we are setting the isEditAppointmentClicked
+  //2.to false to close the edit user appointment form
+  const cancleEditAppontment = () => {
+    setUserAppointmentsEditData({
+      ...userAppointmentsEditData,
+      isEditAppointmentClicked: false,
+    });
   };
+  const [salonServices, setSalonServices] = useState([]);
+  const [showDateTimeInput, setShowDateTimeInput] = useState(false);
+  const [shopsLocations, setShopsLocations] = useState([]);
+  const [salonShops, setSalonShopsList] = useState([]);
+  const [isDataLoaded, setDataLoaded] = useState(false);
+  const [shopIdOwnerId, setShopIdOwnerId] = useState({
+    shopId: "",
+    ownerId: "",
+  });
+  const fetchAllLocation = async () => {
+    try {
+      const response = await fetch("http://localhost:4001/api/shops-locations");
+      const responseJson = await response.json();
 
+      if (responseJson.code === 200) {
+        setShopsLocations(responseJson.data);
+        // toast.success("Locations fetched successfully");
+      }
+    } catch (e) {
+      toast.error("Error in fetching locations", e);
+    }
+  };
+  const salonServicess = async () => {
+    try {
+      const response = await fetch("http://localhost:4001/api/salonServicess");
+      const responseJson = await response.json();
+
+      // console.log("salonServicess XX", responseJson.data);
+      if (responseJson.code === 200) {
+        setSalonServices(responseJson.data);
+        if (shopsLocations.length > 0 && salonServices.length > 0) {
+          setDataLoaded(true);
+        }
+        // toast.success("salonServicess fetched successfully");
+      }
+    } catch (e) {
+      toast.error("Error in fetching locations", e);
+    }
+  };
+  const fetchShopNamesByLocation = async (location = appointment.location) => {
+    console.log("location", location);
+
+    try {
+      const response = await fetch(
+        `http://localhost:4001/api/shopname-by-location/${location}`
+      );
+      const responseData = await response.json();
+      setSalonShopsList(responseData.data);
+      console.log("fetchShopNamesByLocation");
+
+      console.log(responseData.data);
+    } catch (e) {
+      toast.error(e);
+
+      if (e.message === "Network error") {
+        toast.error(
+          "Network error occurred. Please check your internet connection."
+        );
+      } else {
+        toast.error(
+          "Error in fetching shop names by location. Please try again later."
+        );
+      }
+    }
+  };
+  useEffect(() => {
+    fetchAllLocation();
+    salonServicess();
+    fetchShopNamesByLocation();
+  }, []);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUserAppointmentsEditData({
+      ...userAppointmentsEditData,
+      appointment: {
+        ...appointment,
+        [name]: value,
+      },
+    });
+    if (name === "location" && value.trim() !== "") {
+      fetchShopNamesByLocation(value);
+    }
+    if (name === "shopName" && value.trim() !== "") {
+      salonShops.some((shop) => {
+        if (shop.shopname === value) {
+          setShopIdOwnerId({ shopId: shop.shopid, ownerId: shop.ownerid });
+        }
+      });
+    }
+  };
+  const UpdateUserAppontment = async () => {
+    const { appointment } = userAppointmentsEditData;
+    const updatedTime = !showDateTimeInput ? null : appointment.bookingdatetime;
+    const updatedAppointment = { ...appointment, bookingdatetime: updatedTime };
+
+    console.log("updatedAppointment--xxxxxxxxx", updatedAppointment);
+
+    try {
+      const response = await fetch(
+        `http://localhost:4001/api/updatye-booking`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(updatedAppointment),
+        }
+      );
+      const JsonData = await response.json();
+      console.log("Updated the user appointment -----12334", JsonData);
+
+      if (JsonData.status === true && JsonData.code === 200) {
+        toast.success(JsonData.message);
+
+        setTimeout(() => {
+          setUserAppointmentsEditData({
+            ...userAppointmentsEditData,
+            isEditAppointmentClicked: false,
+          });
+        }, 1000);
+      }
+    } catch (exception) {
+      toast.error("Error in update an  appointment", exception);
+    }
+  };
+  setTimeout(() => {
+    setDataLoaded(true);
+  }, 1000);
+  const onClickDateChange = () => {
+    setShowDateTimeInput(!showDateTimeInput);
+  };
   return (
     <div>
-      <div className="modalss">
-        {isLoading ? (
+      {/* we are displaying this form based on the if all the data is loaded  or else we are showing the loader*/}
+      {!isDataLoaded ? (
+        <div className="modalss">
           <div className="loader-modal-contents">
             <Loader />
           </div>
-        ) : (
+        </div>
+      ) : (
+        <div className="modalss">
           <div className="modal-contents large-content">
             <h2>Edit user application Details</h2>
             <form>
               <div className="row">
                 <div className="col-6">
                   <label>location</label>
-                  <select name="location" id="location">
-                <option value="location1">Location 1</option>
-                <option value="location2">Location 2</option>
-                <option value="location3">Location 3</option>
-             
-            </select>
+                  <select
+                    name="location"
+                    id="location"
+                    defaultValue={appointment.location || "Select Location"}
+                    onChange={handleChange}
+                  >
+                    {shopsLocations.map((locationObj, index) => (
+                      <option key={index} value={locationObj.location}>
+                        {locationObj.location}
+                      </option>
+                    ))}
+                  </select>
                 </div>
                 <div className="col-6">
                   <label>shopname</label>
-                  <select name="shopname" id="shopname">
-                <option value="shop1">Shop 1</option>
-                <option value="shop2">Shop 2</option>
-                <option value="shop3">Shop 3</option>
-              
-            </select>     
-                       </div>
-
-               
+                  <select
+                    name="shopname"
+                    id="shopname"
+                    defaultValue={appointment.shopname}
+                    onChange={handleChange}
+                  >
+                    {salonShops.map((service, index) => (
+                      <option key={index} value={service.shopname}>
+                        {service.shopname}
+                      </option>
+                    ))}
+                  </select>
+                </div>
               </div>
 
               <div className="row">
@@ -62,36 +207,58 @@ const EditUserAppointment = (props) => {
                     type="datetime-local"
                     name="bookingdatetime"
                     id="bookingdatetime"
-                    value={"2024-03-23T09:38:00.000Z"}
+                    value={appointment.bookingdatetime}
+                    onChange={handleChange}
+                    style={{ display: showDateTimeInput ? "block" : "none" }}
+                  />
+
+                  <input
+                    id="input-date-time"
+                    value={appointment.bookingdatetime}
+                    onChange={onClickDateChange}
+                    style={{ display: showDateTimeInput ? "none" : "block" }}
                   />
                 </div>
 
                 <div className="col-6">
-                <label>Service</label>
-                <select name="service" id="service">
-                <option value="shop1">service1</option>
-                <option value="shop2">servic2</option>
-                <option value="shop3">Service3</option>
-              
-            </select>                  
+                  <label>Service</label>
+                  <select
+                    name="service"
+                    id="service"
+                    defaultValue={
+                      appointment.saloon_service || "Select service"
+                    }
+                    onChange={handleChange}
+                  >
+                    {salonServices.map((service, index) => (
+                      <option key={index} value={service.servicename}>
+                        {service.servicename}
+                      </option>
+                    ))}
+                  </select>
                 </div>
               </div>
             </form>
             <div className="modal-button-container">
               <>
-                <button className="appontment-update-btn">
+                <button
+                  className="appontment-update-btn"
+                  onClick={UpdateUserAppontment}
+                >
                   Update <FiSave />
                 </button>
               </>
 
-              <button className="to-appontment" onClick={viewAppointments}>
+              <button className="to-appontment" onClick={cancleEditAppontment}>
                 Cancel
                 <IoCloseCircleOutline />
               </button>
             </div>
           </div>
-        )}
-      </div>
+        </div>
+      )}
+
+      <ToastContainer />
     </div>
   );
 };
