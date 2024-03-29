@@ -11,6 +11,7 @@ import "./ApplicationPop.css";
 import "../../Utilities/Utilities.css";
 const ACCEPTED = "accepted";
 const REJECTED = "rejected";
+const SHOP_OWNER = "Shop Owner";
 
 const ApplicationViwePop = (props) => {
   const { applicationId, hideModel } = props;
@@ -26,7 +27,7 @@ const ApplicationViwePop = (props) => {
     const ownerid = userDetails.userid;
     const status = "pending";
     let user_type = userDetails.usertype;
-    if (userDetails.usertype === "Shop Owner") {
+    if (userDetails.usertype === SHOP_OWNER) {
       user_type = "shopowner";
     }
 
@@ -84,7 +85,7 @@ const ApplicationViwePop = (props) => {
             <div className="modal-button-container">
               <BarberItem barber={barbersData} isViewMode={true} />
 
-              {getUserDetails().usertype === "Shop Owner" && (
+              {getUserDetails().usertype === SHOP_OWNER && (
                 <>
                   <button
                     className="modal-button-accept-btn"

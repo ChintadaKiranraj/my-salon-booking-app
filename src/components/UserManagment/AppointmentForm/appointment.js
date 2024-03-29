@@ -161,7 +161,7 @@ const AppointmentForm = () => {
   };
   return (
     <div>
-      <h2 className="form-title">Book Your Beauty Appointment</h2>
+      <h2 className="booking-form-title">Book Your Beauty Appointment</h2>
       <form onSubmit={onSubmitSaloonBooking} className="appoin-form">
         <label>Appointment Date & Time*:</label>
         <input

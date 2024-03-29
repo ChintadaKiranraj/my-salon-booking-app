@@ -15,3 +15,17 @@
 .circular-icon{
   margin-left: 5px;
 }
+
+.MdDeleteOutline-CiEdit {
+  cursor: pointer;
+}
+
+.MdDeleteOutline-CiEdit.completed {
+  cursor: not-allowed;
+}
+
+.MdDeleteOutline-CiEdit.completed:hover {
+  color: inherit;
+  border-radius: inherit;
+  border-style: inherit;
+}

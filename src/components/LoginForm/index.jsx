@@ -8,6 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "./index.css";
 // import log from "loglevel";
 import { jwtDecode } from "jwt-decode";
+import { getUserDetails } from "../Utilities/Utilities";
 class LoginForm extends Component {
   state = {
     email: "",
@@ -35,13 +36,31 @@ console.log("jsonData  ===> ",jsonData )
     const { jwt_token } = jsonData;
     const userDetails = jwtDecode(jwt_token);
 
-    console.log("userDetails  ===> ", userDetails);
+    console.log("userDetails ---->  ", userDetails);
 
     Cookies.set("jwt_token", jwt_token, {
       expires: 30,
     });
-debugger
-    history.replace("/users");
+
+
+    switch (userDetails.usertype) {
+      case "User":
+        history.replace("/MyAppointments");
+        break;
+      case "Barber":
+        history.replace("/BarberApplicationsForm");
+        break;
+      case "Shop Owner":
+        history.replace("/noofbarbers");
+        break;
+      default:
+        history.replace("/login");
+        break;
+    }
+    
+   
+
+   
   };
 
   onSubmitFailure = (errorMsg) => {
@@ -70,9 +89,12 @@ debugger
       if (jsonData.status === true) {
         console.log("Login successful. Welcome back!")
         toast.success("Login successful. Welcome back!");
-        this.onSubmitSuccess(jsonData);
 
         this.setState({ isLoading: false });
+
+        this.onSubmitSuccess(jsonData);
+
+      
       }
     } catch (error) {
       toast.error("invalid username or password");
@@ -130,7 +152,27 @@ debugger
     const jwtToken = Cookies.get("jwt_token");
 
     if (jwtToken !== undefined) {
-      return <Redirect to="/shops" />;
+
+      switch (getUserDetails().usertype) {
+        case "User":
+    
+          return <Redirect to="/MyAppointments" />;
+ 
+        case "Barber":
+          
+          return <Redirect to="/BarberApplicationsForm" />;
+   
+        case "Shop Owner":
+      
+          return <Redirect to="/noofbarbers" />;
+
+        default:
+      
+          return <Redirect to="/login" />;
+     
+      }
+
+ 
     }
 
     if (redirectToSignup) {

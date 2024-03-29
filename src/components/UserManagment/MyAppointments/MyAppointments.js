@@ -1,21 +1,19 @@
 import React, { useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
 import { CiEdit } from "react-icons/ci";
-
-import { FcViewDetails } from "react-icons/fc";
 import { MdDeleteOutline } from "react-icons/md";
 import { FaCircle } from "react-icons/fa6";
-import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
-import { useHistory } from "react-router-dom";
-import { withRouter } from "react-router-dom";
-
 import { getUserDetails } from "../../Utilities/Utilities";
-import Appointment from "../AppointmentForm/appointment";
 import EditUserAppointment from "../EditUserAppointment/EditUserAppointment";
 import "./MyAppointments.css";
 import { ToastContainer, toast } from "react-toastify";
-
+import { tableHeaderstyle } from "../../Bookings";
+const questionFaceEmoji = "🤔";
+const COMPLETED = "completed";
+const PENDING = "pending";
+const CANCELLED = "cancelled";
 const MyAppointments = () => {
+  const [deleteUserAppointment, setDeleteUserAppointment] = useState(false);
   useEffect(() => {
     fetchMyAppointments();
   }, []);
@@ -26,7 +24,7 @@ const MyAppointments = () => {
   });
 
   const [appointments, setAppointments] = useState([]);
-
+  const [appointmentId, setAppointmentId] = useState(null);
   const fetchMyAppointments = async () => {
     console.log("getUserDetails");
     const userId = getUserDetails().userid;
@@ -49,14 +47,12 @@ const MyAppointments = () => {
       isEditAppointmentClicked: true,
       appointment,
     });
-    localStorage.setItem("userAppointmentEditMode", true);
   };
-  const onClickDelAppointment = async (myAppointment) => {
-   
-    console.log("Delete");
+
+  const deleteAppointment = async () => {
     try {
       const response = await fetch(
-        `http://localhost:4001/api/delete-appointment/${myAppointment.bookingid}`,
+        `http://localhost:4001/api/delete-appointment/${appointmentId}`,
         {
           method: "DELETE",
         }
@@ -65,11 +61,17 @@ const MyAppointments = () => {
 
       if (responseJson.code === 200) {
         toast.success("Appointment deleted successfully");
+        setDeleteUserAppointment(false);
         fetchMyAppointments();
       }
     } catch (e) {
       toast.error("Error in deleting appointment", e);
     }
+  };
+
+  const onClickDelAppointment = (row) => {
+    setAppointmentId(row.bookingid);
+    setDeleteUserAppointment(true);
   };
 
   const columns = [
@@ -79,6 +81,7 @@ const MyAppointments = () => {
       sortable: true,
     },
     { name: "Shopname", selector: (row) => row.shopname, sortable: true },
+    { name: "Salon Service", selector: (row) => row.saloon_service, sortable: true },
     {
       name: "Bokingdatetime",
       selector: (row) => row.bookingdatetime,
@@ -97,7 +100,7 @@ const MyAppointments = () => {
       sortable: true,
       conditionalCellStyles: [
         {
-          when: (row) => row.status === "pending",
+          when: (row) => row.status === PENDING,
           style: {
             color: "#007bff",
             fontWeight: "600",
@@ -107,14 +110,14 @@ const MyAppointments = () => {
           },
         },
         {
-          when: (row) => row.status === "cancelled",
+          when: (row) => row.status === CANCELLED,
           style: {
             color: "red",
             fontWeight: "600",
           },
         },
         {
-          when: (row) => row.status === "accepted",
+          when: (row) => row.status === COMPLETED,
           style: {
             color: "green",
             fontWeight: "600",
@@ -127,10 +130,17 @@ const MyAppointments = () => {
       cell: (row) => (
         <div>
           <CiEdit
-            className="MdDeleteOutline-CiEdit"
+            className={`MdDeleteOutline-CiEdit ${
+              row.status === "completed" ? "completed" : ""
+            }`}
             title="Edit"
-            onClick={() => onClickEditAppointment(row)}
+            onClick={() => {
+              if (row.status !== "completed") {
+                onClickEditAppointment(row);
+              }
+            }}
           />
+
           <MdDeleteOutline
             className="MdDeleteOutline-CiEdit"
             title="Delete"
@@ -152,25 +162,46 @@ const MyAppointments = () => {
         responsive={true}
         selectableRowsHighlight
         highlightOnHover
-        //   customStyles={tableHeaderstyle}
+        customStyles={tableHeaderstyle}
         fixedHeader={true}
-        //   fixedHeaderScrollHeight={"30px"}
+        //fixedHeaderScrollHeight={"30px"}
       ></DataTable>
-         
+
       {userAppointmentsEditData.isEditAppointmentClicked && (
         <EditUserAppointment
           setUserAppointmentsEditData={setUserAppointmentsEditData}
           userAppointmentsEditData={userAppointmentsEditData}
-          
         />
       )}
-     <ToastContainer/>
+
+      {/* delete user appointment conformation popup */}
+      {deleteUserAppointment && (
+        <div className="modalss">
+          <div className="modal-contents">
+            <div className="delete-confirmation-card">
+              <h2>Confirmation</h2>
+              <p>Are you sure you want to delete this {questionFaceEmoji} ?</p>
+              <div className="modal-button-container">
+                <button
+                  className="modal-button"
+                  onClick={() => setDeleteUserAppointment(false)}
+                >
+                  NO
+                </button>
+                <button
+                  className="modal-button"
+                  onClick={() => deleteAppointment()}
+                >
+                  YES
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+      <ToastContainer />
     </div>
   );
 };
 
 export default MyAppointments;
-
-// export default withRouter(MyAppointments);
-
-// tihs form is about the show to rhe use booking appoint ments
