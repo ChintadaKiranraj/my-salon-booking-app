@@ -5,6 +5,7 @@ import Cookie from "js-cookie";
 // import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 import Cookies from "js-cookie";
 import "./Utilities.css";
+import { toast } from "react-toastify";
 
 export const Barber=()=>{
   return "Barber";
@@ -50,17 +51,23 @@ export const LoginUserProfilePhoto = async () => {
   const userId = userDetails.userid;
   console.log("userId At utils ==>  :", userId);
   let imageByteArrray = null;
-  if (userId != null) {
-    const response = await fetch(
-      `http://localhost:4001/api/get-user-profile-photo/${userId}`
-    );
-    const responseData = await response.json();
-    if (responseData.code === 200) {
-      const { profilephoto } = responseData.data;
-      const { data } = profilephoto;
-      imageByteArrray = ImageDecoder(data);
+
+  try{
+    if (userId != null) {
+      const response = await fetch(
+        `http://localhost:4001/api/get-user-profile-photo/${userId}`
+      );
+      const responseData = await response.json();
+      if (responseData.code === 200) {
+        const { profilephoto } = responseData.data;
+        const { data } = profilephoto;
+        imageByteArrray = ImageDecoder(data);
+      }
     }
+  }catch(exception){
+    toast.error("Error in fetching user profile photo",exception);
   }
+  
 
   return imageByteArrray;
 };
@@ -101,18 +108,26 @@ export const UsertFullName = () => {
 export const UpdateProfilePhoto=async (base64Image)=>{
   const userDetails = getUserDetails();
   const userId = userDetails.userid;
-  const response = await fetch(`http://localhost:4001/api/update-user-profile-photo/${userId}`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ profilePhoto: base64Image }),
-  });
-  const responseData = await response.json();
-  if(responseData.code===200){
-    return true;
+
+
+  try{
+    const response = await fetch(`http://localhost:4001/api/update-user-profile-photo/${userId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ profilePhoto: base64Image }),
+    });
+    const responseData = await response.json();
+    if(responseData.code===200){
+      toast.success(responseData.message);
+      return true;
+    }
+    return false;
+  }catch(e){
+    toast.error("Error in updating user profile photo",e);
   }
-  return false;
+  
   
 }
 
