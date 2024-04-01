@@ -12,7 +12,7 @@ const AdminOne = () => {
         <>
           <li>
             <NavLink to="/noofbarbers" className="ul--li-a">
-              My shop Barbers
+              My Staff
             </NavLink>
           </li>
           <li>

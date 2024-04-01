@@ -66,6 +66,8 @@ const ApplicationViwePop = (props) => {
 
       if (jsonData.code === 200 && jsonData.status === true) {
         toast.success("Barber application status updated successfully");
+        hideModel();
+
       }
     } catch (error) {
       toast.error("Error in fetching users", error);

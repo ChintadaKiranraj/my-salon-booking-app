@@ -2,21 +2,19 @@ import Carousel from "react-bootstrap/Carousel";
 import React, { useEffect, useState } from "react";
 import "./Welcome.css";
 
-import image1 from "../../assets/images/beautyImages.jpg";
 
-import image2 from "../../assets/images/eight.jpg";
 
-import image3 from "../../assets/images/ten.jpg";
-import image4 from "../../assets/images/cut3.jpg";
 
-import image5 from "../../assets/images/cut4.avif";
-import s1 from "../../assets/images/s1.jpg";
-import s3 from "../../assets/images/s3.webp";
+import hairColor from "../../assets/images/cut3.jpg";
+
+import hairCut from "../../assets/images/cut4.avif";
+import mackup from "../../assets/images/s1.jpg";
+
 
 const PhotoCarousel = () => {
  
 
-  const images = [image4, image5,s1,s3];
+  const images = [hairColor, hairCut,mackup];
 
   return (
     <div className="carousel-container">

@@ -1,16 +1,16 @@
-import React, { useState } from "react";
-
+import React, { useEffect, useState } from "react";
 
 import "./EditShopsData.css";
 
 import { toast } from "react-toastify";
 
-import { ImageDecoder,toBase64 } from "../../Utilities/Utilities";
+import { ImageDecoder, Loader, toBase64 } from "../../Utilities/Utilities";
 const EditShopsData = (props) => {
   const { shopData, cancleUpdate } = props;
   console.log("shopData", shopData);
-
+const [isLoading,setIsLoading]=useState(true)
   const profilePhoto = ImageDecoder(shopData.profilephoto.data);
+  const [shopsLocations, setShopsLocations] = useState([]);
   const [shopDataToUpDate, setShopDataToUpDate] = useState({
     location: shopData.location,
     phoneNumber: shopData.phonenumber,
@@ -20,12 +20,24 @@ const EditShopsData = (props) => {
     location: "",
     phoneNumber: "",
   });
-  const [loading, setLoading] = useState(false);
+ 
   const onCancle = () => {
     cancleUpdate();
-    
   };
+  useEffect(() => {
+    const fetchShopsLocations = async () => {
+      const response = await fetch("http://localhost:4001/api/get-locations");
+      const jsonData = await response.json();
+      console.log(jsonData.data);
 
+      if(jsonData.code===200){
+        setIsLoading(false)
+        setShopsLocations(jsonData.data);
+      }
+     
+    };
+    fetchShopsLocations();
+  }, []);
   const updateDetails = (e) => {
     e.preventDefault();
 
@@ -41,7 +53,7 @@ const EditShopsData = (props) => {
 
     setErrors(newErrors);
     if (formIsValid) {
-      setLoading(true);
+     
       updateDhopDetails(shopDataToUpDate);
     }
   };
@@ -61,10 +73,10 @@ const EditShopsData = (props) => {
       if (data.code === 200) {
         toast.success(data.message);
         onCancle();
-        setLoading(false);
+     
       } else {
         toast.error(data.message);
-        setLoading(false);
+      
       }
     } catch (error) {
       toast.error("Error in updating shop details", error);
@@ -100,51 +112,70 @@ const EditShopsData = (props) => {
       [name]: value.trim() === "" ? `*${name} is required` : "",
     });
   };
+
   return (
-    <div className="modalss">
-      <form onSubmit={updateDetails} className="modal-contents">
-        <h2>Edit Shop Details</h2>
+    <>
+      {!isLoading ? (
+        <div className="modalss">
+          <form onSubmit={updateDetails} className="modal-contents">
+            <h2>Edit Shop Details</h2>
+            <label>Location</label>
+            <select
+              name="location"
+              id="location"
+              defaultValue={shopDataToUpDate.location}
+              onChange={handleOnChange}
+            >
+              {shopsLocations.map((locationObj, index) => (
+                <option key={index} value={locationObj.locationname}>
+                  {locationObj.locationname}
+                </option>
+              ))}
+            </select>
+            <span style={{ color: "red" }}>{errors.location}</span>
+            <br />
+            <label>Photo</label>
+            <div className="shop-profilepick">
+              <input
+                type="file"
+                placeholder="Photo"
+                onChange={handleOnChange}
+                name="profilePhoto"
+              />
+              <img
+                src={shopDataToUpDate.profilePhoto}
+                className="edit-profile"
+                alt="avatar"
+              />
+            </div>
 
-        <label>Location</label>
-        <input
-          type="text"
-          placeholder="Location"
-          value={shopDataToUpDate.location}
-          onChange={handleOnChange}
-          name="location"
-        />
-        <span style={{ color: "red" }}>{errors.location}</span>
-        <br />
-        <label>Photo</label>
-        <div className="shop-profilepick">
-          <input
-            type="file"
-            placeholder="Photo"
-            onChange={handleOnChange}
-            name="profilePhoto"
-          />
-          <img src={shopDataToUpDate.profilePhoto} className="edit-profile"  alt="avatar"/>
+            <label>Phone Number</label>
+            <input
+              type="text"
+              placeholder="Phone Number"
+              onChange={handleOnChange}
+              value={shopDataToUpDate.phoneNumber}
+              name="phoneNumber"
+            />
+            <span className="erros-msg">{errors.phoneNumber}</span>
+            <br />
+
+            <button type="submit" className="mt-4">
+              Submit
+            </button>
+            <button className="pl-3" onClick={onCancle}>
+              Cancle
+            </button>
+          </form>
         </div>
-
-        <label>Phone Number</label>
-        <input
-          type="text"
-          placeholder="Phone Number"
-          onChange={handleOnChange}
-          value={shopDataToUpDate.phoneNumber}
-          name="phoneNumber"
-        />
-        <span className="erros-msg">{errors.phoneNumber}</span>
-        <br />
-
-        <button type="submit" className="mt-4">
-          Submit
-        </button>
-        <button className="pl-3" onClick={onCancle}>
-          Cancle
-        </button>
-      </form>
-    </div>
+      ) : (
+        <div className="modalss">
+        <div className="loader-modal-contents">
+          <Loader />
+        </div>
+      </div>
+      )}
+    </>
   );
 };
 

@@ -6,7 +6,7 @@ import { FiSave } from "react-icons/fi";
 import { Loader, User, getUserDetails } from "../../Utilities/Utilities";
 
 import "../../Utilities/Utilities.css";
-
+import './EditUserAppointment.css'
 const EditUserAppointment = (props) => {
   debugger;
   const { userAppointmentsEditData, setUserAppointmentsEditData } = props;
@@ -63,7 +63,7 @@ const EditUserAppointment = (props) => {
     }
   };
   const fetchShopNamesByLocation = async (location = appointment.location) => {
-    debugger
+    
     console.log("location", location);
 
     try {
@@ -71,14 +71,13 @@ const EditUserAppointment = (props) => {
         `http://localhost:4001/api/shopname-by-location/${location}`
       );
       const responseData = await response.json();
-      setSalonShopsList(responseData.data);
-      console.log("fetchShopNamesByLocation");
-
-      console.log(responseData.data);
-debugger
       if (responseData.code === 200) {
+        console.log("inside fetch the shops list  basedd on the location")
+        setSalonShopsList(responseData.data);
+        const {shopname}=responseData.data[0]
         setMyAppointment({...myAppointments,
-          shopname : responseData.data[0].shopname})
+          shopname :shopname
+        })
       }
 
     } catch (e) {
@@ -96,7 +95,7 @@ debugger
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-
+console.log("at handelChanges  -->  ",value)
 
     
     setMyAppointment({
@@ -117,7 +116,8 @@ debugger
     }
   };
   const UpdateUserAppontment = async () => {
-    // const { appointment } = userAppointmentsEditData;
+ 
+    console.log(myAppointments,"MyAppointments-->>")
     const updatedTime = !showDateTimeInput
       ? null
       : myAppointments.bookingdatetime;
@@ -151,6 +151,7 @@ debugger
             isEditAppointmentClicked: false,
           });
         }, 1000);
+    
       }
     } catch (exception) {
       toast.error("Error in update an  appointment", exception);
@@ -244,7 +245,7 @@ debugger
                 <div className="col-6">
                   <label>Service</label>
                   <select
-                    name="service"
+                    name="saloon_service"
                     id="service"
                     defaultValue={
                       myAppointments.saloon_service || "Select service"
@@ -266,13 +267,13 @@ debugger
                   className="appontment-update-btn"
                   onClick={UpdateUserAppontment}
                 >
-                  Update <FiSave />
+                  Update 
                 </button>
               </>
 
-              <button className="to-appontment" onClick={cancleEditAppontment}>
+              <button className="appontment-cancle-btn" onClick={cancleEditAppontment}>
                 Cancel
-                <IoCloseCircleOutline />
+               
               </button>
             </div>
           </div>

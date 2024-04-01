@@ -13,15 +13,14 @@ const COMPLETED = "completed";
 const PENDING = "pending";
 const CANCELLED = "cancelled";
 const MyAppointments = () => {
+  const [userAppointmentsEditData, setUserAppointmentsEditData] = useState({
+    isEditAppointmentClicked: false,
+    appointment: null,
+  });
   const [deleteUserAppointment, setDeleteUserAppointment] = useState(false);
   useEffect(() => {
     fetchMyAppointments();
-  }, []);
-
-  const [userAppointmentsEditData, setUserAppointmentsEditData] = useState({
-    editAppointment: false,
-    appointment: null,
-  });
+  }, [userAppointmentsEditData]);
 
   const [appointments, setAppointments] = useState([]);
   const [appointmentId, setAppointmentId] = useState(null);
@@ -81,7 +80,11 @@ const MyAppointments = () => {
       sortable: true,
     },
     { name: "Shopname", selector: (row) => row.shopname, sortable: true },
-    { name: "Salon Service", selector: (row) => row.saloon_service, sortable: true },
+    {
+      name: "Salon Service",
+      selector: (row) => row.saloon_service,
+      sortable: true,
+    },
     {
       name: "Bokingdatetime",
       selector: (row) => row.bookingdatetime,
@@ -131,11 +134,11 @@ const MyAppointments = () => {
         <div>
           <CiEdit
             className={`MdDeleteOutline-CiEdit ${
-              row.status === "completed" ? "completed" : ""
+              row.status === COMPLETED ? "completed" : ""
             }`}
-            title="Edit"
+            title={row.status === COMPLETED ? "not-allowed" : "Edit"}
             onClick={() => {
-              if (row.status !== "completed") {
+              if (row.status !== COMPLETED) {
                 onClickEditAppointment(row);
               }
             }}

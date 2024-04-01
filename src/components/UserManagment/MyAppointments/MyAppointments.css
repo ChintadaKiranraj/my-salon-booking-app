@@ -22,6 +22,7 @@
 
 .MdDeleteOutline-CiEdit.completed {
   cursor: not-allowed;
+  
 }
 
 .MdDeleteOutline-CiEdit.completed:hover {
