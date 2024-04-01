@@ -40,13 +40,21 @@ const RegistrationForm = () => {
             ...userRegistrationData,
             [name]: base64String,
           });
+          setErrors({
+            ...errors,
+            [name]: value.trim() === "" ? `*${name} is required` : "",
+          });
         } catch (error) {
           console.error("Error converting image to base64:", error.message);
           toast.error("Error converting image to base64:", error.message);
         }
       }
     } else{
-      setUserRegistrationData({ ...userRegistrationData, [event.target.name]: event.target.value });
+      setUserRegistrationData({ ...userRegistrationData, [name]:value });
+      setErrors({
+        ...errors,
+        [name]: value.trim() === "" ? `*${name} is required` : "",
+      });
 
     }
   };

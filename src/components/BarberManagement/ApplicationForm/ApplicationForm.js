@@ -60,8 +60,7 @@ const BarberApplicationsForm = () => {
   };
 
   const fetchShops = async (location) => {
-    console.log("--------------------fetching shops-----------------");
-    console.log("location", location);
+    console.log("LOCATIONS", location);
     const response = await fetch(
       `http://localhost:4001/api/shopname-by-location/${location}`
     );
@@ -89,7 +88,7 @@ const BarberApplicationsForm = () => {
         }
       );
       const responseData = await response.json();
-      console.log("responseData   =====>   ", responseData);
+      console.log("responseData   ---->   ", responseData);
       if (responseData.code === 201) {
         toast.success("Barber Application submitted successfully");
         setSalaonApplicationData({
