@@ -1,14 +1,10 @@
 import React, { useEffect } from "react";
-
+import { FaCircleArrowRight } from "react-icons/fa6";
 import { useState } from "react";
 import ServiceCard from "./ServiceCard";
 
-// import BookingFormTwo from "../Appointment/appointment.js";
 import Footer from "./Footer.js";
-// import ShopRegistrationForm from "../ShopRegistrationForm/shopregistrationform.js";
 import RegistrationForm from "../UserManagment/UserRegistrationForm/UserRegistrationForm.js";
-// import IndividualIntervals from "./PhotoCarousel.js";
-// import { Link } from "@mui/material";
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min.js";
 
 export const BarberLogoTitle = () => {
@@ -42,7 +38,7 @@ const Welcome = () => {
             <a href="#home">Home</a>
           </li>
 
-          <li >
+          <li>
             <a href="#services" className="navbar-link">
               Services
             </a>
@@ -81,7 +77,7 @@ const Welcome = () => {
           <span>Login</span>
         </NavLink>
       </div>
-      
+
       <section className="home-section-bgimg" id="home">
         <div className="section-home-container">
           <h1 className="baraber-title-head">Barbers & Hair Cutting</h1>
