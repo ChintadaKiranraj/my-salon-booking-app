@@ -49,7 +49,7 @@ const BarberItem = (props) => {
         </p>
 
         <span onClick={toggleDescription} className="view-more">
-          {showFullDescription ? "Show Less" : "View More"}
+          {!showFullDescription ? "Show Less" : "View More"}
         </span>
       </div>
     </li>

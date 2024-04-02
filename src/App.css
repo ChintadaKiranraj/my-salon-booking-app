@@ -5,9 +5,9 @@
 * {
   box-sizing: border-box;
 }
-button:active {
+/* button:active {
   background-color: #2980b9;
-}
+} */
 body {
   margin: 0;
   padding: 0;
