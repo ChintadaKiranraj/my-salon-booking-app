@@ -1,9 +1,13 @@
 import { Buffer } from "buffer";
 import Spinner from "react-bootstrap/Spinner";
 import { jwtDecode } from "jwt-decode";
+
 import Cookie from "js-cookie";
 // import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 import Cookies from "js-cookie";
+import { IoStarOutline } from "react-icons/io5";
+import { FaRegStarHalfStroke } from "react-icons/fa6";
+import { IoMdStar } from "react-icons/io";
 import "./Utilities.css";
 import { toast } from "react-toastify";
 
@@ -130,4 +134,30 @@ export const UpdateProfilePhoto=async (base64Image)=>{
   
   
 }
+const startStyle={
+  width:10,
+  height:10,
 
+}
+export const RatingStars = ({ rating }) => {
+  const stars = [];
+
+  // Whole filled stars
+  const fullStars = Math.floor(rating);
+  for (let i = 0; i < fullStars; i++) {
+    stars.push(<IoMdStar style={startStyle}/>); 
+  }
+
+  // Half-filled star if applicable
+  if (rating % 1 >= 0.1 && rating % 1 < 0.99) {
+    stars.push(<FaRegStarHalfStroke style={startStyle}/>); 
+  }
+
+  // Empty stars to fill remaining space
+  const remainingStars = 5 - Math.ceil(rating);
+  for (let i = 0; i < remainingStars; i++) {
+    stars.push(<IoStarOutline style={startStyle}/>); 
+  }
+
+  return <div>{stars}</div>;
+};

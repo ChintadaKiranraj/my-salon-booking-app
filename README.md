@@ -162,3 +162,4 @@ Creating a color scheme for a website is a subjective process and depends on the
 
 npm i react-router-dom --save styled-components --save react-icons
 
+https://youtu.be/HnXPKtro4SM?si=ztNw4LmqEEQbUfRp

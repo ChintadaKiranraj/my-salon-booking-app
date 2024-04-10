@@ -3,9 +3,12 @@ import { FaCircleArrowRight } from "react-icons/fa6";
 import { useState } from "react";
 import ServiceCard from "./ServiceCard";
 
+
 import Footer from "./Footer.js";
 import RegistrationForm from "../UserManagment/UserRegistrationForm/UserRegistrationForm.js";
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min.js";
+import Pricing from "./Pricing.js";
+
 
 export const BarberLogoTitle = () => {
   return (
@@ -91,7 +94,8 @@ const Welcome = () => {
           <a href="#" className="explore-services">
             <span className="span">Explore Our Services</span>
 
-            <ion-icon nameName="arrow-forward" aria-hidden="true"></ion-icon>
+            {/* <ion-icon nameName="arrow-forward" aria-hidden="true"></ion-icon> */}
+            <FaCircleArrowRight className="card-btn" />
           </a>
         </div>
       </section>
@@ -104,11 +108,12 @@ const Welcome = () => {
             masterpiece. Step into a realm of precision and creativity, tailored
             to enhance your unique personality.
           </p>
-          <ul className="service-cards-list-container">
+           <ul className="service-cards-list-container">
             {servicessList.map((service) => (
               <ServiceCard service={service} key={service.id} />
             ))}
-          </ul>
+          </ul> 
+       
         </div>
       </section>
 
@@ -130,6 +135,10 @@ const Welcome = () => {
           </div>
         </div>
       </section> */}
+
+      <section id="pricing">
+        <Pricing/>
+      </section>
       <section id="registration">
         <RegistrationForm />
       </section>

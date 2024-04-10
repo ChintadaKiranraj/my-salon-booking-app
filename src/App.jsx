@@ -21,6 +21,7 @@ import Appointment from "./components/UserManagment/AppointmentForm/appointment"
 import "./App.css";
 import "@coreui/coreui/dist/css/coreui.min.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import ViewServiceCard from "./components/Welcome/ViewServiceCard/ViewServiceCard";
 
 const App = () => (
   <Router>
@@ -42,6 +43,8 @@ const App = () => (
         <ProtectedRoute exact path="/Appointment" component={Appointment} />
         <ProtectedRoute exact path="/Bookings" component={Bookings} />
         <ProtectedRoute exact path="/MyAppointments" component={MyAppointments} />
+        <Route exact path="/service-description/:id" component={ViewServiceCard} />
+        <Route exact path="/service-description/:id/:desc_id" component={ViewServiceCard} />
         <Route component={NotFound} />
       </Switch>
      

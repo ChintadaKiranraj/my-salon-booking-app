@@ -8,7 +8,7 @@ import { ImageDecoder } from "../../Utilities/Utilities";
 const BarberItem = (props) => {
   const { barber, isViewMode } = props;
   const { profilephoto } = barber;
-  const [showFullDescription, setShowFullDescription] = useState(false);
+  const [showFullDescription, setShowFullDescription] = useState(true);
   const toggleDescription = () => {
     setShowFullDescription(!showFullDescription);
   };
