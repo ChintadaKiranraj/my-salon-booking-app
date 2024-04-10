@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { IoArrowBackCircle } from "react-icons/io5";
 import "./ViewServiceCard.css";
+import { RatingStars } from "../../Utilities/Utilities";
 const ViewServiceCard = () => {
   const history = useHistory();
   const { id ,desc_id} = useParams();
@@ -33,17 +34,18 @@ const ViewServiceCard = () => {
   const serviceCardActiveStyle={
     backgroundColor:'red'
   }
+  
   return (
     <div className="view-service-card-container">
       <IoArrowBackCircle onClick={backToSalonServicess}  className="back-to-services" />
 
       {viewServiceData.map((item, index) => 
-         <div className={`service-card-details ${desc_id == item.id ? "service-card-detailsActive":""}`} style={desc_id == item.id ?{ order: 1 }:{}} >
+         <div className={`service-card-details ${desc_id == item.id ? "service-card-detailsActive":""}`} style={desc_id == item.id ?{ order: 0 }:{order: 1}} >
         
       
          
          <div className="image-container">
-           <img src={item.image} alt={item.type} className="service-icon-img" />
+           <img src={item.image} alt={item.type} className="service-icon-img"/>
          </div>
          <div className="details-container">
            <h3>{item.type}</h3>
@@ -51,7 +53,9 @@ const ViewServiceCard = () => {
            <div className="additional-details">
             
              <p className="price">Price: ${item.price}</p>
-             <p className="rating">Rating: {item.rating}</p>
+             {/* <p className="rating">Rating: {item.rating}</p> */}
+
+             <RatingStars rating={item.rating}/>
            </div>
          </div>
        </div>
