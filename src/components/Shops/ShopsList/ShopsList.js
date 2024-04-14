@@ -113,7 +113,7 @@ const Shops = () => {
           <div className="edit-delete-options">
             <>
               <FaEdit
-                className="edit-icon-styles"
+                className="edit-icon-styles" 
                 onClick={() => {
                   onEditShopData(shopid);
                 }}

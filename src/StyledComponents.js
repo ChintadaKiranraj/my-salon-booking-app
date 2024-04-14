@@ -19,15 +19,21 @@ export const PricingCard = styled.div`
   margin-bottom: 10px;
   min-width: 200px;
   max-height: 120px;
-  padding: 20px;
+  padding: 10px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5);
-  transition: transform 0.3s ease;
+  transition: transform 0.5s ease;
+ filter: grayscale(90%); 
+ position: relative; 
+
 
   &:hover {
-    transform: scale(1.05); 
-    border-color:blue;
-    border-style:solid;
-    border-width;0.5px
+    transform: scale(1.3); 
+    outline: 1.5px solid #007bff;
+    
+    border-width:0.5px;
+    filter: grayscale(0%); 
+    background-color:white;
+    z-index: 1;
   }
 `;
 export const StarIcon = styled.span`

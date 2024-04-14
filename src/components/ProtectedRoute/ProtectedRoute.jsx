@@ -3,7 +3,7 @@ import Cookie from "js-cookie";
 import Header from "../Header/header";
 import "./ProtectedRoute.css";
 
-import AdminOne from "../AdminOne/AdminOne";
+import AdminOne from "../RoleBasedNavigation/RoleBasedNavigation";
 import Layout from "../Layout/Layout";
 import HeaderBar from "../Layout/HeaderBar";
 import Sidebar from "../Layout/Sidebar";

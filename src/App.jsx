@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import LoginForm from "./components/LoginForm";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import NotFound from "./components/NotFound";
-import ViewOnly from "./components/Viewonly";
 import Barber from "./components/BarberManagement/Barber/Barber";
 import BarberApplicationsForm from "./components/BarberManagement/ApplicationForm/ApplicationForm";
 import BarberApplicationData from "./components/BarberManagement/ApplicationsList/ApplicationsList";
@@ -14,7 +13,7 @@ import ShopOwners from "./components/Shops/ShopOwners/shopowner";
 import Users from "./components/UserManagment/Users/users";
 import ShopRegistrationForm from "./components/Shops/ShopRegistrationForm/shopregistrationform";
 import Welcome from "./components/Welcome/Welcome";
-import AdminOne from "./components/AdminOne/AdminOne";
+import AdminOne from "./components/RoleBasedNavigation/RoleBasedNavigation";
 import ShpoRegistraction from "./components/ShopsTwo/shopTwo";
 import MyAppointments from "./components/UserManagment/MyAppointments/MyAppointments";
 import Appointment from "./components/UserManagment/AppointmentForm/appointment";
@@ -29,7 +28,6 @@ const App = () => (
       <Switch>
         <Route exact path="/" component={Welcome} />
         <Route exact path="/login" component={LoginForm} />
-        <ProtectedRoute exact path="/user" component={ViewOnly} /> 
         <ProtectedRoute exact path="/shops" component={Shops} />
         <ProtectedRoute exact path="/shopowners" component={ShopOwners} />
         <ProtectedRoute exact path="/users" component={Users} />

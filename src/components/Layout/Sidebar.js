@@ -23,7 +23,7 @@
 import { NavLink } from "react-router-dom";
 import "./Layout.css";
 import { RiAdminLine } from "react-icons/ri";
-import AdminOne from "../AdminOne/AdminOne";
+import AdminOne from "../RoleBasedNavigation/RoleBasedNavigation";
 import { useState, useEffect } from "react";
 import { FaScissors } from "react-icons/fa6";
 import { FaRegUser } from "react-icons/fa6";

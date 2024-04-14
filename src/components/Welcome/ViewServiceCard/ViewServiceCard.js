@@ -48,12 +48,12 @@ const ViewServiceCard = () => {
            <img src={item.image} alt={item.type} className="service-icon-img"/>
          </div>
          <div className="details-container">
-           <h3>{item.type}</h3>
+           <h3 className="description-service-card-head">{item.type}</h3>
            <p className="description">{item.description}</p>
            <div className="additional-details">
             
-             <p className="price">Price: ${item.price}</p>
-             {/* <p className="rating">Rating: {item.rating}</p> */}
+             <p className="price description-service-card-head">Price: ${item.price}</p>
+             
 
              <RatingStars rating={item.rating}/>
            </div>

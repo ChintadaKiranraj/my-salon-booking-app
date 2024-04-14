@@ -159,5 +159,5 @@ export const RatingStars = ({ rating }) => {
     stars.push(<IoStarOutline style={startStyle}/>); 
   }
 
-  return <div>{stars}</div>;
+  return <div className="description-service-card-head">{stars}</div>;
 };

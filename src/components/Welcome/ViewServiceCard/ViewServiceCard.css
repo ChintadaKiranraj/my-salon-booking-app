@@ -19,18 +19,23 @@
   border-radius: 8px;
   overflow: hidden;
   margin-bottom: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5);
   width:300px;
   
   margin-right: 50px;
   margin-top: 50px;
   padding: 20px;
 }
-.service-card-detailsActive{
- border-style: solid;
-
- background-color: #e7dddd;
+.service-card-details:hover{
+  outline: 1.5px solid #007bff;
+ 
 }
+.service-card-detailsActive{
+ outline: 1.5px solid green;
+  color: blue;
+}
+
 .image-container {
   height: 200px;
   width: 200px;
@@ -59,10 +64,10 @@
 .rating,
 .price {
   font-size: 14px;
-  color: #666;
+ 
 }
 .details-container h3{
-color: rgb(21, 0, 255);
+/* color: rgb(21, 0, 255); */
 font-family: "Roboto";
 font-weight: 540;
 font-size: 20px;
@@ -72,3 +77,11 @@ font-size: 20px;
   width: 30px;
   height: 30px;
 }
+
+
+.description-service-card-head{
+  color: blue;
+  font-weight: 700 !important;
+ 
+}
+

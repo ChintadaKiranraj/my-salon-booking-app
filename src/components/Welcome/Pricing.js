@@ -10,8 +10,8 @@ import {
 
 const Pricing = () => {
   const servicImgStyle = {
-    width: 40,
-    height: 40,
+    width: 50,
+    height: 50,
     textAlign: "center",
  
   };
@@ -61,6 +61,7 @@ const Pricing = () => {
 
   return (
     <PricingMainContainer>
+    
       {servicePriceDetails.map((service) => (
         <ServiceCard service={service} key={service.id} />
       ))}

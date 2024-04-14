@@ -137,6 +137,7 @@ const Welcome = () => {
       </section> */}
 
       <section id="pricing">
+      <h2 className="price-head">Awsome Pricing</h2>
         <Pricing/>
       </section>
       <section id="registration">

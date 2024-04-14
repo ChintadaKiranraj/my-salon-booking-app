@@ -39,7 +39,6 @@
   font-family: "roboto";
   background: linear-gradient(to bottom right, #004c8c, #7fb2f0);
   width: 300px;
-  height: 330px;
   margin: 10px;
 }
 
@@ -82,18 +81,14 @@
 
 .edit-icon-styles {
   color: white;
-
-  font-size: 90px;
-  margin-right: 10px;
-
-  height: 35px;
-  width: 35px;
-  /* background-color: red; */
-  margin: 5px;
+  font-size: 20px;
+  margin-left: 10px;
+  margin-top: 0px;
 }
 .edit-icon-styles:hover {
   color: rgb(9, 3, 84);
   cursor: pointer;
+
 }
 
 .nav-link{
@@ -114,6 +109,7 @@
   align-items: center;
   width: 40%;
   /* background-color: red; */
+  color: red;
 }
 .delete-shop-model-popup-container{
   display: flex;
