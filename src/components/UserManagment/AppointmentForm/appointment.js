@@ -97,11 +97,9 @@ const AppointmentForm = () => {
   };
 
   const bookAnAppointment = async (appointmentData) => {
-   
     const userId = getUserDetails().userid;
     const { shopId, ownerId } = shopIdOwnerId;
     console.log("appointmentData", appointmentData);
-  
 
     try {
       const response = await fetch(
@@ -149,7 +147,7 @@ const AppointmentForm = () => {
   };
   const salonServicess = async () => {
     try {
-      const response = await fetch("http://localhost:4001/api/salonServicess");
+      const response = await fetch("http://localhost:4001/api/salon-servicess");
       const responseJson = await response.json();
 
       if (responseJson.code === 200) {

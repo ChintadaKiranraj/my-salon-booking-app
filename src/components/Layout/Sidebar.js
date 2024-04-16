@@ -27,14 +27,19 @@ import AdminOne from "../RoleBasedNavigation/RoleBasedNavigation";
 import { useState, useEffect } from "react";
 import { FaScissors } from "react-icons/fa6";
 import { FaRegUser } from "react-icons/fa6";
-import { Barber, ShopOwner, User, getUserDetails } from "../Utilities/Utilities";
+import {
+  Barber,
+  ShopOwner,
+  User,
+  getUserDetails,
+} from "../Utilities/Utilities";
 
 const Sidebar = () => {
   const [isAdminVisible, setIsAdminVisible] = useState(false);
 
   useEffect(() => {
     // Retrieve isAdminVisible state from localStorage on component mount
-    const storedIsAdminVisible = localStorage.getItem('isAdminVisible');
+    const storedIsAdminVisible = localStorage.getItem("isAdminVisible");
     if (storedIsAdminVisible) {
       setIsAdminVisible(JSON.parse(storedIsAdminVisible));
     }
@@ -43,32 +48,44 @@ const Sidebar = () => {
   const isAdminClicked = () => {
     setIsAdminVisible(!isAdminVisible);
     // Store isAdminVisible state in localStorage
-    localStorage.setItem('isAdminVisible', JSON.stringify(!isAdminVisible));
+    localStorage.setItem("isAdminVisible", JSON.stringify(!isAdminVisible));
   };
-const userType=getUserDetails().usertype;
-console.log("userType:",userType);
+  const userType = getUserDetails().user_type;
+  console.log("userType:", userType);
 
-const getTheCurrentUserIcon=(userType)=>{
-  switch(userType){
-    case ShopOwner():
-      return <><RiAdminLine/>ShopOwner</>
-    case Barber():
-      return <><FaScissors/>Barber
-      </>
-    case User():
-      return <><FaRegUser/> User
-      </>
-    default:
-      return null
-  }
-
-}
+  const getTheCurrentUserIcon = (userType) => {
+    switch (userType) {
+      case ShopOwner():
+        return (
+          <>
+            <RiAdminLine />
+            ShopOwner
+          </>
+        );
+      case Barber():
+        return (
+          <>
+            <FaScissors />
+            Barber
+          </>
+        );
+      case User():
+        return (
+          <>
+            <FaRegUser /> User
+          </>
+        );
+      default:
+        return null;
+    }
+  };
 
   return (
     <div className="Sidebar">
-      <span onClick={isAdminClicked} className="admin-icon">{getTheCurrentUserIcon(userType)}</span>
+      <span onClick={isAdminClicked} className="admin-icon">
+        {getTheCurrentUserIcon(userType)}
+      </span>
 
-     
       {isAdminVisible && <AdminOne />}
     </div>
   );

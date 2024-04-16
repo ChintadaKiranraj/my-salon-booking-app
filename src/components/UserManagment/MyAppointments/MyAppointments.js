@@ -26,7 +26,7 @@ const MyAppointments = () => {
   const [appointmentId, setAppointmentId] = useState(null);
   const fetchMyAppointments = async () => {
     console.log("getUserDetails");
-    const userId = getUserDetails().userid;
+    const userId = getUserDetails().user_id;
     try {
       const response = await fetch(
         `http://localhost:4001/api/get-users-appointments/${userId}`

@@ -31,19 +31,15 @@ class LoginForm extends Component {
 
   onSubmitSuccess = (jsonData) => {
     const { history } = this.props;
-    
-console.log("jsonData  ===> ",jsonData )
+
+    console.log("jsonData  ===> ", jsonData);
     const { jwt_token } = jsonData;
     const userDetails = jwtDecode(jwt_token);
-
-    console.log("userDetails ---->  ", userDetails);
-
     Cookies.set("jwt_token", jwt_token, {
       expires: 30,
     });
-
-
-    switch (userDetails.usertype) {
+    debugger;
+    switch (userDetails.user_type) {
       case "User":
         history.replace("/MyAppointments");
         break;
@@ -57,10 +53,6 @@ console.log("jsonData  ===> ",jsonData )
         history.replace("/login");
         break;
     }
-    
-   
-
-   
   };
 
   onSubmitFailure = (errorMsg) => {
@@ -85,16 +77,14 @@ console.log("jsonData  ===> ",jsonData )
       const response = await fetch(url, options);
 
       const jsonData = await response.json();
-      console.log("jsonData ==> ",jsonData);
+      console.log("jsonData ==> ", jsonData);
       if (jsonData.status === true) {
-        console.log("Login successful. Welcome back!")
+        console.log("Login successful. Welcome back!");
         toast.success("Login successful. Welcome back!");
 
         this.setState({ isLoading: false });
 
         this.onSubmitSuccess(jsonData);
-
-      
       }
     } catch (error) {
       toast.error("invalid username or password");
@@ -152,27 +142,19 @@ console.log("jsonData  ===> ",jsonData )
     const jwtToken = Cookies.get("jwt_token");
 
     if (jwtToken !== undefined) {
-
       switch (getUserDetails().usertype) {
         case "User":
-    
           return <Redirect to="/MyAppointments" />;
- 
+
         case "Barber":
-          
           return <Redirect to="/BarberApplicationsForm" />;
-   
+
         case "Shop Owner":
-      
           return <Redirect to="/noofbarbers" />;
 
         default:
-      
           return <Redirect to="/login" />;
-     
       }
-
- 
     }
 
     if (redirectToSignup) {

@@ -11,17 +11,15 @@ import { IoMdStar } from "react-icons/io";
 import "./Utilities.css";
 import { toast } from "react-toastify";
 
-export const Barber=()=>{
-  return "Barber";
-
-}
-export const ShopOwner=()=>{
-
-  return "Shop Owner";
-}
-export const User=()=>{
-  return "User";
-}
+export const Barber = () => {
+  return "barber";
+};
+export const ShopOwner = () => {
+  return "shopowner";
+};
+export const User = () => {
+  return "user";
+};
 
 export const toBase64 = (file) => {
   return new Promise((resolve, reject) => {
@@ -52,26 +50,25 @@ export const Loader = () => {
 export const LoginUserProfilePhoto = async () => {
   const jwtToken = Cookie.get("jwt_token");
   const userDetails = jwtDecode(jwtToken);
-  const userId = userDetails.userid;
+  const userId = userDetails.user_id;
   console.log("userId At utils ==>  :", userId);
   let imageByteArrray = null;
 
-  try{
+  try {
     if (userId != null) {
       const response = await fetch(
         `http://localhost:4001/api/get-user-profile-photo/${userId}`
       );
       const responseData = await response.json();
       if (responseData.code === 200) {
-        const { profilephoto } = responseData.data;
-        const { data } = profilephoto;
+        const { profile_photo } = responseData.data;
+        const { data } = profile_photo;
         imageByteArrray = ImageDecoder(data);
       }
     }
-  }catch(exception){
-    toast.error("Error in fetching user profile photo",exception);
+  } catch (exception) {
+    toast.error("Error in fetching user profile photo", exception);
   }
-  
 
   return imageByteArrray;
 };
@@ -84,7 +81,7 @@ export const getUserDetails = () => {
 
 export const userInitials = () => {
   const userDetails = getUserDetails();
-  const fullName = userDetails.firstname + " " + userDetails.lastname;
+  const fullName = userDetails.first_name + " " + userDetails.last_name;
   const userInitials = fullName
     .split(" ")
     .map((word) => word.charAt(0))
@@ -99,7 +96,7 @@ export const userInitials = () => {
 
 export const UsertFullName = () => {
   const userDetails = getUserDetails();
-  const fullName = userDetails.firstname + " " + userDetails.lastname;
+  const fullName = userDetails.first_name + " " + userDetails.last_name;
 
   return (
     <div className="logo-email-container">
@@ -108,55 +105,53 @@ export const UsertFullName = () => {
   );
 };
 
-
-export const UpdateProfilePhoto=async (base64Image)=>{
+export const UpdateProfilePhoto = async (base64Image) => {
   const userDetails = getUserDetails();
-  const userId = userDetails.userid;
+  const userId = userDetails.user_id;
 
-
-  try{
-    const response = await fetch(`http://localhost:4001/api/update-user-profile-photo/${userId}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ profilePhoto: base64Image }),
-    });
+  try {
+    const response = await fetch(
+      `http://localhost:4001/api/update-user-profile-photo/${userId}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ profilePhoto: base64Image }),
+      }
+    );
     const responseData = await response.json();
-    if(responseData.code===200){
+    if (responseData.code === 200) {
       toast.success(responseData.message);
       return true;
     }
     return false;
-  }catch(e){
-    toast.error("Error in updating user profile photo",e);
+  } catch (e) {
+    toast.error("Error in updating user profile photo", e);
   }
-  
-  
-}
-const startStyle={
-  width:10,
-  height:10,
-
-}
+};
+const startStyle = {
+  width: 10,
+  height: 10,
+};
 export const RatingStars = ({ rating }) => {
   const stars = [];
 
   // Whole filled stars
   const fullStars = Math.floor(rating);
   for (let i = 0; i < fullStars; i++) {
-    stars.push(<IoMdStar style={startStyle}/>); 
+    stars.push(<IoMdStar style={startStyle} />);
   }
 
   // Half-filled star if applicable
   if (rating % 1 >= 0.1 && rating % 1 < 0.99) {
-    stars.push(<FaRegStarHalfStroke style={startStyle}/>); 
+    stars.push(<FaRegStarHalfStroke style={startStyle} />);
   }
 
   // Empty stars to fill remaining space
   const remainingStars = 5 - Math.ceil(rating);
   for (let i = 0; i < remainingStars; i++) {
-    stars.push(<IoStarOutline style={startStyle}/>); 
+    stars.push(<IoStarOutline style={startStyle} />);
   }
 
   return <div className="description-service-card-head">{stars}</div>;

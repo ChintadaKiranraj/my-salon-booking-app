@@ -15,16 +15,16 @@ const ProtectedRoute = ({ ...rest }) => {
   if (jwtToken === undefined) {
     return <Redirect to="/login" />;
   }
-  const userRole = getUserDetails().usertype;
+  const userRole = getUserDetails().user_type;
 
   // console.log(role);
   // Check if user role matches the required role for the route
   // if (userRole !== role) {
   //   // Redirect user to appropriate page (e.g., access denied page)
   //   return (
-      
+
   //       <NotFound />
-      
+
   //   );
   // }
   return (

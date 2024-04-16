@@ -11,7 +11,7 @@ import "./ApplicationPop.css";
 import "../../Utilities/Utilities.css";
 const ACCEPTED = "accepted";
 const REJECTED = "rejected";
-const SHOP_OWNER = "Shop Owner";
+const SHOP_OWNER = "shopowner";
 
 const ApplicationViwePop = (props) => {
   const { applicationId, hideModel } = props;
@@ -24,9 +24,9 @@ const ApplicationViwePop = (props) => {
 
   const fetchData = async () => {
     const userDetails = getUserDetails();
-    const ownerid = userDetails.userid;
+    const ownerid = userDetails.user_id;
     const status = "pending";
-    let user_type = userDetails.usertype;
+    let user_type = userDetails.user_type;
     if (userDetails.usertype === SHOP_OWNER) {
       user_type = "shopowner";
     }
@@ -54,7 +54,7 @@ const ApplicationViwePop = (props) => {
   const updateStatus = async (barbersData, status) => {
     try {
       const response = await fetch(
-        `http://localhost:4001/api/update-barber-application-status/${barbersData.applicationid}/${status}`,
+        `http://localhost:4001/api/update-barber-application-status/${barbersData.application_id}/${status}`,
         {
           method: "PUT",
           headers: {
@@ -67,7 +67,6 @@ const ApplicationViwePop = (props) => {
       if (jsonData.code === 200 && jsonData.status === true) {
         toast.success("Barber application status updated successfully");
         hideModel();
-
       }
     } catch (error) {
       toast.error("Error in fetching users", error);

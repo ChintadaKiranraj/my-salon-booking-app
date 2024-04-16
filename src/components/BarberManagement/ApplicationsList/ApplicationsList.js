@@ -17,7 +17,7 @@ const BarberApplicationData = () => {
 
   const viewAndAccept = (row) => {
     console.log("Edit", row);
-    setApplicationId(row.applicationid);
+    setApplicationId(row.application_id);
     setViwApplication(true);
   };
 
@@ -31,7 +31,7 @@ const BarberApplicationData = () => {
 
     try {
       const request = await fetch(
-        `http://localhost:4001/api/delete-barber-application/${rowToDelete.applicationid}`
+        `http://localhost:4001/api/delete-barber-application/${rowToDelete.application_id}`
       );
 
       const response = await request.json();
@@ -47,10 +47,10 @@ const BarberApplicationData = () => {
     console.log("BarberApplicationData component is mounted");
 
     const userDetails = getUserDetails();
-    const ownerid = userDetails.userid;
+    const ownerid = userDetails.user_id;
     const status = "pending";
-    let userType = userDetails.usertype;
-    if (userType === "Shop Owner") {
+    let userType = userDetails.user_type;
+    if (userType === "shopowner") {
       userType = "shopowner";
     }
 

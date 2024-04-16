@@ -13,7 +13,11 @@ const UserAccount = () => {
 
   const [show, setShow] = useState(false);
   const [editUser, setEditUser] = useState(false);
-  const [editUserData,setEditUserData]=useState({firstName:"",lastName:"",phoneNumber:""});  
+  const [editUserData, setEditUserData] = useState({
+    first_name: "",
+    last_name: "",
+    phone_number: "",
+  });
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -36,7 +40,7 @@ const UserAccount = () => {
       <div className="user-card">
         <div className="title-profile-container">
           <h5 className="user-full-name">
-            {userDetails.firstname + " " + userDetails.lastname}
+            {userDetails.first_name + " " + userDetails.last_name}
           </h5>
           <UserProfilePick />
         </div>
@@ -48,7 +52,7 @@ const UserAccount = () => {
           </div>
           <div className="user-info-item">
             <span className="highlight">Phone:</span>
-            <span>{userDetails.phonenumber}</span>
+            <span>{userDetails.phone_number}</span>
           </div>
           {/* <div className="user-info-item">
             <span className="highlight">Address:</span>
@@ -56,49 +60,63 @@ const UserAccount = () => {
           </div> */}
           <div className="user-info-item">
             <span className="highlight">Role:</span>
-            <span>{userDetails.usertype}</span>
+            <span>{userDetails.user_type}</span>
           </div>
           <div className="user-info-item">
             <span className="highlight">User ID:</span>
-            <span>{userDetails.userid}</span>
+            <span>{userDetails.user_id}</span>
           </div>
         </div>
       </div>
     );
   };
 
-const onChangeInput = (event) => {
-
-  const { name, value } = event.target;
-  console.log(name, value)
-  setEditUserData({
-    ...editUserData,
-    [name]: value,
-  });
-}
+  const onChangeInput = (event) => {
+    const { name, value } = event.target;
+    console.log(name, value);
+    setEditUserData({
+      ...editUserData,
+      [name]: value,
+    });
+  };
   const EditUserCard = () => {
     return (
       <div>
         <div className="row">
           <div className="col-6">
             <label>First Name</label>
-            <input type="text" onChange={onChangeInput}  name="firstName" value={editUserData.firstName}/>
+            <input
+              type="text"
+              onChange={onChangeInput}
+              name="firstName"
+              value={editUserData.firstName}
+            />
           </div>
           <div className="col-6">
             <label>First Name</label>
-            <input type="text" onChange={onChangeInput} name="lastName"value={editUserData.lastName}/>
+            <input
+              type="text"
+              onChange={onChangeInput}
+              name="lastName"
+              value={editUserData.lastName}
+            />
           </div>
         </div>
         <div className="row">
           <div className="col-12">
             <label>Phone Number</label>
-            <input type="text" onChange={onChangeInput}  name="phoneNumber"value={editUserData.phoneNumber}/>
+            <input
+              type="text"
+              onChange={onChangeInput}
+              name="phoneNumber"
+              value={editUserData.phoneNumber}
+            />
           </div>
-        
         </div>
 
         <button type="submit">Update</button>
-        <button  className="m-3"
+        <button
+          className="m-3"
           onClick={() => {
             setEditUser(false);
           }}
@@ -128,9 +146,7 @@ const onChangeInput = (event) => {
           </div>
         </Offcanvas.Header>
 
-        <Offcanvas.Body className="p-5">
-          { <UserCard />}
-        </Offcanvas.Body>
+        <Offcanvas.Body className="p-5">{<UserCard />}</Offcanvas.Body>
       </Offcanvas>
     </>
   );

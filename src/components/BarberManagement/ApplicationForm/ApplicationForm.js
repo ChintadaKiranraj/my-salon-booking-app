@@ -69,16 +69,14 @@ const BarberApplicationsForm = () => {
     console.log(shopsFromServer.data);
   };
   const saveBarberApplicationData = async (data) => {
-    let barberId = getUserDetails().userid;  
-    
-    //get login user id as barberid
-    const { shopId, ownerId } = shopIdOwnerId;
-    console.log("shopIdOwnerId --> ", shopId, ownerId);
-    try {
-     
+    let barberId = getUserDetails().user_id;
 
+    //get login user id as barberid
+    const { shop_id, owner_id } = shopIdOwnerId;
+
+    try {
       const response = await fetch(
-        `http://localhost:4001/api/save-barberApplication-data/${barberId}/${shopId}/${ownerId}`,
+        `http://localhost:4001/api/save-barberApplication-data/${barberId}/${shop_id}/${owner_id}`,
         {
           method: "POST",
           headers: {
@@ -114,7 +112,7 @@ const BarberApplicationsForm = () => {
         toast.error(responseData.message);
       } else if (responseData.code === 500) {
         toast.error(responseData.message);
-        return
+        return;
       }
     } catch (error) {
       toast.error(
@@ -173,7 +171,7 @@ const BarberApplicationsForm = () => {
           <div className="col-6">
             <label className="label">Shop name:</label>
             <select
-              value={salaonApplicationData.shopName}
+              value={salaonApplicationData.shop_name}
               onChange={handleChange}
               name="shopName"
             >

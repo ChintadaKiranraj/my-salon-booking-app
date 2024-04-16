@@ -2,13 +2,18 @@ import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 import "./RoleBasedNavigation.css";
 
 import { RiAdminLine } from "react-icons/ri";
-import { getUserDetails } from "../Utilities/Utilities";
+import {
+  User,
+  getUserDetails,
+  Barber,
+  ShopOwner,
+} from "../Utilities/Utilities";
 const AdminOne = () => {
   const userDetails = getUserDetails();
 
   return (
     <ul className="admin-sidebar-tabs">
-      {userDetails.usertype === "Shop Owner" && (
+      {userDetails.user_type === ShopOwner() && (
         <>
           <li>
             <NavLink to="/noofbarbers" className="ul--li-a">
@@ -34,7 +39,7 @@ const AdminOne = () => {
         </>
       )}
 
-      {userDetails.usertype === "Barber" && (
+      {userDetails.user_type === Barber() && (
         <>
           <li>
             <NavLink to="/BarberApplicationsForm" className="ul--li-a">
@@ -48,7 +53,7 @@ const AdminOne = () => {
           </li>
         </>
       )}
-      {userDetails.usertype === "User" && (
+      {userDetails.user_type === User() && (
         <>
           <li>
             <NavLink to="/Appointment" className="ul--li-a">
