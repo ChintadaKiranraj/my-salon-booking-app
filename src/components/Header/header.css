@@ -1,0 +1,37 @@
+.nav-tabs-menu-containerXXX {
+  display: flex;
+  flex-direction: row;
+  list-style-type: none;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-menu-itemXXX{
+  margin: 10px;
+  font-weight: 400;
+  font-size: 16px;
+  border-radius: 5px;
+}
+.nav-link-itemsXXXX {
+  text-decoration: none;
+  color: black;
+  font-weight: 500;
+}
+
+
+
+.user-logo-dropdown{
+  display: flex;
+  flex-direction: row;
+}
+
+/* .nav-headers {
+  display: flex;
+  flex-direction: row;
+  background-color: #00246b;
+  justify-content: space-between;
+  padding: 2px;
+  background-color: blueviolet;
+} */

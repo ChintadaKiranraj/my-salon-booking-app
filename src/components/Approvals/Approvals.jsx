@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Header from "../Header";
+import Header from "../Header/header";
 import Cookie from "js-cookie";
 import { Snackbar, SnackbarContent, Button } from "@material-ui/core";
 import CheckRoundedIcon from "@mui/icons-material/CheckRounded";

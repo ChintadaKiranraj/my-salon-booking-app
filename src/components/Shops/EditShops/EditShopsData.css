@@ -1,0 +1,17 @@
+
+
+  .edit-profile{
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    margin-left: 5px;
+  }
+  .shop-profilepick{
+    display: flex;
+    flex-direction: row;
+  }
+
+  .erros-msg{
+    font-size: 15px;
+    color: red;
+  }

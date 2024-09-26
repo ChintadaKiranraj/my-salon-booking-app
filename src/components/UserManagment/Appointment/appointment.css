@@ -1,0 +1,45 @@
+.appoin-form {
+  max-width: 800px;
+  max-height: 800px;
+  margin: 20px auto;
+  padding: 50px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+.input-field {
+  width: 100%;
+  padding: 8px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.label {
+  margin-top: 10px;
+  display: block;
+}
+
+.form-btn {
+  align-items: stretch;
+  width: 100%;
+}
+
+.appointment-headding-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.liStyle {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 10px;
+  max-width: 300px;
+}
