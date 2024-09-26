@@ -1,0 +1,30 @@
+.shop-registration-form-container {
+  /* background-color: red; */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(1, 1, 1, 0.3);
+  width:940px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin:0px;
+  /* flex-shrink: 0; */
+}
+
+.shop-registration-form-container h2 {
+  text-align: center;
+  font-size: 20px;
+  color: #2980b9;
+  text-transform: capitalize;
+}
+
+.shop-registration-form-container button {
+  margin-top: 10px;
+}
+.shop-registration-form-container span {
+  font-size: 10px;
+}
+.shop-registration-form-container form {
+  min-width: 50%;
+}

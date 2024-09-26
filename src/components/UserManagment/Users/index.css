@@ -1,0 +1,23 @@
+.card {
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px; /* Add margin to separate cards */
+    min-width: 350px;
+    max-width: 350px;
+    min-height: 350px;
+    max-height: 350px;
+    margin-right: 30px;
+    overflow: hidden;
+  }
+  .user-card-list-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+   
+    flex-wrap: wrap;
+
+  }

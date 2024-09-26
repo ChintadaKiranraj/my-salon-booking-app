@@ -1,0 +1,23 @@
+.account-action-dropdown{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: red;
+  width: 5px;
+  height: 5px;
+  
+}
+
+.account-action-dropdown:hover{
+  cursor: pointer;
+ 
+}
+.modal-position {
+    /* background-color: red; */
+    padding: 20px;
+    display: flex;
+
+  }
+
+

@@ -1,0 +1,16 @@
+.modal-button-container{
+    margin-top: 20px;
+
+    text-align: left;
+}
+.appontment-update-btn{
+    margin-right: 10px;
+}
+
+.appontment-update-btn:hover{
+    background-color: green;
+}
+.appontment-cancle-btn:hover{
+    background-color:yellow;
+    color: black;
+}
